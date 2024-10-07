@@ -41,11 +41,11 @@ trait GetHoldTraineesData
 
                 foreach($trainee->trainee_meta as $meta)
                 {
-                    str_contains($meta->meta_key, 'phone_number') && $phone_collection['phone_numbers'][$phone_index++] = $meta->meta_value;
+          
 
-                    ($class->isAllowed($class->current_user, 'update-trainees', $class->permission_collection) && !str_contains($meta->meta_key, 'phone_number')) && $meta_collection[$meta->meta_key] = $meta->meta_value;
+                    $class->isAllowed($class->current_user, 'update-trainees', $class->permission_collection) && $meta_collection[$meta->meta_key] = $meta->meta_value;
 
-                    ($class->isAllowed($class->current_user, 'update-own-trainees', $class->permission_collection, $trainee?->user_id) && !str_contains($meta->meta_key, 'phone_number')) && $meta_collection[$meta->meta_key] = $meta->meta_value;
+                    $class->isAllowed($class->current_user, 'update-own-trainees', $class->permission_collection, $trainee?->user_id) && $meta_collection[$meta->meta_key] = $meta->meta_value;
                 }
 
                 $class->isAllowed($class->current_user, 'view-trainers', $class->permission_collection, $trainee?->user_id) && $trainer_collection = ['trainer' => $trainee->user?->full_name];
@@ -60,7 +60,7 @@ trait GetHoldTraineesData
 
                 $class->isAllowed($class->current_user, 'view-own-follow_up', $class->permission_collection, $trainee?->user_id) && $follow_up_collection = ['follow_up' => $trainee->user?->full_name];
 
-                $collection[$collection_index++] = [...$trainee_collection, ...$sub_collection, ...$trainer_collection, ...$level_collection, ...$follow_up_collection, ...$phone_collection, ...$meta_collection, 'created_at' => $trainee->created_at, 'updated_at' => $trainee->updated_at];
+                $collection[$collection_index++] = [...$trainee_collection, ...$sub_collection, ...$trainer_collection, ...$level_collection, ...$follow_up_collection, ...$meta_collection, 'created_at' => $trainee->created_at, 'updated_at' => $trainee->updated_at];
             }
         }
 

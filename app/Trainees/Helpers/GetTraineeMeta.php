@@ -37,7 +37,7 @@ trait GetTraineeMeta
 
                 foreach($trainee->trainee_meta as $meta)
                 {
-                    str_contains($meta->meta_key, 'phone_number') ? $phone_collection['phone_numbers'][$phone_index++] = $meta->meta_value : $meta_collection[$meta->meta_key] = $meta->meta_value;
+                    $meta_collection[$meta->meta_key] = $meta->meta_value;
                 }
 
                 $class->isAllowed($class->current_user, 'view-trainers', $class->permission_collection, $trainee?->user_id) && $trainer_collection = ['trainer' => $trainee->user?->full_name];

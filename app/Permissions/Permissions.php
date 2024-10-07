@@ -53,6 +53,9 @@ class Permissions
             'delete-pending-users'
         ],
         "waitlist" => [
+            'move-to-hold',
+            'move-to-blacklist',
+            'move-to-refund',
             'create-trainees',
             'assign-class' => 'class_id',
             'assign-trainer' => 'trainer_id',

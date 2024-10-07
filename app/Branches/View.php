@@ -18,7 +18,7 @@ class View
                 $branches[$key] = ['branch' => $s_branch->district];
             }
 
-            return response(['branches' => $branches], 201);
+            return response($branches, 201);
         }
         catch(Exception $e)
         {
