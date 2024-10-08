@@ -23,5 +23,11 @@ trait UpdateUserAdditionalData
                 $class->UpdateMeta($UserMeta, 'user_id', $user_id, 'personal_email', $request->personal_email)
                 :
                 $class->CreateMeta($UserMeta, 'user_id', $user_id, 'personal_email', $request->personal_email));
+
+        $request->has('country') && ($UserMeta->where('user_id', $user_id)->where('meta_key', 'country')->exists() ?
+
+                $class->UpdateMeta($UserMeta, 'user_id', $user_id, 'country', $request->country)
+                :
+                $class->CreateMeta($UserMeta, 'user_id', $user_id, 'country', $request->country));
     }
 }

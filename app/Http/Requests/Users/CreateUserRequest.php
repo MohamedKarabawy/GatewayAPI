@@ -21,6 +21,7 @@ class CreateUserRequest extends FormRequest
         'password' => ['required', 'string', 'min:8'],
         "role" => ['string','exists:gt_roles,role'],
         'phone_numbers.*' => ['required', 'regex:/[0-9]{10}/', 'numeric', 'unique:gt_usermeta,meta_value'],
+        'country' => ['required', 'string'],
         "is_activated" => ['boolean'],
         ];
     }
