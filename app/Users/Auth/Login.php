@@ -37,9 +37,7 @@ class Login
 
             foreach($user->role->permissions as $permission)
             {
-                !array_key_exists($permission->per_collection, $permissions) && $key = 0;
-
-                boolval($permission->per_key) === true && $permissions[$permission->per_collection][$key++] = $permission->per_key;
+                 $permissions[$permission->per_collection][$permission->per_key] = boolval($permission->per_value);
             }
 
             $data = [
