@@ -21,7 +21,7 @@ class View extends Permissions
 
         $this->status = true;
 
-        $this->permission_keys = ['view-users', 'view-own-users'];
+        $this->permission_keys = ['view_users', 'view_own_users'];
     }
 
     public function view(?User $user)

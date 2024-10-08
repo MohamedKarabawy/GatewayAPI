@@ -11,14 +11,14 @@ class UserPolicy
 
     public function __construct()
     {
-        $this->permissions = ['create' => ['create-users'],
-        'view' => ['view-users', 'view-own-users'],
-        'update' => ['update-users', 'update-own-users'],
-        'delete' => ['delete-users', 'delete-own-users'],
-        'update-self' => ['update-self'],
-        'delete-self' => ['delete-self'],
-        'activate-pending' => ['assign-activate'], 
-        'delete-pending' => ['delete-pending-users']];
+        $this->permissions = ['create' => ['create_users'],
+        'view' => ['view_users', 'view_own_users'],
+        'update' => ['update_users', 'update_own_users'],
+        'delete' => ['delete_users', 'delete_own_users'],
+        'update-self' => ['update_self'],
+        'delete-self' => ['delete_self'],
+        'activate-pending' => ['assign_activate'], 
+        'delete-pending' => ['delete_pending_users']];
 
         $this->permission_collection['users'] = 'users';
 

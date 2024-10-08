@@ -12,10 +12,10 @@ class BranchPolicy
 
     public function __construct()
     {
-        $this->permissions = ['create' => ['create-branch'],
-        'view' => ['view-branches'],
-        'update' => ['update-branch'],
-        'delete' => ['delete-branch']];
+        $this->permissions = ['create' => ['create_branch'],
+        'view' => ['view_branches'],
+        'update' => ['update_branch'],
+        'delete' => ['delete_branch']];
 
         $this->permission_collection = 'branches';
     }

@@ -20,7 +20,7 @@ class FollowUp extends Permissions
         
         $this->collection = 'general';
 
-        $this->permission = 'show-follow_up-list';
+        $this->permission = 'show_follow_up_list';
     }
 
     public function show(?User $user, ?Permission $permission)

@@ -28,7 +28,7 @@ class Update extends Permissions
 
         $this->current_user = $current_user;
 
-        $this->permissions = ['update-self'];
+        $this->permissions = ['update_self'];
 
         $this->permission_collection = 'users';
     }

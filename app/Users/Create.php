@@ -33,7 +33,7 @@ class Create extends Permissions
     {
         try 
         {
-            $created_user = $this->StoreUserEssentialData($user, $request, 'assign-user', $this);
+            $created_user = $this->StoreUserEssentialData($user, $request, 'assign_user', $this);
 
             $this->StoreUserAddtionalData($UserMeta, $created_user->id, $request, $this);
 

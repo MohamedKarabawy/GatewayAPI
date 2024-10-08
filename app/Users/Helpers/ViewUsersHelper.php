@@ -13,7 +13,7 @@ trait ViewUsersHelper
         {
             $class->CheckPermissionStatus($class->current_user, $class->permission_collection, $permission_key) && $users_data =  $class->getCollection($users->where('is_activated', $class->status)->get(), $class);
     
-            (str_contains($permission_key, 'view-own') && $class->CheckPermissionStatus($class->current_user, $class->permission_collection, $permission_key) && count($users_data) === 0) && 
+            (str_contains($permission_key, 'view_own') && $class->CheckPermissionStatus($class->current_user, $class->permission_collection, $permission_key) && count($users_data) === 0) && 
     
             $users_data = $class->getCollection($users->where('user_id', $class->current_user->id)->where('is_activated', $class->status)->get(), $class);
         }

@@ -20,7 +20,7 @@ class Trainers extends Permissions
         
         $this->collection = 'general';
 
-        $this->permission = 'show-trainers-list';
+        $this->permission = 'show_trainers_list';
     }
 
     public function show(?User $user, ?Permission $permission)

@@ -12,11 +12,11 @@ class RolePolicy
 
     public function __construct()
     {
-        $this->permissions = ['create' => ['create-role'],
-        'view' => ['view-roles'],
-        'view-permissions' => ['view-permissions'],
-        'update' => ['update-role'],
-        'delete' => ['delete-role']];
+        $this->permissions = ['create' => ['create_role'],
+        'view' => ['view_roles'],
+        'view-permissions' => ['view_permissions'],
+        'update' => ['update_role'],
+        'delete' => ['delete_role']];
 
         $this->permission_collection = 'roles';
     }

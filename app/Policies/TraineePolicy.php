@@ -13,12 +13,12 @@ class TraineePolicy
 
     public function __construct()
     {
-        $this->permissions = ['create' => ['create-trainees'],
-        'view-follow-up' => ['create-trainees', 'update-trainees', 'update-own-trainees'],
-        'view-trainers' => ['create-trainees', 'update-trainees', 'update-own-trainees'],
-        'view' => ['view-trainees', 'view-own-trainees'],
-        'update' => ['update-trainees', 'update-own-trainees'],
-        'delete' => ['delete-trainees', 'delete-own-trainees']];
+        $this->permissions = ['create' => ['create_trainees'],
+        'view-follow-up' => ['create_trainees', 'update_trainees', 'update_own_trainees'],
+        'view-trainers' => ['create_trainees', 'update_trainees', 'update_own_trainees'],
+        'view' => ['view_trainees', 'view_own_trainees'],
+        'update' => ['update_trainees', 'update_own_trainees'],
+        'delete' => ['delete_trainees', 'delete_own_trainees']];
 
         $this->permission_collection['waitlist'] = 'waitlist';
         $this->permission_collection['pendinglist'] = 'pendinglist';

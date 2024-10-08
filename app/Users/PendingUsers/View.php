@@ -21,7 +21,7 @@ class View extends Permissions
 
         $this->status = false;
 
-        $this->permission_keys = ['view-pending-users'];
+        $this->permission_keys = ['view_pending_users'];
     }
 
     public function view(?User $user)

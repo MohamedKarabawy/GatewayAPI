@@ -34,7 +34,7 @@ class Update extends Permissions
 
         $this->meta_keys = ['country', 'age_group', 'test_date', 'job', 'education', 'email', 'city', 'brith_date', 'paid_value', 'remaining_value'];
 
-        $this->permissions = ['update-all', 'update-own'];
+        $this->permissions = ['update_all', 'update_own'];
     }
 
     public function update(?Trainee $trainee, ?TraineeMeta $TraineeMeta, Request $request, $id)
