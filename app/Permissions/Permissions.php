@@ -157,7 +157,7 @@ class Permissions
     {
         $allowed = false;
 
-        foreach((object) $user?->role_>permissions as $key => $permission)
+        foreach((object) $user?->role->permissions as $key => $permission)
         {
             if($permission->per_collection === $permission_collection && boolval($permission->per_value))
             {
