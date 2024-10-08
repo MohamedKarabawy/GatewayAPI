@@ -3,17 +3,10 @@
 namespace App\Branches;
 
 use App\Models\Branch;
-use App\Permissions\Permissions;
-use Illuminate\Support\Facades\Gate;
 use Exception;
 
-class View extends Permissions
+class ViewBranches
 {
-    public function __construct(?Branch $branch)
-    {
-        Gate::authorize('createBranch', $branch);
-    }
-
     public function view(?Branch $branch)
     {
         try
@@ -22,7 +15,7 @@ class View extends Permissions
 
             foreach($branch->get() as $key => $s_branch)
             {
-                $branches[$key] = ['id' => $s_branch->id, 'country' => $s_branch->country, 'city' => $s_branch->city, 'district' => $s_branch->district];
+                $branches[$key] = ['branch' => $s_branch->district];
             }
 
             return response($branches, 201);

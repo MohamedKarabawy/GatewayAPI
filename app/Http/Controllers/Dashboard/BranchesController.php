@@ -8,6 +8,7 @@ use App\Http\Requests\BranchRequest;
 use App\Http\Requests\BulkBranchRequest;
 use App\Branches\Create;
 use App\Branches\Update;
+use App\Branches\ViewBranches;
 use App\Branches\View;
 use App\Branches\Deletes\Delete;
 use App\Branches\Deletes\BulkDelete;
@@ -21,7 +22,14 @@ class BranchesController extends Controller
 
     public function view(?Branch $branch)
     {
-        $this->branch['branch'] = new View();
+        $this->branch['branch'] = new View($branch);
+
+        return $this->branch['branch']->view($branch);
+    }
+
+    public function viewBranches(?Branch $branch)
+    {
+        $this->branch['branch'] = new ViewBranches();
 
         return $this->branch['branch']->view($branch);
     }

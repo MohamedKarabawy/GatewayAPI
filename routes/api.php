@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/v1/branches', [BranchesController::class, 'view']);
+Route::get('/v1/branches', [BranchesController::class, 'viewBranches']);
 
 Route::post('/v1/register', [RegisterController::class, 'register']);
 
@@ -26,6 +26,8 @@ Route::post('/v1/auth', [LoginController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Branches
+    Route::get('/v1/dashboard/branches', [BranchesController::class, 'view']);
+    
     Route::post('/v1/dashboard/branches/create', [BranchesController::class, 'create']);
 
     Route::put('/v1/dashboard/branches/{id}/update', [BranchesController::class, 'update']);
