@@ -24,9 +24,9 @@ trait GetSingleUserMetaData
                  $meta_collection[$meta->meta_key] = $meta->meta_value;
             }
 
-            $class->isAllowed($class->current_user, 'view-self-role', $class->current_user?->user_id) && $roles_collection = ['role' => $class->current_user->role->role];
+            $class->isAllowed($class->current_user, 'view-self-role', $class->permission_collection, $class->current_user?->id) && $roles_collection = ['role' => $class->current_user->role->role];
 
-            $class->isAllowed($class->current_user, 'view-self-status', $class->current_user?->user_id) && $status_collection = ['status' => $class->current_user->is_activated];
+            $class->isAllowed($class->current_user, 'view-self-status', $class->permission_collection, $class->current_user?->id) && $status_collection = ['status' => boolval($class->current_user->is_activated)];
 
             $collection = [...$user_collection, ...$roles_collection, ...$status_collection, ...$meta_collection, 'created_at' => $class->current_user->created_at, 'updated_at' => $class->current_user->updated_at];
 

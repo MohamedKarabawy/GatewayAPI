@@ -28,13 +28,13 @@ trait GetMetaData
                 $meta_collection[$meta->meta_key] = $meta->meta_value;
             }
 
-            $class->isAllowed($class->current_user, $class->permission_collection, 'view-roles', $user?->user_id) && $roles_collection = ['role' => $user->role->role];
+            $class->isAllowed($class->current_user, 'view-roles', $class->permission_collection, $user?->user_id) && $roles_collection = ['role' => $user->role->role];
 
-            $class->isAllowed($class->current_user, $class->permission_collection, 'view-status', $user?->user_id) && $status_collection = ['status' => $user->is_activated];
+            $class->isAllowed($class->current_user, 'view-status', $class->permission_collection, $user?->user_id) && $status_collection = ['status' => boolval($user->is_activated)];
 
-            $class->isAllowed($class->current_user, $class->permission_collection, 'view-self-role', $user?->user_id) && $roles_collection = ['role' => $user->role->role];
+            $class->isAllowed($class->current_user, 'view-self-role', $class->permission_collection, $user?->id) && $roles_collection = ['role' => $user->role->role];
 
-            $class->isAllowed($class->current_user, $class->permission_collection, 'view-self-status', $user?->user_id) && $status_collection = ['status' => $user->is_activated];
+            $class->isAllowed($class->current_user, 'view-self-status', $class->permission_collection, $user?->id) && $status_collection = ['status' => boolval($user->is_activated)];
             
             $collection[$key] = [...$user_collection, ...$roles_collection, ...$status_collection, ...$meta_collection, 'created_at' => $user->created_at, 'updated_at' => $user->updated_at];
         }
