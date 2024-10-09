@@ -14,7 +14,11 @@ trait ViewTraineesHelper
 
         $trainees_data = $class?->getCollection($trainees->where('user_id', $class->current_user->id)->get(), $class);
 
-        $message = count($trainees_data) === 0 ? response(['message' => 'Unauthorized'], 401) : response(['trainees' => $trainees_data], 201);
+        $current_list = $trainees?->where('current_list', $class->List($class->list)->id)->count();
+
+        $sub_message = $current_list === 0 ?  response(['message' => 'This list is empty'], 200) : response(['message' => 'Unauthorized'], 401);
+
+        $message = count($trainees_data) === 0 ? $sub_message : response(['trainees' => $trainees_data], 201);
 
         return $message;
     }

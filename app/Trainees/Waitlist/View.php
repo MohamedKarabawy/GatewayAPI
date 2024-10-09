@@ -8,11 +8,12 @@ use App\Traits\GetGeneralMeta;
 use App\Traits\CheckPermissionStatus;
 use App\Trainees\Helpers\GetTraineeMeta;
 use App\Trainees\Helpers\ViewTraineesHelper;
+use App\Traits\GetList;
 use Exception;
 
 class View extends Permissions
 {
-    use CheckPermissionStatus, GetTraineeMeta, ViewTraineesHelper, GetGeneralMeta;
+    use CheckPermissionStatus, GetTraineeMeta, ViewTraineesHelper, GetGeneralMeta, GetList;
 
     public function __construct($current_user)
     {
