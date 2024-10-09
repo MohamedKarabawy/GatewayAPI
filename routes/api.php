@@ -82,6 +82,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Lists
     //Wait List
+    Route::put('/v1/dashboard/waitlist/hold', [WaitlistController::class, 'bulkMoveToHold']);
+
+    Route::put('/v1/dashboard/waitlist/refund', [WaitlistController::class, 'bulkMoveToRefund']);
+
+    Route::put('/v1/dashboard/waitlist/black', [WaitlistController::class, 'bulkMoveToBlack']);
+    
     Route::put('/v1/dashboard/waitlist/{id}/hold', [WaitlistController::class, 'moveToHold']);
 
     Route::put('/v1/dashboard/waitlist/{id}/refund', [WaitlistController::class, 'moveToRefund']);
@@ -116,6 +122,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/pendinglist/delete', [PendinglistController::class, 'bulkDelete']);
 
     //Refund List
+    Route::put('/v1/dashboard/refundlist/{id}/wait', [RefundlistController::class, 'moveToWait']);
+
+    Route::put('/v1/dashboard/refundlist/wait', [RefundlistController::class, 'bulkMoveToWait']);
+
     Route::get('/v1/dashboard/refundlist/view-trainers', [RefundlistController::class, 'viewTrainers']);
     
     Route::get('/v1/dashboard/refundlist', [RefundlistController::class, 'view']);
@@ -127,6 +137,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/refundlist/delete', [RefundlistController::class, 'bulkDelete']);
 
     //Hold List
+    Route::put('/v1/dashboard/holdlist/{id}/wait', [HoldlistController::class, 'moveToWait']);
+
+    Route::put('/v1/dashboard/holdlist/wait', [HoldlistController::class, 'bulkMoveToWait']);
+    
     Route::get('/v1/dashboard/holdlist/view-trainers', [HoldlistController::class, 'viewTrainers']);
     
     Route::get('/v1/dashboard/holdlist', [HoldlistController::class, 'view']);
@@ -138,6 +152,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/holdlist/delete', [HoldlistController::class, 'bulkDelete']);
 
     //Black List
+    Route::put('/v1/dashboard/blacklist/{id}/wait', [BlacklistController::class, 'moveToWait']);
+
+    Route::put('/v1/dashboard/blacklist/wait', [BlacklistController::class, 'bulkMoveToWait']);
+    
     Route::get('/v1/dashboard/blacklist/view-trainers', [BlacklistController::class, 'viewTrainers']);
     
     Route::get('/v1/dashboard/blacklist', [BlacklistController::class, 'view']);

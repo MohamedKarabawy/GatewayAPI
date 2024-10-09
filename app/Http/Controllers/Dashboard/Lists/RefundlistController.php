@@ -13,12 +13,28 @@ use App\Http\Controllers\Controller;
 use App\Trainees\Refundlist\Show\Trainers;
 use App\Trainees\Refundlist\Deletes\Delete;
 use App\Trainees\Refundlist\Deletes\BulkDelete;
+use App\Trainees\Refundlist\Move\RefundMoveToWait;
+use App\Trainees\Refundlist\Move\Bulk\RefundToWait;
 
 class RefundlistController extends Controller
 {
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function bulkMoveToWait(?Trainee $trainee, Request $request)
+    {
+        $this->trainee['wait'] = new RefundToWait($this->current_user);
+
+        return $this->trainee['wait']->move($trainee, $request);
+    }
+
+    public function moveToWait(?Trainee $trainee, $id)
+    {
+        $this->trainee['move-to-wait'] = new RefundMoveToWait($trainee, $id);
+
+        return $this->trainee['move-to-wait']->move($trainee, $id);
     }
 
     public function viewTrainers(?Trainee $trainee, ?User $user, ?Permission $permission)

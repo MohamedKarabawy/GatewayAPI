@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Trainees\Waitlist\Move;
+namespace App\Trainees\Holdlist\Move;
 
-use Exception;
 use App\Models\Trainee;
-use App\Traits\GetList;
 use App\Permissions\Permissions;
 use Illuminate\Support\Facades\Gate;
 use App\Trainees\Helpers\ListChangerHelper;
+use App\Traits\GetList;
+use Exception;
 
-class MoveToBlacklist extends Permissions
+class HoldMoveToWait extends Permissions
 {
     use ListChangerHelper, GetList;
     
     public function __construct(?Trainee $trainee, $id)
     {
-        Gate::authorize('moveWaitToBlack', $trainee->find($id));
+        Gate::authorize('moveHoldToWait', $trainee->find($id));
 
-        $this->list = 'Blacklist';
-        
-        $this->list_name = 'blacklist';
+        $this->list = 'Wait List';
+
+        $this->list_name = 'wait list';
     }
 
     public function move(?Trainee $trainee, $id)

@@ -13,12 +13,28 @@ use App\Http\Controllers\Controller;
 use App\Trainees\Holdlist\Show\Trainers;
 use App\Trainees\Holdlist\Deletes\Delete;
 use App\Trainees\Holdlist\Deletes\BulkDelete;
+use App\Trainees\Holdlist\Move\HoldMoveToWait;
+use App\Trainees\Holdlist\Move\Bulk\HoldToWait;
 
 class HoldlistController extends Controller
 {
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function bulkMoveToWait(?Trainee $trainee, Request $request)
+    {
+        $this->trainee['wait'] = new HoldToWait($this->current_user);
+
+        return $this->trainee['wait']->move($trainee, $request);
+    }
+
+    public function moveToWait(?Trainee $trainee, $id)
+    {
+        $this->trainee['move-to-wait'] = new HoldMoveToWait($trainee, $id);
+
+        return $this->trainee['move-to-wait']->move($trainee, $id);
     }
     
     public function viewTrainers(?Trainee $trainee, ?User $user, ?Permission $permission)

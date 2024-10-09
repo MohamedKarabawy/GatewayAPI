@@ -26,7 +26,7 @@ class MoveToHold extends Permissions
     {
         try
         {   
-            $message = $this->listChanger($trainee->find($id), $this, $id);
+            $message = $this->listChanger($trainee->find($id), $this);
             
             return $message;
         }

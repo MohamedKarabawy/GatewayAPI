@@ -5,7 +5,7 @@ namespace App\Trainees\Helpers;
 
 trait ListChangerHelper
 {
-    protected function listChanger($trainee, $class, $id)
+    protected function listChanger($trainee, $class)
     {   
         if($trainee->current_list !== $class->List($class->list)->id)
         {

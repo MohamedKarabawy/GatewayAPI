@@ -17,12 +17,36 @@ use App\Trainees\Waitlist\Deletes\BulkDelete;
 use App\Trainees\Waitlist\Move\MoveToHold;
 use App\Trainees\Waitlist\Move\MoveToRefund;
 use App\Trainees\Waitlist\Move\MoveToBlacklist;
+use App\Trainees\Waitlist\Move\Bulk\Hold;
+use App\Trainees\Waitlist\Move\Bulk\Refund;
+use App\Trainees\Waitlist\Move\Bulk\Black;
 
 class WaitlistController extends Controller
 {
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function bulkMoveToHold(?Trainee $trainee, Request $request)
+    {
+        $this->trainee['hold'] = new Hold($this->current_user);
+
+        return $this->trainee['hold']->move($trainee, $request);
+    }
+
+    public function bulkMoveToRefund(?Trainee $trainee, Request $request)
+    {
+        $this->trainee['refund'] = new Refund($this->current_user);
+
+        return $this->trainee['refund']->move($trainee, $request);
+    }
+
+    public function bulkMoveToBlack(?Trainee $trainee, Request $request)
+    {
+        $this->trainee['black'] = new Black($this->current_user);
+
+        return $this->trainee['black']->move($trainee, $request);
     }
 
     public function moveToHold(?Trainee $trainee, $id)
