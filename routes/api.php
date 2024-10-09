@@ -52,6 +52,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //users
     Route::get('/v1/dashboard/users', [UsersController::class, 'view']);
 
+    Route::get('/v1/dashboard/users/roles', [UsersController::class, 'viewRoles']);
+
     Route::post('/v1/dashboard/users/create', [UsersController::class, 'create']);
 
     Route::put('/v1/dashboard/users/{id}/update', [UsersController::class, 'update']);

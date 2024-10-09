@@ -9,9 +9,11 @@ use App\Http\Requests\BulkRequest;
 use App\Users\Create;
 use App\Users\Update;
 use App\Users\View;
+use App\Users\ViewRoles;
 use App\Users\Deletes\Delete;
 use App\Users\Deletes\BulkDelete;
 use App\Models\User;
+use App\Models\Role;
 use App\Models\UserMeta;
 
 class UsersController extends Controller
@@ -33,6 +35,13 @@ class UsersController extends Controller
         $this->user['view'] = new View($this->current_user);
 
         return $this->user['view']->view($user);
+    }
+
+    public function viewRoles(?Role $role)
+    {
+        $this->user['view-roles'] = new ViewRoles($this->current_user);
+
+        return $this->user['view-roles']->view($role);
     }
 
     public function update(?User $user, UserMeta $UserMeta, Request $request, $id)
