@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/branches/{id}/delete', [BranchesController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/branches/delete', [BranchesController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/branches/delete', [BranchesController::class, 'bulkDelete']);
 
     //Roles
     Route::get('/v1/dashboard/roles', [RolesController::class, 'view']);
@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/roles/{id}/delete', [RolesController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/roles/delete', [RolesController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/roles/delete', [RolesController::class, 'bulkDelete']);
 
     //users
     Route::get('/v1/dashboard/users', [UsersController::class, 'view']);
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/users/{id}/delete', [UsersController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/users/delete', [UsersController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/users/delete', [UsersController::class, 'bulkDelete']);
 
     //user
     Route::get('/v1/dashboard/user', [UserController::class, 'view']);
@@ -78,7 +78,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/pending-users/{id}/delete', [PendingUsersController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/pending-users/delete', [PendingUsersController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/pending-users/delete', [PendingUsersController::class, 'bulkDelete']);
 
     //Lists
     //Wait List
@@ -104,7 +104,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/waitlist/{id}/delete', [WaitlistController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/waitlist/delete', [WaitlistController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/waitlist/delete', [WaitlistController::class, 'bulkDelete']);
 
     //Pending List
     Route::get('/v1/dashboard/pendinglist/view-trainers', [PendinglistController::class, 'viewTrainers']);
@@ -119,7 +119,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/pendinglist/{id}/delete', [PendinglistController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/pendinglist/delete', [PendinglistController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/pendinglist/delete', [PendinglistController::class, 'bulkDelete']);
 
     //Refund List
     Route::put('/v1/dashboard/refundlist/{id}/wait', [RefundlistController::class, 'moveToWait']);
@@ -134,7 +134,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/refundlist/{id}/delete', [RefundlistController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/refundlist/delete', [RefundlistController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/refundlist/delete', [RefundlistController::class, 'bulkDelete']);
 
     //Hold List
     Route::put('/v1/dashboard/holdlist/{id}/wait', [HoldlistController::class, 'moveToWait']);
@@ -149,7 +149,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/holdlist/{id}/delete', [HoldlistController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/holdlist/delete', [HoldlistController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/holdlist/delete', [HoldlistController::class, 'bulkDelete']);
 
     //Black List
     Route::put('/v1/dashboard/blacklist/{id}/wait', [BlacklistController::class, 'moveToWait']);
@@ -164,6 +164,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/v1/dashboard/blacklist/{id}/delete', [BlacklistController::class, 'delete']);
 
-    Route::delete('/v1/dashboard/blacklist/delete', [BlacklistController::class, 'bulkDelete']);
+    Route::post('/v1/dashboard/blacklist/delete', [BlacklistController::class, 'bulkDelete']);
 
 });
