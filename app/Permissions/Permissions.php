@@ -98,6 +98,7 @@ class Permissions
             'delete_own_trainees',
         ],
         "holdlist" => [
+            'move_to_wait',
             'assign_trainer' => 'trainer_id',
             'assign_level' => 'level',
             'view_trainees',
@@ -116,6 +117,7 @@ class Permissions
             'delete_own_trainees',
         ],
         "refundlist" => [
+            'move_to_wait',
             'assign_trainer' => 'trainer_id',
             'assign_level' => 'level',
             'view_trainees',
@@ -134,6 +136,7 @@ class Permissions
             'delete_own_trainees',
         ],
         "blacklist" => [
+            'move_to_wait',
             'assign_trainer' => 'trainer_id',
             'assign_level' => 'level',
             'view_trainees',

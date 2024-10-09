@@ -82,6 +82,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Lists
     //Wait List
+    Route::put('/v1/dashboard/waitlist/{id}/hold', [WaitlistController::class, 'moveToHold']);
+
+    Route::put('/v1/dashboard/waitlist/{id}/refund', [WaitlistController::class, 'moveToRefund']);
+
+    Route::put('/v1/dashboard/waitlist/{id}/black', [WaitlistController::class, 'moveToBlack']);
+
     Route::get('/v1/dashboard/waitlist/view-trainers', [WaitlistController::class, 'viewTrainers']);
     
     Route::get('/v1/dashboard/waitlist', [WaitlistController::class, 'view']);

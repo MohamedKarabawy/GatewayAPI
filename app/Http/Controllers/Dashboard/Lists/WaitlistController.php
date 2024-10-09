@@ -14,12 +14,36 @@ use App\Http\Controllers\Controller;
 use App\Trainees\Waitlist\Show\Trainers;
 use App\Trainees\Waitlist\Deletes\Delete;
 use App\Trainees\Waitlist\Deletes\BulkDelete;
+use App\Trainees\Waitlist\Move\MoveToHold;
+use App\Trainees\Waitlist\Move\MoveToRefund;
+use App\Trainees\Waitlist\Move\MoveToBlacklist;
 
 class WaitlistController extends Controller
 {
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function moveToHold(?Trainee $trainee, $id)
+    {
+        $this->trainee['move-to-hold'] = new MoveToHold($trainee, $id);
+
+        return $this->trainee['move-to-hold']->move($trainee, $id);
+    }
+
+    public function moveToRefund(?Trainee $trainee, $id)
+    {
+        $this->trainee['move-to-refund'] = new MoveToRefund($trainee, $id);
+
+        return $this->trainee['move-to-refund']->move($trainee, $id);
+    }
+
+    public function moveToBlack(?Trainee $trainee, $id)
+    {
+        $this->trainee['move-to-black'] = new MoveToBlacklist($trainee, $id);
+
+        return $this->trainee['move-to-black']->move($trainee, $id);
     }
     
     public function viewTrainers(?Trainee $trainee, ?User $user, ?Permission $permission)
@@ -28,7 +52,6 @@ class WaitlistController extends Controller
 
         return $this->trainee['trainers']->show($user, $permission);
     }
-
 
     public function view(?Trainee $trainee)
     {
