@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('gt_classmeta', function (Blueprint $table) {
             $table->bigIncrements('id')->from(2423);
-            $table->bigInteger('class_id')->unsigned();
-            $table->foreign('class_id')->references('id')->on('gt_classes')->onDelete('cascade');
             $table->string('meta_key');
             $table->text('meta_value');
             $table->timestamps();

@@ -33,7 +33,9 @@ class Create extends permissions
 
         $this->level_collection = "pendinglist_level";
 
-        $this->meta_keys = ['country', 'age_group', 'test_date', 'job', 'education', 'email', 'city', 'brith_date', 'paid_value', 'remaining_value'];
+        //'test_date' made a single column for it
+
+        $this->meta_keys = ['country', 'age_group', 'job', 'education', 'email', 'city', 'brith_date', 'paid_value', 'remaining_value'];
     }
 
     public function create(?Trainee $trainee, ?TraineeMeta $TraineeMeta, Request $request)

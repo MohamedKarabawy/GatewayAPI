@@ -8,7 +8,7 @@ use App\Models\Trainee;
 use App\Models\Permission;
 use App\Permissions\Permissions;
 use Illuminate\Support\Facades\Gate;
-use App\Trainees\Helpers\ShowRoleList;
+use App\Traits\ShowRoleList;
 
 class FollowUp extends Permissions
 {

@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Http\Controllers\Dashboard\Batches;
+
+use App\Batches\View;
+use App\Models\Batch;
+use App\Batches\Create;
+use App\Batches\Update;
+use Illuminate\Http\Request;
+use App\Batches\Action\Delete;
+use App\Batches\Action\EndBatch;
+use App\Http\Controllers\Controller;
+use App\Batches\Action\ActivateBatch;
+
+class BatchesController extends Controller
+{
+    public function __construct()
+    {
+        $this->current_user = auth()->user();
+    }
+
+    public function activate(?Batch $batch, $id)
+    {
+        $this->batch['activate'] = new ActivateBatch($batch, $id);
+
+        return $this->batch['activate']->activateBatch($batch, $id);
+    }
+
+    public function end(?Batch $batch, $id)
+    {
+        $this->batch['end'] = new EndBatch($batch, $id);
+
+        return $this->batch['end']->endBatch($batch, $id);
+    }
+
+    public function view(?Batch $batch)
+    {
+        $this->batch['view'] = new View($this->current_user);
+
+        return $this->batch['view']->view($batch);
+    }
+
+    public function create(?Batch $batch, Request $request)
+    {
+        $this->batch['create'] = new Create($batch, $this->current_user);
+
+        return $this->batch['create']->create($batch, $request);
+    }
+
+    public function update(?Batch $batch, Request $request, $id)
+    {
+        $this->batch['update'] = new Update($batch, $id);
+
+        return $this->batch['update']->update($batch, $request, $id);
+    }
+
+    public function delete(?Batch $batch, $id)
+    {
+        $this->batch['delete'] = new Delete($batch, $id);
+
+        return $this->batch['delete']->delete($batch, $id);
+    }
+}

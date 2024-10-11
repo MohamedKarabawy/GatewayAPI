@@ -19,8 +19,11 @@ class Classes extends Model
     protected $fillable = [
         'user_id',
         'batch_id',
+        'trainer_id',
         'class_name',
         'class_type',
-        'time_slot'
+        'gate',
+        'time_slot',
+        'level'
     ];
 }

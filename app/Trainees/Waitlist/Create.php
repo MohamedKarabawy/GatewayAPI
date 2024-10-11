@@ -33,7 +33,9 @@ class Create extends permissions
 
         $this->level_collection = "waitlist_level";
 
-        $this->meta_keys = ['country', 'age_group', 'test_date', 'preferable_time', 'sec_preferable_time', 'job', 'education', 'email', 'city', 'brith_date', 'paid_value', 'remaining_value'];
+        //'test_date' made a single column for it
+
+        $this->meta_keys = ['country', 'age_group', 'preferable_time', 'sec_preferable_time', 'job', 'education', 'email', 'city', 'brith_date', 'paid_value', 'remaining_value'];
     }
 
     public function create(?Trainee $trainee, ?TraineeMeta $TraineeMeta, Request $request)

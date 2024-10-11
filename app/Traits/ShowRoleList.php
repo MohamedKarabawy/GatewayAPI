@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Trainees\Helpers;
+namespace App\Traits;
 
 trait ShowRoleList
 {

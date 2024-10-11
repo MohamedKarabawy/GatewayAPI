@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('batch_title');
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

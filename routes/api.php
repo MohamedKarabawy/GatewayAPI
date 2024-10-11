@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Dashboard\BranchesController;
-use App\Http\Controllers\Dashboard\Lists\BlacklistController;
-use App\Http\Controllers\Dashboard\Lists\HoldlistController;
-use App\Http\Controllers\Dashboard\Lists\PendinglistController;
-use App\Http\Controllers\Dashboard\Lists\RefundlistController;
-use App\Http\Controllers\Dashboard\Lists\WaitlistController;
-use App\Http\Controllers\Dashboard\RolesController;
-use App\Http\Controllers\Dashboard\Users\PendingUsersController;
-use App\Http\Controllers\Dashboard\Users\UserController;
-use App\Http\Controllers\Dashboard\Users\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\BranchesController;
+use App\Http\Controllers\Dashboard\Users\UserController;
+use App\Http\Controllers\Dashboard\Users\UsersController;
+use App\Http\Controllers\Dashboard\Lists\HoldlistController;
+use App\Http\Controllers\Dashboard\Lists\WaitlistController;
+use App\Http\Controllers\Dashboard\Batches\BatchesController;
+use App\Http\Controllers\Dashboard\Lists\BlacklistController;
+use App\Http\Controllers\Dashboard\Lists\RefundlistController;
+use App\Http\Controllers\Dashboard\Lists\PendinglistController;
+use App\Http\Controllers\Dashboard\Users\PendingUsersController;
+use App\Http\Controllers\Dashboard\Batches\classes\ClassesController;
 
 
 Route::get('/v1/branches', [BranchesController::class, 'viewBranches']);
@@ -166,4 +168,39 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/v1/dashboard/blacklist/delete', [BlacklistController::class, 'bulkDelete']);
 
+    //Batches
+    Route::put('/v1/dashboard/batches/{id}/activate', [BatchesController::class, 'activate']);
+    
+    Route::put('/v1/dashboard/batches/{id}/end', [BatchesController::class, 'end']);
+
+    Route::get('/v1/dashboard/batches', [BatchesController::class, 'view']);
+
+    Route::post('/v1/dashboard/batches/create', [BatchesController::class, 'create']);
+
+    Route::put('/v1/dashboard/batches/{id}/update', [BatchesController::class, 'update']);
+
+    Route::delete('/v1/dashboard/batches/{id}/delete', [BatchesController::class, 'delete']);
+
+    //Classes
+    Route::post('/v1/dashboard/batches/classes/gate/add', [ClassesController::class, 'createGate']);
+
+    Route::post('/v1/dashboard/batches/classes/level/add', [ClassesController::class, 'createLevel']);
+
+    Route::post('/v1/dashboard/batches/classes/time-slot/add', [ClassesController::class, 'createTimeSlot']);
+
+    Route::get('/v1/dashboard/batches/classes/trainers', [ClassesController::class, 'viewTrainers']);
+    
+    Route::get('/v1/dashboard/batches/classes/gates', [ClassesController::class, 'viewGates']);
+
+    Route::get('/v1/dashboard/batches/classes/levels', [ClassesController::class, 'viewLevels']);
+
+    Route::get('/v1/dashboard/batches/classes/time-slots', [ClassesController::class, 'viewTimeSlots']);
+
+    Route::get('/v1/dashboard/batches/{batch_id}/classes', [ClassesController::class, 'viewClasses']);
+
+    Route::post('/v1/dashboard/batches/{batch_id}/classes/create', [ClassesController::class, 'createClass']);
+
+    Route::put('/v1/dashboard/batches/{batch_id}/classes/{id}/update', [ClassesController::class, 'updateClass']);
+
+    Route::delete('/v1/dashboard/batches/{batch_id}/classes/{id}/delete', [ClassesController::class, 'deleteClass']);
 });

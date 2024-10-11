@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Classes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Batch extends Model
 {
@@ -17,8 +18,15 @@ class Batch extends Model
     public $timestamps = true;
      
     protected $fillable = [
+        'user_id',
         'batch_title',
         'start_date',
-        'end_date'
+        'end_date',
+        'is_active'
     ];
+
+    public function classes()
+    {
+        return $this->hasMany(Classes::class, 'batch_id', 'id');
+    }
 }

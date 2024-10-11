@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Batches\Helpers;
+
+use Carbon\Carbon;
+
+trait GetClasses
+{
+    protected function getCollection($classes, $this_class)
+    {
+        $classes_collection = [];
+            
+        foreach($classes as $key => $class)
+        {
+
+            $classes_collection[$key] = [
+                'trainer' => $this_class->User($class->user_id)->first()->full_name,
+                'class_name' => $class->class_name,
+                'class_type' => $class->class_type,
+                'gate' => $this_class->meta($class->gate)->first()->meta_value,
+                'time_slot' => $this_class->meta($class->time_slot)->first()->meta_value,
+                'level' => $this_class->meta($class->level)->first()->meta_value,
+            ];
+        }
+        
+        return $classes_collection;
+    }
+}

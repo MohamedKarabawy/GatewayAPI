@@ -10,7 +10,7 @@ trait CheckPermission
 
         foreach($permission_keys as $permission_key)
         {
-            foreach($user->role->permissions as $permission)
+            foreach((object) $user?->role->permissions as $permission)
             {
                 if($permission->per_collection === $permission_collection && boolval($permission->per_value))
                 {

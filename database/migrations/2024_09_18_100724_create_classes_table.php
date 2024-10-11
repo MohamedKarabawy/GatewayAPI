@@ -17,9 +17,17 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('gt_users');
             $table->bigInteger('batch_id')->unsigned();
             $table->foreign('batch_id')->references('id')->on('gt_batches')->onDelete('cascade');
+            $table->bigInteger('trainer_id')->unsigned()->nullable();
+            $table->foreign('trainer_id')->references('id')->on('gt_users');
             $table->string('class_name');
-            $table->enum('class_type', ['Online', 'Offline', 'Hybrid']);            
-            $table->string('time_slot');
+            $table->enum('class_type', ['Online', 'Offline', 'Hybrid']); 
+            $table->bigInteger('gate')->unsigned()->nullable();
+            $table->foreign('gate')->references('id')->on('gt_classmeta')->onUpdate('cascade')->onDelete('cascade');           
+            $table->bigInteger('time_slot')->unsigned()->nullable();
+            $table->foreign('time_slot')->references('id')->on('gt_classmeta')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('level')->unsigned()->nullable();
+            $table->foreign('level')->references('id')->on('gt_classmeta')->onUpdate('cascade')->onDelete('cascade'); 
+            $table->timestamp('moved_date')->nullable();
             $table->timestamps();
         });
     }

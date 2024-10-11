@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Trainees\Blacklist\Show;
+namespace App\Batches\Classes\View;
 
 use Exception;
 use App\Models\User;
-use App\Models\Trainee;
+use App\Models\Classes;
 use App\Models\Permission;
 use App\Permissions\Permissions;
 use Illuminate\Support\Facades\Gate;
 use App\Traits\ShowRoleList;
 
-class Trainers extends Permissions
+class ViewTrainers extends Permissions
 {
     use ShowRoleList;
     
-    public function __construct(?Trainee $trainee)
+    public function __construct(?Classes $class)
     {
-        Gate::authorize('viewBlackTrainers', $trainee);
-        
         $this->collection = 'general';
 
         $this->permission = 'show_trainers_list';
