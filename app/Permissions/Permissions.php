@@ -154,6 +154,26 @@ class Permissions
             'delete_trainees',
             'delete_own_trainees',
         ],
+        "batches" => [
+            'activate_batch',
+            'end_batch',
+            'create_batches',
+            'view_batches',
+            'view_own_batches',
+            'update_batches',
+            'update_own_batches',
+            'delete_batches',
+            'delete_own_batches'
+        ],
+        "classes" => [
+            'create_classes',
+            'view_classes',
+            'view_own_classes',
+            'update_classes',
+            'update_own_classes',
+            'delete_classes',
+            'delete_own_classes'
+        ]
     ];
 
     protected function isAllowed($user, $permission_key, $permission_collection, $user_id = null)

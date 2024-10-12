@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use App\Permissions\Permissions;
 use App\Batches\Helpers\GetBatches;
 use App\Traits\CheckPermissionStatus;
+use App\Batches\Helpers\ViewBatchesHelper;
 use App\Batches\Helpers\GetBatchesDataHelper;
 
 class View extends Permissions
 {
-    use CheckPermissionStatus, GetBatches, GetBatchesDataHelper;
+    use CheckPermissionStatus, GetBatches, GetBatchesDataHelper, ViewBatchesHelper;
 
     public function __construct($current_user)
     {
