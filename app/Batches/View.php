@@ -18,7 +18,7 @@ class View extends Permissions
     {
         $this->current_user = $current_user;
         
-        $this->permission_collection = 'waitlist';
+        $this->permission_collection = 'batches';
     }
 
     public function view(?Batch $batch)

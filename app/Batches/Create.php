@@ -6,12 +6,15 @@ use Exception;
 use Carbon\Carbon;
 use App\Models\Batch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class Create extends Permissions
 {
     public function __construct(?Batch $batch, $current_user)
     {
+        Gate::authorize('createBatches', $batch);
+        
         $this->current_user = $current_user;
     }
 

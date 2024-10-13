@@ -4,13 +4,14 @@ namespace App\Batches\Action;
 
 use Exception;
 use App\Models\Batch;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class Delete extends Permissions
 {
     public function __construct(?Batch $batch, $id)
     {
- 
+        Gate::authorize('deleteBatches', $batch->find($id));
     }
 
     public function delete(?Batch $batch, $id)

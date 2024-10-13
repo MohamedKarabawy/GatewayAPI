@@ -8,6 +8,7 @@ use App\Models\Classes;
 use App\Models\ClassMeta;
 use Illuminate\Http\Request;
 use App\Permissions\Permissions;
+use Illuminate\Support\Facades\Gate;
 use App\Batches\Helpers\GetBatchesDataHelper;
 
 class Create extends Permissions
@@ -16,6 +17,8 @@ class Create extends Permissions
 
     public function __construct(?Classes $class, $current_user)
     {
+        Gate::authorize('createClasses', $class);
+
         $this->current_user = $current_user;
     }
 

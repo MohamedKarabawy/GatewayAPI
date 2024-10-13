@@ -2,13 +2,17 @@
 
 namespace App\Batches\Classes\View;
 
+use App\Models\Classes;
 use App\Models\ClassMeta;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class ViewTimeSlots extends Permissions
 {
-    public function __construct(?ClassMeta $time_slot)
+    public function __construct(?Classes $class)
     {
+        Gate::authorize('authComponents', $class);
+
         $this->collection_key = 'time_slots';
     }
 

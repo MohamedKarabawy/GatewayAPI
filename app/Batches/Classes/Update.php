@@ -5,12 +5,15 @@ namespace App\Batches\Classes;
 use Exception;
 use App\Models\Classes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class Update extends Permissions
 {
     public function __construct(?Classes $class, $current_user, $class_id)
     {
+        Gate::authorize('updateClasses', $class->find($class_id));
+
         $this->current_user = $current_user;
     }
 

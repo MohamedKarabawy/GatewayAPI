@@ -16,6 +16,8 @@ class ViewTrainers extends Permissions
     
     public function __construct(?Classes $class)
     {
+        Gate::authorize('authComponents', $class);
+
         $this->collection = 'general';
 
         $this->permission = 'show_trainers_list';

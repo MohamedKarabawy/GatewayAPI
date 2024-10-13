@@ -4,13 +4,14 @@ namespace App\Batches\Classes;
 
 use Exception;
 use App\Models\Classes;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class Delete extends Permissions
 {
     public function __construct(?Classes $class, $class_id)
     {
- 
+        Gate::authorize('deleteClasses', $class->find($class_id));
     }
 
     public function delete(?Classes $class, $batch_id, $class_id)

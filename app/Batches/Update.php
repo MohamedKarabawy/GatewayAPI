@@ -5,13 +5,14 @@ namespace App\Batches;
 use Carbon\Carbon;
 use App\Models\Batch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class Update extends Permissions
 {
     public function __construct(?Batch $batch, $id)
     {
- 
+        Gate::authorize('updateBatches', $batch->find($id));
     }
 
     public function update(?Batch $batch, Request $request, $id)

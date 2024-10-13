@@ -2,13 +2,17 @@
 
 namespace App\Batches\Classes\View;
 
+use App\Models\Classes;
 use App\Models\ClassMeta;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class ViewLevels extends Permissions
 {
-    public function __construct(?ClassMeta $level)
+    public function __construct(?Classes $class)
     {
+        Gate::authorize('authComponents', $class);
+
         $this->collection_key = 'levels';
     }
 

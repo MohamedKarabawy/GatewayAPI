@@ -8,9 +8,9 @@ trait ViewBatchesHelper
     {
         $batches_data = [];
 
-        $class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'view_trainees') && $batches_data = $class?->getCollection($batches?->get(), $class);
+        $class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'view_batches') && $batches_data = $class?->getCollection($batches?->get(), $class);
 
-        ($class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'view_own_trainees') && count($batches_data) === 0) &&
+        ($class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'view_own_batches') && count($batches_data) === 0) &&
 
         $batches_data = $class?->getCollection($batches->where('user_id', $class->current_user->id)->get(), $class);
 

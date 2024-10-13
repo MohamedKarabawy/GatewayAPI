@@ -2,14 +2,18 @@
 
 namespace App\Batches\Classes\View;
 
+use App\Models\Classes;
 use App\Models\ClassMeta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class ViewGates extends Permissions
 {
-    public function __construct(?ClassMeta $gate)
+    public function __construct(?Classes $class)
     {
+        Gate::authorize('authComponents', $class);
+
         $this->collection_key = 'gates';
     }
 

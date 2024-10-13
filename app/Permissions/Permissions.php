@@ -155,8 +155,10 @@ class Permissions
             'delete_own_trainees',
         ],
         "batches" => [
-            'activate_batch',
-            'end_batch',
+            'activate_batches',
+            'activate_own_batches',
+            'end_batches',
+            'end_own_batches',
             'create_batches',
             'view_batches',
             'view_own_batches',

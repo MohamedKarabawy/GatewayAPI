@@ -15,7 +15,8 @@ use App\Http\Controllers\Dashboard\Lists\BlacklistController;
 use App\Http\Controllers\Dashboard\Lists\RefundlistController;
 use App\Http\Controllers\Dashboard\Lists\PendinglistController;
 use App\Http\Controllers\Dashboard\Users\PendingUsersController;
-use App\Http\Controllers\Dashboard\Batches\classes\ClassesController;
+use App\Http\Controllers\Dashboard\Batches\Classes\ClassController;
+use App\Http\Controllers\Dashboard\Batches\Classes\ClassesController;
 
 
 Route::get('/v1/branches', [BranchesController::class, 'viewBranches']);
@@ -182,6 +183,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/batches/{id}/delete', [BatchesController::class, 'delete']);
 
     //Classes
+    Route::get('/v1/dashboard/batches/{batch_id}/classes/{class_id}', [ClassController::class, 'viewClass']);
+    
     Route::post('/v1/dashboard/batches/classes/gate/add', [ClassesController::class, 'createGate']);
 
     Route::post('/v1/dashboard/batches/classes/level/add', [ClassesController::class, 'createLevel']);

@@ -3,13 +3,14 @@
 namespace App\Batches\Action;
 
 use App\Models\Batch;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class EndBatch extends Permissions
 {
     public function __construct(?Batch $batch, $id)
     {
-
+        Gate::authorize('endBatch', $batch->find($id));
     }
 
     public function endBatch(?Batch $batch, $id)

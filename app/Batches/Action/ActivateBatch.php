@@ -3,13 +3,14 @@
 namespace App\Batches\Action;
 
 use App\Models\Batch;
+use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
 class ActivateBatch extends Permissions
 {
     public function __construct(?Batch $batch, $id)
     {
-
+        Gate::authorize('activateBatch', $batch->find($id));
     }
 
     public function activateBatch(?Batch $batch, $id)
