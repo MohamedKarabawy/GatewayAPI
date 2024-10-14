@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Classes;
 use App\Models\Trainee;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,5 +27,10 @@ class TraineeClass extends Model
         public function trainees()
         {
                 return $this->hasMany(Trainee::class, 'id', 'trainee_id');
+        }
+
+        public function classes()
+        {
+            return $this->belongsTo(Classes::class, 'id', 'class_id');
         }
 }

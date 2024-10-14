@@ -52,6 +52,9 @@ class Permissions
             'view_pending_users',
             'delete_pending_users'
         ],
+        "trainees" => [
+            'view_trainees',  
+        ],
         "waitlist" => [
             'move_to_hold',
             'move_to_blacklist',
@@ -168,6 +171,14 @@ class Permissions
             'delete_own_batches'
         ],
         "classes" => [
+            "add_trainer_note",
+            "add_admin_note",
+            "add_to_attendance",
+            "switch_class",
+            "move_to_wait",
+            "move_to_hold",
+            "move_to_refund",
+            "move_to_blacklist",
             'create_classes',
             'view_classes',
             'view_own_classes',
@@ -175,6 +186,11 @@ class Permissions
             'update_own_classes',
             'delete_classes',
             'delete_own_classes'
+        ],
+        "attendance" => [
+            "view_attendance",
+            "add_session_notes",
+            "view_session_notes"
         ]
     ];
 

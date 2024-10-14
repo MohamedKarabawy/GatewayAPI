@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Trainee;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Attendance extends Model
 {
@@ -15,11 +16,16 @@ class Attendance extends Model
     public $primaryKey = 'id';
     // Timestamps
     public $timestamps = true;
-     
+
     protected $fillable = [
         'class_id',
         'trainee_id',
         'admin_note',
         'trainer_note'
     ];
+
+    public function trainees()
+    {
+            return $this->hasMany(Trainee::class, 'id', 'trainee_id');
+    }
 }

@@ -19,6 +19,8 @@ class TraineePolicy
         'view' => ['view_trainees', 'view_own_trainees'],
         'update' => ['update_trainees', 'update_own_trainees'],
         'delete' => ['delete_trainees', 'delete_own_trainees'],
+        'assign-class' => ['assign_class'],
+        'view-trainees' => ['view_trainees'],
         'move-to-hold' => ['move_to_hold'],
         'move-to-refund' => ['move_to_refund'],
         'move-to-black' => ['move_to_blacklist'],
@@ -29,11 +31,23 @@ class TraineePolicy
         $this->permission_collection['holdlist'] = 'holdlist';
         $this->permission_collection['refundlist'] = 'refundlist';
         $this->permission_collection['blacklist'] = 'blacklist';
+        $this->permission_collection['trainees'] = 'trainees';
         $this->permission_collection['list']['waitlist'] = 'Wait List';
         $this->permission_collection['list']['pendinglist'] = 'Pending List';
         $this->permission_collection['list']['holdlist'] = 'Hold List';
         $this->permission_collection['list']['refundlist'] = 'Refund List';
         $this->permission_collection['list']['blacklist'] = 'Blacklist';
+    }
+
+    public function viewTrainees(?User $current_user, ?Trainee $trainee)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['view-trainees'], $this->permission_collection['trainees']);
+    }
+
+
+    public function assignClass(?User $current_user, ?Trainee $trainee)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['assign-class'], $this->permission_collection['waitlist']);
     }
 
     public function moveWaitToHold(?User $current_user, ?Trainee $trainee)

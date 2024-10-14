@@ -23,13 +23,13 @@ class View
 
     public function view(?Classes $class, ?TraineeClass $trainee, $batch_id, $class_id)
     {
-        // try
-        // {    
+        try
+        {    
             return $this->viewClass($class, $trainee, $batch_id, $class_id, $this);
-        // }
-        // catch (Exception $e)
-        // {
-        //     return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
-        // }
+        }
+        catch (Exception $e)
+        {
+            return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
+        }
     }
 }

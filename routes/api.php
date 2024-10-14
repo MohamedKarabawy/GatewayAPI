@@ -14,7 +14,9 @@ use App\Http\Controllers\Dashboard\Batches\BatchesController;
 use App\Http\Controllers\Dashboard\Lists\BlacklistController;
 use App\Http\Controllers\Dashboard\Lists\RefundlistController;
 use App\Http\Controllers\Dashboard\Lists\PendinglistController;
+use App\Http\Controllers\Dashboard\Trainees\TraineesController;
 use App\Http\Controllers\Dashboard\Users\PendingUsersController;
+use App\Http\Controllers\Dashboard\Attendance\AttendanceController;
 use App\Http\Controllers\Dashboard\Batches\Classes\ClassController;
 use App\Http\Controllers\Dashboard\Batches\Classes\ClassesController;
 
@@ -83,8 +85,31 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/v1/dashboard/pending-users/delete', [PendingUsersController::class, 'bulkDelete']);
 
+    //Trainees
+    Route::get('/v1/dashboard/trainees', [TraineesController::class, 'view']);
+
     //Lists
     //Wait List
+    Route::post('/v1/dashboard/waitlist/level/add', [WaitlistController::class, 'addLevel']);
+
+    Route::post('/v1/dashboard/waitlist/payment/add', [WaitlistController::class, 'addPayment']);
+
+    Route::post('/v1/dashboard/waitlist/time/add', [WaitlistController::class, 'addTime']);
+
+    Route::get('/v1/dashboard/waitlist/levels', [WaitlistController::class, 'viewLevels']);
+
+    Route::get('/v1/dashboard/waitlist/payments', [WaitlistController::class, 'viewPayment']);
+
+    Route::get('/v1/dashboard/waitlist/times', [WaitlistController::class, 'viewTimes']);
+
+    Route::put('/v1/dashboard/waitlist/class/view-classes', [WaitlistController::class, 'viewClasses']);
+
+    Route::get('/v1/dashboard/waitlist/class/view-classes-levels', [WaitlistController::class, 'viewClassesLevels']);
+
+    Route::get('/v1/dashboard/waitlist/class/view-classes-times', [WaitlistController::class, 'viewClassesTimes']);
+
+    Route::post('/v1/dashboard/waitlist/{trainee_id}/assign-class', [WaitlistController::class, 'assignClass']);
+
     Route::put('/v1/dashboard/waitlist/hold', [WaitlistController::class, 'bulkMoveToHold']);
 
     Route::put('/v1/dashboard/waitlist/refund', [WaitlistController::class, 'bulkMoveToRefund']);
@@ -206,4 +231,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/v1/dashboard/batches/{batch_id}/classes/{id}/update', [ClassesController::class, 'updateClass']);
 
     Route::delete('/v1/dashboard/batches/{batch_id}/classes/{id}/delete', [ClassesController::class, 'deleteClass']);
+
+    //Attendance
+    Route::get('/v1/dashboard/batches/classes/{class_id}/attendance', [AttendanceController::class, 'view']);
 });

@@ -3,6 +3,8 @@
 namespace App\Batches\Helpers;
 
 use Carbon\Carbon;
+use App\Models\TraineeClass;
+use App\Models\TraineeMeta;
 
 trait GetClasses
 {
@@ -12,14 +14,15 @@ trait GetClasses
             
         foreach($classes as $key => $class)
         {
-
             $classes_collection[$key] = [
+                'id' => $class->id,
                 'trainer' => $this_class->User($class->user_id)->first()->full_name,
                 'class_name' => $class->class_name,
                 'class_type' => $class->class_type,
-                'gate' => $this_class->meta($class->gate)->first()->meta_value,
+                'gate' => $this_class?->meta($class->gate)?->first()?->meta_value,
                 'time_slot' => $this_class->meta($class->time_slot)->first()->meta_value,
                 'level' => $this_class->meta($class->level)->first()->meta_value,
+                'num_of_trainees' => TraineeClass::where('class_id', $class->id)->count(),
             ];
         }
         
