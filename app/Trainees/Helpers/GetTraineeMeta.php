@@ -2,6 +2,8 @@
 
 namespace App\Trainees\Helpers;
 
+use Carbon\Carbon;
+
 trait GetTraineeMeta
 {
     protected function getCollection($trainees, $class)
@@ -52,7 +54,7 @@ trait GetTraineeMeta
 
                 $class->isAllowed($class->current_user, 'view_own_follow_up', $class->permission_collection, $trainee?->user_id) && $follow_up_collection = ['follow_up' => $trainee?->user?->full_name];
                 
-                $collection[$collection_index++] = [...$trainee_collection, ...$sub_collection, ...$trainer_collection, ...$level_collection, ...$follow_up_collection, ...$meta_collection, 'test_date' => $trainee?->test_date, 'moved_Date' => $trainee?->moved_date,'created_at' => $trainee?->created_at, 'updated_at' => $trainee?->updated_at];
+                $collection[$collection_index++] = [...$trainee_collection, ...$sub_collection, ...$trainer_collection, ...$level_collection, ...$follow_up_collection, ...$meta_collection, 'test_date' => $trainee?->test_date, 'moved_Date' => Carbon::parse($trainee?->moved_date)->format("m/d/Y"),'created_at' => $trainee?->created_at, 'updated_at' => $trainee?->updated_at];
             }
         }
 
