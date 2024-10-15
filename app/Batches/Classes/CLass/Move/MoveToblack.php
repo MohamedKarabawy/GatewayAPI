@@ -4,16 +4,21 @@ namespace App\Batches\Classes\Class\Move;
 
 
 use Exception;
+use Carbon\Carbon;
+use App\Models\Classes;
 use App\Models\Trainee;
 use App\Traits\GetList;
 use App\Models\TraineeClass;
+use Illuminate\Support\Facades\Gate;
 
 class MoveToBlack
 {
     use GetList;
     
-    public function __construct()
+    public function __construct(?Classes $class)
     {
+        Gate::authorize('moveToBlack', $class);
+        
         $this->list = 'Blacklist';
 
         $this->list_name = 'blacklist';
@@ -23,7 +28,7 @@ class MoveToBlack
     {
         try
         {
-            $trainee = $trainees->find($trainee_id);
+            $trainee = $trainees->where('id', $trainee_id)->first();
 
             $is_exists = $trainee_class->where("class_id", $class_id)->where("trainee_id", $trainee_id)->exists();
             

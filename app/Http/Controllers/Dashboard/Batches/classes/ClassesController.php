@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard\Batches\Classes;
 
 use App\Models\User;
 use App\Models\Classes;
+use App\Models\Trainee;
 use App\Models\ClassMeta;
 use App\Models\Permission;
+use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Classes\View;
 use App\Batches\Classes\Create;
@@ -19,12 +21,51 @@ use App\Batches\Classes\View\ViewGates;
 use App\Batches\Classes\View\ViewLevels;
 use App\Batches\Classes\View\ViewTrainers;
 use App\Batches\Classes\View\ViewTimeSlots;
+use App\Batches\Classes\Class\Move\MoveToHold;
+use App\Batches\Classes\Class\Move\MoveToWait;
+use App\Batches\Classes\Class\Move\MoveToBlack;
+use App\Batches\Classes\Class\Move\MoveToRefund;
 
 class ClassesController extends Controller
 {
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function moveToBlack(?Classes $class, ?Trainee $trainees, ?TraineeClass $trainee_class, $class_id, $trainee_id)
+    {
+        $this->class['move-to-black'] = new MoveToBlack($class);
+
+        return $this->class['move-to-black']->moveToBlack($trainees, $trainee_class, $class_id, $trainee_id);
+    }
+
+    public function moveToHold(?Classes $class, ?Trainee $trainees, ?TraineeClass $trainee_class, $class_id, $trainee_id)
+    {
+        $this->class['move-to-hold'] = new MoveToHold($class);
+
+        return $this->class['move-to-hold']->moveToHold($trainees, $trainee_class, $class_id, $trainee_id);
+    }
+    
+    public function moveToRefund(?Classes $class, ?Trainee $trainees, ?TraineeClass $trainee_class, $class_id, $trainee_id)
+    {
+        $this->class['move-to-refund'] = new MoveToRefund($class);
+
+        return $this->class['move-to-refund']->moveToRefund($trainees, $trainee_class, $class_id, $trainee_id);
+    }
+
+    public function moveToWait(?Classes $class, ?Trainee $trainees, ?TraineeClass $trainee_class, $class_id, $trainee_id)
+    {
+        $this->class['move-to-wait'] = new MoveToWait($class);
+
+        return $this->class['move-to-wait']->moveToWait($trainees, $trainee_class, $class_id, $trainee_id);
+    }
+
+    public function switchClass(?TraineeClass $trainee_class, Request $request, $class_id, $trainee_id)
+    {
+        $this->class['switch-class'] = new SwitchClass($class);
+
+        return $this->class['switch-class']->switchClass($trainee_class, $request, $class_id, $trainee_id);
     }
 
     public function viewGates(?ClassMeta $gate, ?Classes $class)

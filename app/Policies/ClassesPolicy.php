@@ -22,10 +22,36 @@ class ClassesPolicy
         'move-to-black' => ['move_to_black'],
         'move-to-refund' => ['move_to_refund'],
         'move-to-wait' => ['move_to_wait'],
-        'move-to-hold' => ['move_to_hold']
+        'move-to-hold' => ['move_to_hold'],
+        'switch-class' => ['switch_class']
     ];
 
         $this->permission_collection = 'classes';
+    }
+
+    public function switchClass(?User $current_user,?Classes $class)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['switch-class'], $this->permission_collection);
+    }
+
+    public function moveToBlack(?User $current_user,?Classes $class)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['move-to-black'], $this->permission_collection);
+    }
+
+    public function moveToRefund(?User $current_user,?Classes $class)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['move-to-refund'], $this->permission_collection);
+    }
+
+    public function moveToWait(?User $current_user,?Classes $class)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['move-to-wait'], $this->permission_collection);
+    }
+
+    public function moveToHold(?User $current_user,?Classes $class)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['move-to-hold'], $this->permission_collection);
     }
 
     public function authComponents(?User $current_user,?Classes $class)

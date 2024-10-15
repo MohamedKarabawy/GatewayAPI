@@ -4,13 +4,15 @@ namespace App\Batches\Classes\Class\Move;
 
 
 use Exception;
+use App\Models\Classes;
 use App\Models\TraineeClass;
+use Illuminate\Support\Facades\Gate;
 
 class SwitchClass
 {
-    public function __construct()
+    public function __construct(?Classes $class)
     {
-        
+        Gate::authorize('switchClass', $class);
     }
 
     public function switchClass(?TraineeClass $trainee_class, Request $request, $class_id, $trainee_id)

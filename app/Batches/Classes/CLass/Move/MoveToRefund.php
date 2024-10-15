@@ -4,26 +4,31 @@ namespace App\Batches\Classes\Class\Move;
 
 
 use Exception;
+use Carbon\Carbon;
+use App\Models\Classes;
 use App\Models\Trainee;
 use App\Traits\GetList;
 use App\Models\TraineeClass;
+use Illuminate\Support\Facades\Gate;
 
 class MoveToRefund
 {
     use GetList;
     
-    public function __construct()
+    public function __construct(?Classes $class)
     {
-        $this->list = 'Wait List';
+        Gate::authorize('moveToRefund', $class);
 
-        $this->list_name = 'wait list';
+        $this->list = 'Refund List';
+
+        $this->list_name = 'refund list';
     }
 
     public function moveToRefund(?Trainee $trainees, ?TraineeClass $trainee_class, $class_id, $trainee_id)
     {
         try
         {
-            $trainee = $trainees->find($trainee_id);
+            $trainee = $trainees->where('id', $trainee_id)->first();
 
             $is_exists = $trainee_class->where("class_id", $class_id)->where("trainee_id", $trainee_id)->exists();
             

@@ -220,6 +220,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/batches/{id}/delete', [BatchesController::class, 'delete']);
 
     //Classes
+    Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-black', [ClassesController::class, 'moveToBlack']);
+
+    Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-hold', [ClassesController::class, 'moveToHold']);
+
+    Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-refund', [ClassesController::class, 'moveToRefund']);
+
+    Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-wait', [ClassesController::class, 'moveToWait']);
+
     Route::get('/v1/dashboard/batches/{batch_id}/classes/{class_id}', [ClassController::class, 'viewClass']);
     
     Route::post('/v1/dashboard/batches/classes/gate/add', [ClassesController::class, 'createGate']);
@@ -242,7 +250,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/v1/dashboard/batches/{batch_id}/classes/{id}/update', [ClassesController::class, 'updateClass']);
 
-    Route::delete('/v1/dashboard/batches/{batch_id}/classes/{id}/delete', [ClassesController::class, 'deleteClass']);
+    Route::delete('/v1/dashboard/batches/{batch_id}/classes/{class_id}/delete', [ClassesController::class, 'deleteClass']);
 
     //Attendance
     Route::get('/v1/dashboard/batches/classes/{class_id}/attendance', [AttendanceController::class, 'view']);
