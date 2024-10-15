@@ -33,7 +33,7 @@ class Update extends Permissions
 
         $this->level_collection = "pendinglist_level";
 
-        $this->meta_keys = ['country', 'age_group', 'test_date', 'job', 'education', 'email', 'city', 'brith_date', 'paid_value', 'remaining_value'];
+        $this->meta_keys = ['confirmation','country', 'age_group', 'job', 'education', 'email', 'city', 'birth_date', 'paid_value', 'remaining_value'];
 
         $this->permissions = ['update_all', 'update_own'];
     }
