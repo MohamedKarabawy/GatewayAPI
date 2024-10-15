@@ -34,6 +34,8 @@ class MoveToRefund
                 $trainee->pervious_list = $trainee->current_list;
                 
                 $trainee->current_list = $this->List($this->list)->id;
+
+                $trainee->moved_date = Carbon::now();
     
                 $trainee->save();
     

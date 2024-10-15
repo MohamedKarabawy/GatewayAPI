@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Gtlist;
+use App\Models\User;
 use App\Models\Branch;
+use App\Models\Gtlist;
 use App\Models\TraineeMeta;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Trainee extends Model
 {
@@ -45,5 +46,10 @@ class Trainee extends Model
     public function trainee_meta()
     {
         return $this->hasMany(TraineeMeta::class, 'trainee_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'trainer_id', 'id');
     }
 }
