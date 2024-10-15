@@ -31,6 +31,10 @@ class Trainee extends Model
         "level",
         "payment_type",
         "preferable_time",
+        'current_list',
+        'previous_list',
+        'test_date',
+        'moved_date'
     ];
 
     public function list()

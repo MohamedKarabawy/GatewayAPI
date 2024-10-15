@@ -191,7 +191,6 @@ class TraineePolicy
         return $this->CheckPermission($current_user, $this->permissions['move-to-wait'], $this->permission_collection['refundlist']) && $trainee->list->list_title === $this->permission_collection['list']['blacklist'];
     }
 
-
     public function viewBlackTrainers(?User $current_user, ?Trainee $trainee)
     {
         return $this->CheckPermission($current_user, $this->permissions['view-trainers'], $this->permission_collection['pendinglist']);

@@ -2,6 +2,7 @@
 
 namespace App\Trainees\Helpers;
 
+use Carbon\Carbon;
 
 trait ListChangerHelper
 {
@@ -17,10 +18,10 @@ trait ListChangerHelper
 
             $trainee->save();
 
-            return response(['message' => "Trainee moved to ".$class->list_name." successfully."], 201);
+            return response(['message' => "Trainee moved to ".$class?->list_name." successfully."], 201);
         }
 
-        return response(['message' => "Trainee is already in ".$class->list_name."."], 400);
+        return response(['message' => "Trainee is already in ".$class?->list_name."."], 400);
 
     }
 }
