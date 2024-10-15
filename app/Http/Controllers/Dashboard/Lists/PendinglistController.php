@@ -12,20 +12,29 @@ use App\Trainees\Pendinglist\View;
 use App\Http\Controllers\Controller;
 use App\Trainees\Pendinglist\Create;
 use App\Trainees\Pendinglist\Update;
-use App\Trainees\Waitlist\Add\AddLevel;
 use App\Trainees\Pendinglist\Show\Levels;
+use App\Trainees\Pendinglist\Add\AddLevel;
 use App\Trainees\Pendinglist\Show\FollowUp;
 use App\Trainees\Pendinglist\Show\Trainers;
 use App\Trainees\Pendinglist\Deletes\Delete;
+use App\Trainees\Pendinglist\Add\AddPaymentType;
 use App\Trainees\Pendinglist\Assign\AssignLevel;
 use App\Trainees\Pendinglist\Deletes\BulkDelete;
 use App\Trainees\Pendinglist\Assign\AssignTrainer;
+use App\Trainees\Pendinglist\show\ViewPaymentTypes;
 
 class PendinglistController extends Controller
 {
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function addPayment(?Trainee $trainee, ?GeneralMeta $meta, Request $request)
+    {
+        $this->trainee['add-payment'] = new AddPaymentType($trainee);
+
+        return $this->trainee['add-payment']->addPaymentType($meta, $request);
     }
 
     public function addLevel(?Trainee $trainee, ?GeneralMeta $level, Request $request)
@@ -47,6 +56,13 @@ class PendinglistController extends Controller
         $this->trainee['assign-trainer'] = new AssignTrainer($trainee, $trainee_id);
 
         return $this->trainee['assign-trainer']->assign($trainee, $trainer, $request, $trainee_id);
+    }
+
+    public function viewPayment(?Trainee $trainee, ?GeneralMeta $meta)
+    {
+        $this->trainee['view-payment'] = new ViewPaymentTypes($trainee);
+
+        return $this->trainee['view-payment']->viewPaymentTypes($meta);
     }
 
     public function viewFollowUp(?Trainee $trainee, ?User $user, ?Permission $permission)

@@ -18,7 +18,11 @@ class ClassesPolicy
         'view-classes' => ['view_classes', 'view_own_classes'],
         'update-classes' => ['update_classes', 'update_own_classes'],
         'delete-classes' => ['delete_classes', 'delete_own_classes'],
-        'add-update-view-components' => ['create_classes', 'update_classes', 'update_own_classes']
+        'add-update-view-components' => ['create_classes', 'update_classes', 'update_own_classes'],
+        'move-to-black' => ['move_to_black'],
+        'move-to-refund' => ['move_to_refund'],
+        'move-to-wait' => ['move_to_wait'],
+        'move-to-hold' => ['move_to_hold']
     ];
 
         $this->permission_collection = 'classes';

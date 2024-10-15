@@ -16,6 +16,7 @@ class TraineePolicy
         $this->permissions = ['create' => ['create_trainees'],
         'view-follow-up' => ['create_trainees', 'update_trainees', 'update_own_trainees'],
         'view-trainers' => ['create_trainees', 'update_trainees', 'update_own_trainees'],
+        'add-payment' => ['create_trainees', 'update_trainees', 'update_own_trainees'],
         'view' => ['view_trainees', 'view_own_trainees'],
         'update' => ['update_trainees', 'update_own_trainees'],
         'delete' => ['delete_trainees', 'delete_own_trainees'],
@@ -99,6 +100,16 @@ class TraineePolicy
     public function assignLevel(?User $current_user, ?Trainee $trainee)
     {
         return $this->CheckPermission($current_user, $this->permissions['assign-level'], $this->permission_collection['pendinglist']) && $trainee->list->list_title === $this->permission_collection['list']['pendinglist'];
+    }
+
+    public function addPendingPayment(?User $current_user, ?Trainee $trainee)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['add-payment'], $this->permission_collection['pendinglist']);
+    }
+
+    public function addPendingLevel(?User $current_user, ?Trainee $trainee)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['assign-level'], $this->permission_collection['pendinglist']);
     }
 
     public function viewPendingLevels(?User $current_user, ?Trainee $trainee)

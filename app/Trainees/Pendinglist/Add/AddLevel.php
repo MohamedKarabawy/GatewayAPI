@@ -6,12 +6,13 @@ use Exception;
 use App\Models\Trainee;
 use App\Models\GeneralMeta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AddLevel
 {
     public function __construct(?Trainee $trainee)
     {
-        Gate::authorize('assignLevel', $trainee);
+        Gate::authorize('addPendingLevel', $trainee);
 
         $this->list_name = 'pendinglist_levels';
     }
