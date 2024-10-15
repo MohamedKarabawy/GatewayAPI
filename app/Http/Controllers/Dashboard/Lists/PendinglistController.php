@@ -12,6 +12,7 @@ use App\Trainees\Pendinglist\View;
 use App\Http\Controllers\Controller;
 use App\Trainees\Pendinglist\Create;
 use App\Trainees\Pendinglist\Update;
+use App\Trainees\Waitlist\Add\AddLevel;
 use App\Trainees\Pendinglist\Show\Levels;
 use App\Trainees\Pendinglist\Show\FollowUp;
 use App\Trainees\Pendinglist\Show\Trainers;
@@ -25,6 +26,13 @@ class PendinglistController extends Controller
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function addLevel(?Trainee $trainee, ?GeneralMeta $level, Request $request)
+    {
+        $this->trainee['add-level'] = new AddLevel($trainee);
+
+        return $this->trainee['add-level']->addLevel($level, $request);
     }
 
     public function assignLevel(?Trainee $trainee, ?GeneralMeta $level, Request $request, $trainee_id)

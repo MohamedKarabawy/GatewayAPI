@@ -8,6 +8,6 @@ trait GetClassMeta
 {
     protected function meta($id)
     {
-        return ClassMeta::find($id);
+        return ClassMeta::where('id' ,$id);
     }
 }

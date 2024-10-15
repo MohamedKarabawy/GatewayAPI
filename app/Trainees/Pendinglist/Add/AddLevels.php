@@ -3,13 +3,16 @@
 namespace App\Trainees\Pendinglist\Add;
 
 use Exception;
+use App\Models\Trainee;
 use App\Models\GeneralMeta;
 use Illuminate\Http\Request;
 
 class AddLevel
 {
-    public function __construct()
+    public function __construct(?Trainee $trainee)
     {
+        Gate::authorize('assignLevel', $trainee);
+
         $this->list_name = 'pendinglist_levels';
     }
 
@@ -26,7 +29,7 @@ class AddLevel
             
             $level->create([
                 'meta_key' => $this->list_name,
-                'meta_value' => $request->level,
+                'meta_value' => $request->level
             ]);
 
             return response(['message' => 'Level added successfully'], 200);

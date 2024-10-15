@@ -16,7 +16,7 @@ class Batch extends Model
     public $primaryKey = 'id';
     // Timestamps
     public $timestamps = true;
-     
+
     protected $fillable = [
         'user_id',
         'batch_title',
