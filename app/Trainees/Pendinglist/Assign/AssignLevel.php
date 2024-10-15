@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 
 class AssignLevel
 {
-    public function __construct()
+    public function __construct(?Trainee $trainee, $trainee_id)
     {
+        Gate::authorize('assignLevel', $trainee->find($trainee_id));
+
         $this->list_name = 'pendinglist_levels';
     }
 

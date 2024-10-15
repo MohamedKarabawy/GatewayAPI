@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class AssignTrainer
 {
-    public function __construct()
+    public function __construct(?Trainee $trainee, $trainee_id)
     {
-
+        Gate::authorize('assignTrainer', $trainee->find($trainee_id));
     }
 
     public function assign(?Trainee $trainee, ?User $trainer, Request $request, $trainee_id)

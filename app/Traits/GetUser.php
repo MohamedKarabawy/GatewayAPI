@@ -8,6 +8,6 @@ trait GetUser
 {
     protected function User($id)
     {
-        return User::find($id);
+        return User::where('id', $id)->first();
     }
 }

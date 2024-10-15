@@ -2,23 +2,24 @@
 
 namespace App\Trainees\Pendinglist;
 
-use Illuminate\Http\Request;
 use App\Models\Trainee;
-use App\Models\TraineeMeta;
-use Illuminate\Support\Facades\Gate;
-use App\Traits\GetBranch;
 use App\Traits\GetList;
+use App\Traits\GetUser;
+use App\Traits\GetBranch;
 use App\Traits\CreateMeta;
 use App\Traits\UpdateMeta;
-use App\Traits\PermissionUniqueness;
+use App\Models\TraineeMeta;
+use Illuminate\Http\Request;
 use App\Permissions\Permissions;
-use App\Trainees\Helpers\UpdateTraineeEssentialData;
-use App\Trainees\Helpers\UpdateTraineeAddtionalData;
+use App\Traits\PermissionUniqueness;
+use Illuminate\Support\Facades\Gate;
 use App\Trainees\Helpers\TraineeDataHelper;
+use App\Trainees\Helpers\UpdateTraineeAddtionalData;
+use App\Trainees\Helpers\UpdateTraineeEssentialData;
 
 class Update extends Permissions
 {
-    use TraineeDataHelper, UpdateTraineeEssentialData, UpdateTraineeAddtionalData, GetBranch, GetList, CreateMeta, UpdateMeta, PermissionUniqueness;
+    use GetUser, UpdateTraineeEssentialData, UpdateTraineeAddtionalData, GetBranch, GetList, CreateMeta, UpdateMeta, PermissionUniqueness;
 
     public function __construct(?Trainee $trainee, $current_user, $id)
     {

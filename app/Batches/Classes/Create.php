@@ -26,7 +26,7 @@ class Create extends Permissions
     {
         try
         {   
-            $trainer = $user->find($request->trainer_id)->first()->full_name; 
+            $trainer = $user->where('id', $request->trainer_id)->first()->full_name; 
 
             $gate = $this->getData($class_meta, $request->gate_id);
             

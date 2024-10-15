@@ -2,12 +2,15 @@
 
 namespace App\Trainees\Pendinglist\Show;
 
+use App\Models\Trainee;
 use App\Models\GeneralMeta;
 
 class Levels
 {
-    public function __construct()
+    public function __construct(?Trainee $trainee)
     {
+        Gate::authorize('viewPendingLevels', $trainee);
+
         $this->collection_key = 'pendinglist_levels';
     }
 

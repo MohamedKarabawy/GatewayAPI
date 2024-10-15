@@ -14,12 +14,15 @@ trait UpdateTraineeEssentialData
 
         $request->has('attend_type') && $trainee->attend_type = $request->attend_type;
 
-        $request->has('payment_type') && $trainee->payment_type = $class->GetGeneralMeta($class->payment_collection, $request->payment_type)->id;
+        $request->has('payment_type') && $trainee->payment_type = $class->GetGeneralMeta($request->payment_type)->id;
 
-        foreach($class->permissions as $action)
-        {
-            count($request->all()) >= 1 && $class->TraineeDataHelper($trainee, $request, $action, $class);
-        }
+        $request->has('level') && $trainee->level = $class->GetGeneralMeta($request->level)->id;
+
+        $request->has('preferable_time') && $trainee->preferable_time = $class->GetGeneralMeta($request->preferable_time)->id;
+
+        ($request->has('trainer') && $class->permission_collection === 'waitlist') && $trainee->trainer_id = $class->User($request->trainer)->id;
+
+        ($request->has('follow_up') && $class->permission_collection === 'pendinglist') && $trainee->follow_up = $class->User($request->follow_up)->id;
 
         count($request->all()) >= 1 && $trainee->save();
 

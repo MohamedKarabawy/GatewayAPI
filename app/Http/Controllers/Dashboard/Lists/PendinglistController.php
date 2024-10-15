@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Dashboard\Lists;
 use App\Models\User;
 use App\Models\Trainee;
 use App\Models\Permission;
+use App\Models\GeneralMeta;
 use App\Models\TraineeMeta;
 use Illuminate\Http\Request;
 use App\Trainees\Pendinglist\View;
 use App\Http\Controllers\Controller;
 use App\Trainees\Pendinglist\Create;
 use App\Trainees\Pendinglist\Update;
+use App\Trainees\Pendinglist\Show\Levels;
 use App\Trainees\Pendinglist\Show\FollowUp;
 use App\Trainees\Pendinglist\Show\Trainers;
 use App\Trainees\Pendinglist\Deletes\Delete;
+use App\Trainees\Pendinglist\Assign\AssignLevel;
 use App\Trainees\Pendinglist\Deletes\BulkDelete;
 
 class PendinglistController extends Controller
@@ -23,11 +26,25 @@ class PendinglistController extends Controller
         $this->current_user = auth()->user();
     }
 
+    public function assignLevel(?Trainee $trainee, ?GeneralMeta $level, Request $request, $trainee_id)
+    {
+        $this->trainee['assign-level'] = new AssignLevel($trainee, $trainee_id);
+
+        return $this->trainee['assign-level']->assign($trainee, $level, $request, $trainee_id);
+    }
+
     public function viewFollowUp(?Trainee $trainee, ?User $user, ?Permission $permission)
     {
         $this->trainee['follow_up'] = new FollowUp($trainee);
 
         return $this->trainee['follow_up']->show($user, $permission);
+    }
+
+    public function viewLevels(?Trainee $trainee, ?GeneralMeta $level)
+    {
+        $this->trainee['levels'] = new Levels($trainee);
+
+        return $this->trainee['levels']->viewLevels($level);
     }
 
     public function viewTrainers(?Trainee $trainee, ?User $user, ?Permission $permission)

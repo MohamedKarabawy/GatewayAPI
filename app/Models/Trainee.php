@@ -20,10 +20,16 @@ class Trainee extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        "user_id",
+        "follow_up",
+        "trainer_id",
         'branch_id',
         'full_name',
         'notes',
         'attend_type',
+        "level",
+        "payment_type",
+        "preferable_time",
     ];
 
     public function list()

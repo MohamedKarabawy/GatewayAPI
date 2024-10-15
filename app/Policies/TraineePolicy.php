@@ -20,6 +20,8 @@ class TraineePolicy
         'update' => ['update_trainees', 'update_own_trainees'],
         'delete' => ['delete_trainees', 'delete_own_trainees'],
         'assign-class' => ['assign_class'],
+        'assign-trainer' => ['assign_trainer'],
+        'assign-level' => ['assign_level'],
         'view-trainees' => ['view_trainees'],
         'move-to-hold' => ['move_to_hold'],
         'move-to-refund' => ['move_to_refund'],
@@ -43,8 +45,7 @@ class TraineePolicy
     {
         return $this->CheckPermission($current_user, $this->permissions['view-trainees'], $this->permission_collection['trainees']);
     }
-
-
+    
     public function assignClass(?User $current_user, ?Trainee $trainee)
     {
         return $this->CheckPermission($current_user, $this->permissions['assign-class'], $this->permission_collection['waitlist']);
@@ -88,6 +89,21 @@ class TraineePolicy
     public function deleteTrainee(?User $current_user, ?Trainee $trainee)
     {
         return $this->CheckPermission($current_user, $this->permissions['delete'], $this->permission_collection['waitlist'], $trainee->user_id) && $trainee->list->list_title === $this->permission_collection['list']['waitlist'];
+    }
+
+    public function assignTrainer(?User $current_user, ?Trainee $trainee)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['assign-trainer'], $this->permission_collection['pendinglist']) && $trainee->list->list_title === $this->permission_collection['list']['pendinglist'];
+    }
+
+    public function assignLevel(?User $current_user, ?Trainee $trainee)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['assign-level'], $this->permission_collection['pendinglist']) && $trainee->list->list_title === $this->permission_collection['list']['pendinglist'];
+    }
+
+    public function viewPendingLevels(?User $current_user, ?Trainee $trainee)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['assign-level'], $this->permission_collection['pendinglist']);
     }
 
     public function viewFollowUp(?User $current_user, ?Trainee $trainee)
