@@ -138,9 +138,9 @@ class ClassesController extends Controller
         return $this->class['update']->update($class, $request, $batch_id, $class_id);
     }
 
-    public function deleteClass(?Classes $class, Request $request, $batch_id, $class_id)
+    public function deleteClass(?Classes $class, $batch_id, $class_id)
     {
-        $this->class['update'] = new Delete($class, $this->current_user, $class_id);
+        $this->class['update'] = new Delete($class, $class_id);
 
         return $this->class['update']->delete($class, $batch_id, $class_id);
     }

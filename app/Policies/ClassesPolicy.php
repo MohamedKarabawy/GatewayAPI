@@ -66,16 +66,16 @@ class ClassesPolicy
 
     public function viewClasses(?User $current_user,?Classes $class)
     {
-        return $this->CheckPermission($current_user, $this->permissions['view-classes'], $this->permission_collection, $class->user_id);
+        return $this->CheckPermission($current_user, $this->permissions['view-classes'], $this->permission_collection, $class?->user_id);
     }
 
     public function updateClasses(?User $current_user,?Classes $class)
     {
-        return $this->CheckPermission($current_user, $this->permissions['update-classes'], $this->permission_collection, $class->user_id);
+        return $this->CheckPermission($current_user, $this->permissions['update-classes'], $this->permission_collection, $class?->user_id);
     }
 
     public function deleteClasses(?User $current_user,?Classes $class)
     {
-        return $this->CheckPermission($current_user, $this->permissions['delete-classes'], $this->permission_collection, $class->user_id);
+        return $this->CheckPermission($current_user, $this->permissions['delete-classes'], $this->permission_collection, $class?->user_id);
     }
 }
