@@ -13,6 +13,8 @@ trait ListChangerHelper
             
             $trainee->current_list = $class->List($class->list)->id;
 
+            $trainee->moved_date = Carbon::now();
+
             $trainee->save();
 
             return response(['message' => "Trainee moved to ".$class->list_name." successfully."], 201);

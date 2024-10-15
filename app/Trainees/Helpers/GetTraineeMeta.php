@@ -33,7 +33,7 @@ trait GetTraineeMeta
                     $trainee_collection[$col_key] = $trainee->$col_key;
                 }
 
-                $sub_collection = ['branch' => $trainee?->branch?->district, 'payment_type' => $class->GetGeneralMeta($trainee?->payment_type)?->meta_value];
+                $sub_collection = ['branch' => $trainee?->branch?->district, "payment_type" => $class?->GetGeneralMeta($trainee?->payment_type)?->meta_value, "preferable_time" => $class?->GetGeneralMeta($trainee?->preferable_time)?->meta_value];
 
                 foreach($trainee->trainee_meta as $meta)
                 {
@@ -52,7 +52,7 @@ trait GetTraineeMeta
 
                 $class->isAllowed($class->current_user, 'view_own_follow_up', $class->permission_collection, $trainee?->user_id) && $follow_up_collection = ['follow_up' => $trainee?->user?->full_name];
                 
-                $collection[$collection_index++] = [...$trainee_collection, ...$sub_collection, ...$trainer_collection, ...$level_collection, ...$follow_up_collection, ...$meta_collection, 'created_at' => $trainee?->created_at, 'updated_at' => $trainee?->updated_at];
+                $collection[$collection_index++] = [...$trainee_collection, ...$sub_collection, ...$trainer_collection, ...$level_collection, ...$follow_up_collection, ...$meta_collection, 'test_date' => $trainee?->test_date, 'moved_Date' => $trainee?->moved_date,'created_at' => $trainee?->created_at, 'updated_at' => $trainee?->updated_at];
             }
         }
 

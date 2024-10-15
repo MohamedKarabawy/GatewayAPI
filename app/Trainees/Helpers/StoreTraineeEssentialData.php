@@ -2,6 +2,8 @@
 
 namespace App\Trainees\Helpers;
 
+use Carbon\Carbon;
+
 trait StoreTraineeEssentialData
 {
     protected function StoreTraineeEssentialData($trainee, $request, $class)
@@ -27,6 +29,10 @@ trait StoreTraineeEssentialData
         ($request->has('trainer') && $class->permission_collection === 'waitlist') && $trainee->trainer_id = $class->User($request->trainer)->id;
 
         ($request->has('follow_up') && $class->permission_collection === 'pendinglist') && $trainee->follow_up = $class->User($request->follow_up)->id;
+
+        $request->has('test_date') && $trainee->test_date = Carbon::parse($request->test_date);
+
+        count($request->all()) >= 2  && $trainee->moved_date = Carbon::now();
 
         count($request->all()) >= 2 && $trainee->save();
 
