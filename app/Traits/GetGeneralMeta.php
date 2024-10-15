@@ -8,6 +8,6 @@ trait GetGeneralMeta
 {
     protected function GetGeneralMeta($id)
     {
-        return GeneralMeta::find($id);
+        return GeneralMeta::where('id', $id)->first();
     }
 }

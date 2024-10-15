@@ -4,6 +4,7 @@ namespace App\Trainees\Pendinglist\Show;
 
 use App\Models\Trainee;
 use App\Models\GeneralMeta;
+use Illuminate\Support\Facades\Gate;
 
 class Levels
 {

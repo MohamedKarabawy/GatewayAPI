@@ -21,8 +21,8 @@ class ViewTraineeData
 
     public function viewTraineeData(?Trainee $trainee)
     {
-        // try
-        // {
+        try
+        {
             $trainees = $trainee->get();
 
             $trainees_collection = [];
@@ -51,10 +51,10 @@ class ViewTraineeData
             }
 
             return response($trainees_collection, 200);
-        // }
-        // catch (Exception $e)
-        // {
-        //     return response(['message' => "Something went wrong. Trainees cannot be viewed. Please contact the administrator of the website."], 400);
-        // }
+        }
+        catch (Exception $e)
+        {
+            return response(['message' => "Something went wrong. Trainees cannot be viewed. Please contact the administrator of the website."], 400);
+        }
     }
 }

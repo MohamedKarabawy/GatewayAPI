@@ -135,9 +135,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/v1/dashboard/waitlist/delete', [WaitlistController::class, 'bulkDelete']);
 
     //Pending List
+    Route::get('/v1/dashboard/pendinglist/levels', [PendinglistController::class, 'viewLevels']);
+    
     Route::get('/v1/dashboard/pendinglist/view-trainers', [PendinglistController::class, 'viewTrainers']);
     
     Route::get('/v1/dashboard/pendinglist/view-admins', [PendinglistController::class, 'viewFollowUp']);
+    
+    Route::put('/v1/dashboard/pendinglist/{trainee_id}/assign-trainer', [PendinglistController::class, 'assignTrainer']);
+
+    Route::put('/v1/dashboard/pendinglist/{trainee_id}/assign-level', [PendinglistController::class, 'assignLevel']);
     
     Route::get('/v1/dashboard/pendinglist', [PendinglistController::class, 'view']);
 

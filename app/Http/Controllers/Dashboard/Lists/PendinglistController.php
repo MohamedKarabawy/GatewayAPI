@@ -18,6 +18,7 @@ use App\Trainees\Pendinglist\Show\Trainers;
 use App\Trainees\Pendinglist\Deletes\Delete;
 use App\Trainees\Pendinglist\Assign\AssignLevel;
 use App\Trainees\Pendinglist\Deletes\BulkDelete;
+use App\Trainees\Pendinglist\Assign\AssignTrainer;
 
 class PendinglistController extends Controller
 {
@@ -31,6 +32,13 @@ class PendinglistController extends Controller
         $this->trainee['assign-level'] = new AssignLevel($trainee, $trainee_id);
 
         return $this->trainee['assign-level']->assign($trainee, $level, $request, $trainee_id);
+    }
+
+    public function assignTrainer(Trainee $trainee, ?User $trainer, Request $request, $trainee_id)
+    {
+        $this->trainee['assign-trainer'] = new AssignTrainer($trainee, $trainee_id);
+
+        return $this->trainee['assign-trainer']->assign($trainee, $trainer, $request, $trainee_id);
     }
 
     public function viewFollowUp(?Trainee $trainee, ?User $user, ?Permission $permission)
