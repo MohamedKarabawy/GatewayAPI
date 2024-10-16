@@ -30,13 +30,13 @@ class View extends Permissions
 
     public function view(?Trainee $trainee)
     {
-        try
-        {
+        // try
+        // {
             return $this->viewTrainees($trainee, $this);
-        }
-        catch(Exception $e)
-        {
-            return response(['message' => "Something went wrong. The trainees cannot be viewed. Please contact the administrator of the website."], 400);
-        }
+        // }
+        // catch(Exception $e)
+        // {
+        //     return response(['message' => "Something went wrong. The trainees cannot be viewed. Please contact the administrator of the website."], 400);
+        // }
     }
 }

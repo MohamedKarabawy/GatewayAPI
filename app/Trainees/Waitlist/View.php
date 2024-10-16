@@ -2,18 +2,19 @@
 
 namespace App\Trainees\Waitlist;
 
+use Exception;
 use App\Models\Trainee;
-use App\Permissions\Permissions;
+use App\Traits\GetList;
+use App\Traits\GetUser;
 use App\Traits\GetGeneralMeta;
+use App\Permissions\Permissions;
 use App\Traits\CheckPermissionStatus;
 use App\Trainees\Helpers\GetTraineeMeta;
 use App\Trainees\Helpers\ViewTraineesHelper;
-use App\Traits\GetList;
-use Exception;
 
 class View extends Permissions
 {
-    use CheckPermissionStatus, GetTraineeMeta, ViewTraineesHelper, GetGeneralMeta, GetList;
+    use CheckPermissionStatus, GetTraineeMeta, ViewTraineesHelper, GetGeneralMeta, GetList, GetUser;
 
     public function __construct($current_user)
     {
