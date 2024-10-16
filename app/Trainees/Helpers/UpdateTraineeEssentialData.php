@@ -24,6 +24,8 @@ trait UpdateTraineeEssentialData
 
         ($request->has('follow_up') && $class->permission_collection === 'pendinglist') && $trainee->follow_up = $class->User($request->follow_up)->id;
 
+        $request->has('test_date') && $trainee->test_date = Carbon::parse($request->test_date);
+
         count($request->all()) >= 1 && $trainee->save();
 
         return $trainee;

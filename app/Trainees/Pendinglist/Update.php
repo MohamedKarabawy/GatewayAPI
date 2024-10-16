@@ -10,6 +10,7 @@ use App\Traits\CreateMeta;
 use App\Traits\UpdateMeta;
 use App\Models\TraineeMeta;
 use Illuminate\Http\Request;
+use App\Traits\GetGeneralMeta;
 use App\Permissions\Permissions;
 use App\Traits\PermissionUniqueness;
 use Illuminate\Support\Facades\Gate;
@@ -19,7 +20,7 @@ use App\Trainees\Helpers\UpdateTraineeEssentialData;
 
 class Update extends Permissions
 {
-    use GetUser, UpdateTraineeEssentialData, UpdateTraineeAddtionalData, GetBranch, GetList, CreateMeta, UpdateMeta, PermissionUniqueness;
+    use GetUser, GetGeneralMeta, UpdateTraineeEssentialData, UpdateTraineeAddtionalData, GetBranch, GetList, CreateMeta, UpdateMeta, PermissionUniqueness;
 
     public function __construct(?Trainee $trainee, $current_user, $id)
     {

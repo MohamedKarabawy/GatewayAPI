@@ -9,6 +9,7 @@ use App\Traits\GetBranch;
 use App\Traits\CreateMeta;
 use App\Models\TraineeMeta;
 use Illuminate\Http\Request;
+use App\Traits\GetGeneralMeta;
 use App\Permissions\Permissions;
 use App\Traits\PermissionUniqueness;
 use Illuminate\Support\Facades\Gate;
@@ -18,7 +19,7 @@ use App\Trainees\Helpers\StoreTraineeEssentialData;
 
 class Create extends permissions
 {
-    use GetUser, StoreTraineeEssentialData, StoreTraineeAddtionalData, GetBranch, GetList, CreateMeta, PermissionUniqueness;
+    use GetUser, GetGeneralMeta, StoreTraineeEssentialData, StoreTraineeAddtionalData, GetBranch, GetList, CreateMeta, PermissionUniqueness;
 
     public function __construct(?Trainee $trainee, $current_user)
     {
