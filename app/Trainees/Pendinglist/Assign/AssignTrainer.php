@@ -6,6 +6,7 @@ use Exception;
 use App\Models\User;
 use App\Models\Trainee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AssignTrainer
 {
@@ -18,7 +19,7 @@ class AssignTrainer
     {
         try
         {
-            $is_exists = $users->where('id', $request->trainer)->exists();
+            $is_exists = $trainer->where('id', $request->trainer)->exists();
 
             if (!$is_exists)
             {

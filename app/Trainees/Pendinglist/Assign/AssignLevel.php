@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Trainee;
 use App\Models\GeneralMeta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AssignLevel
 {
@@ -20,8 +21,8 @@ class AssignLevel
     {
         try
         {
-            $is_exists = $level->where('meta_key', $this->list_name)->where('meta_value', $request->level)->exists();
-
+            $is_exists = $level->where('meta_key', $this->list_name)->where('id', $request->level)->exists();
+            
             if (!$is_exists)
             {
                 return response(['message' => 'Level is not exists in the pending list'], 400);
