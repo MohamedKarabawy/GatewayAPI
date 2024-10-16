@@ -14,7 +14,7 @@ trait ShowRoleList
 
         foreach ($users as $user)
         {
-            boolval($permission->where('role_id', $user->role_id)->where('per_collection', $class->collection)->where('per_key', $class->permission)->first()?->per_value) &&
+            boolval($permission->where('role_id', $user->role_id)->where('per_collection', $class->collection)->where('per_key', $class->permission)->first()?->per_value && boolval($user->is_activated) === true) &&
             
             $collection[$index++] = ['id' => $user->id, 'full_name' => $user->full_name, 'email' => $user->email];
         }
