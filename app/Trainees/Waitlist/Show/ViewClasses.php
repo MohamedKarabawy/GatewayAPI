@@ -24,19 +24,19 @@ class ViewClasses
 
             $classes = [];
 
-            ($request->has('class_type') && $request->has('level_id') && $request->has('time_id')) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('level', $request->level_id)->where('time_slot', $request->time_id)->get();
+            ($request->filled('class_type') && $request->filled('level_id') && $request->filled('time_id')) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('level', $request->level_id)->where('time_slot', $request->time_id)->get();
         
-            ($request->has('class_type') && $request->has('time_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('time_slot', $request->time_id)->get();
+            ($request->filled('class_type') && $request->filled('time_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('time_slot', $request->time_id)->get();
 
-            ($request->has('class_type') && $request->has('level_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('level', $request->level_id)->get();
+            ($request->filled('class_type') && $request->filled('level_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('level', $request->level_id)->get();
             
-            ($request->has('level_id') && $request->has('time_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->where('time_slot', $request->time_id)->get();
+            ($request->filled('level_id') && $request->filled('time_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->where('time_slot', $request->time_id)->get();
             
-            ($request->has('class_type') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->get();
+            ($request->filled('class_type') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->get();
 
-            ($request->has('level_id') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->get();
+            ($request->filled('level_id') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->get();
             
-            ($request->has('time_id') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('time_slot', $request->time_id)->get();
+            ($request->filled('time_id') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('time_slot', $request->time_id)->get();
             
             count($classes) === 0 && $classes = $class?->where('batch_id', $current_batch?->id)?->get();
 
