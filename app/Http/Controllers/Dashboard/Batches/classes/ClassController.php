@@ -7,6 +7,7 @@ use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Classes\Class\View;
 use App\Http\Controllers\Controller;
+use App\Batches\Classes\Class\ViewSelectClasses;
 
 class ClassController extends Controller
 {
@@ -21,5 +22,12 @@ class ClassController extends Controller
         $this->class['view'] = new View($this->current_user);
 
         return $this->class['view']->view($class, $trainee, $batch_id, $class_id);
+    }
+
+    public function viewClasses(Classes $class, $batch_id)
+    {
+        $this->class['view-classes'] = new ViewSelectClasses($this->current_user);
+
+        return $this->class['view-classes']->view($class, $batch_id);
     }
 }

@@ -220,6 +220,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/batches/{id}/delete', [BatchesController::class, 'delete']);
 
     //Classes
+    Route::get('/v1/dashboard/batches/{batch_id}/view-select-classes', [ClassController::class, 'viewClasses']);
+
     Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-black', [ClassesController::class, 'moveToBlack']);
 
     Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-hold', [ClassesController::class, 'moveToHold']);
@@ -227,6 +229,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-refund', [ClassesController::class, 'moveToRefund']);
 
     Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/move-to-wait', [ClassesController::class, 'moveToWait']);
+
+    Route::put('/v1/dashboard/batches/classes/{trainee_id}/switch-class', [ClassesController::class, 'switchClass']);
 
     Route::get('/v1/dashboard/batches/{batch_id}/classes/{class_id}', [ClassController::class, 'viewClass']);
     

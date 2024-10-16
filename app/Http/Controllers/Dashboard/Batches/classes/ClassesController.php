@@ -24,6 +24,7 @@ use App\Batches\Classes\View\ViewTimeSlots;
 use App\Batches\Classes\Class\Move\MoveToHold;
 use App\Batches\Classes\Class\Move\MoveToWait;
 use App\Batches\Classes\Class\Move\MoveToBlack;
+use App\Batches\Classes\Class\Move\SwitchClass;
 use App\Batches\Classes\Class\Move\MoveToRefund;
 
 class ClassesController extends Controller
@@ -61,11 +62,11 @@ class ClassesController extends Controller
         return $this->class['move-to-wait']->moveToWait($trainees, $trainee_class, $class_id, $trainee_id);
     }
 
-    public function switchClass(?TraineeClass $trainee_class, Request $request, $class_id, $trainee_id)
+    public function switchClass(?Classes $class, ?TraineeClass $trainee_class, Request $request, $trainee_id)
     {
         $this->class['switch-class'] = new SwitchClass($class);
 
-        return $this->class['switch-class']->switchClass($trainee_class, $request, $class_id, $trainee_id);
+        return $this->class['switch-class']->switchClass($trainee_class, $request, $trainee_id);
     }
 
     public function viewGates(?ClassMeta $gate, ?Classes $class)

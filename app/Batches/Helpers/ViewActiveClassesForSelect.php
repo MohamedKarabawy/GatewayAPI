@@ -4,7 +4,7 @@ namespace App\Batches\Helpers;
 
 use App\Models\Batch;
 
-trait ViewClassesHelper
+trait ViewActiveClassesForSelect
 {
     protected function viewClasses($classes, $batch_id, $class)
     {
@@ -12,7 +12,7 @@ trait ViewClassesHelper
 
         $class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'switch_class') && $classes_data = $class->getCollection($classes->where('batch_id', $batch_id)->get(), $class);
         
-        $num_classes = Batch::where('id', $batch_id)->first()->classes->count();
+        $num_classes = Batch::where('id', $batch_id)?->first()->classes->count();
 
         $sub_message = $num_classes === 0 ?  response(['message' => "There's no classes available."], 200) : response(['message' => 'Unauthorized'], 401);
 

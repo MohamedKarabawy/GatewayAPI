@@ -6,6 +6,7 @@ namespace App\Batches\Classes\Class\Move;
 use Exception;
 use App\Models\Classes;
 use App\Models\TraineeClass;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class SwitchClass
@@ -15,18 +16,19 @@ class SwitchClass
         Gate::authorize('switchClass', $class);
     }
 
-    public function switchClass(?TraineeClass $trainee_class, Request $request, $class_id, $trainee_id)
+    public function switchClass(?TraineeClass $trainee_class, Request $request, $trainee_id)
     {
         try
         {
-            $is_exists = $trainee_class->where("class_id", $class_id)->where("trainee_id", $trainee_id)->exists();
+            $is_exists = $trainee_class->where("class_id", $request->class_id)->where("trainee_id", $trainee_id)->exists();
             
-            if($is_exists){
-                $trainee_class->where("class_id", $class_id)->where("trainee_id", $trainee_id)->update([
+            if(!$is_exists)
+            {
+                $trainee_class->where("trainee_id", $trainee_id)->update([
                     "class_id" => $request->class_id
                 ]);
                 
-            return response(['message' => "Class switched successfully."], 200);
+                return response(['message' => "Class switched successfully."], 200);
             }
 
             return response(['message' => "Cannot switch class. Class not exists."], 400);

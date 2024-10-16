@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Batches\Classes;
+namespace App\Batches\Classes\Class;
 
 use App\Models\Classes;
 use App\Traits\GetUser;
