@@ -23,6 +23,14 @@ class Update extends Permissions
         {            
             $current_class = $class->where('batch_id', $batch_id)->where('id', $class_id)->first();
 
+            $request->all() >= 1 && $gate = $this->getData($class_meta, $request->gate_id);
+            
+            $request->all() >= 1 && $time_slot = $this->getData($class_meta, $request->time_id);
+
+            $request->all() >= 1 && $level = $this->getData($class_meta, $request->level_id); 
+
+            $request->all() >= 1 && $current_class->class_name = $request->class_type.' - '.$gate.' - '.$time_slot.' - '.$trainer.' - '.$level;
+
             $request->has('trainer_id') && $current_class->trainer_id = $request->trainer_id;
 
             $request->has('class_name') && $current_class->class_name = $request->class_name;
