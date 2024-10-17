@@ -4,15 +4,17 @@ namespace App\Batches\Classes\Class\Add;
 
 
 use Exception;
+use App\Models\Classes;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 
 class AddAdminNote
 {
-    public function __construct()
+    public function __construct(?Classes $class)
     {
-        
+        Gate::authorize('addAdminNote', $class);
     }
 
     public function addAdminNote(?Attendance $attendance, Request $request, $class_id, $trainee_id)

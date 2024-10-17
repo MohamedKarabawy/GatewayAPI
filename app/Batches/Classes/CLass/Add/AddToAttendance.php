@@ -5,13 +5,14 @@ namespace App\Batches\Classes\Class\Add;
 
 use Exception;
 use App\Models\Attendance;
+use Illuminate\Support\Facades\Gate;
 
 
 class AddToAttendance
 {
-    public function __construct()
+    public function __construct(?Attendance $attendance, $current_user)
     {
-        
+        Gate::authorize('addToAttendance', $attendance);
     }
 
     public function addToAttendance(?Attendance $attendance, $class_id, $trainee_id)
@@ -20,12 +21,17 @@ class AddToAttendance
         {
             $is_exists = $attendance->where("class_id", $class_id)->where("trainee_id", $trainee_id)->exists();
             
-            !$is_exists && $attendance->create([
+            if($is_exists)
+            {
+                return response(['message' => "Trainee already exists in attendance."], 400); 
+            }
+
+            $attendance->create([
                 "class_id" => $class_id,
                 "trainee_id" => $trainee_id, 
             ]);
 
-            return response(['message' => "Trainee added to attendance successfully."], 201);
+            return response(['message' => "Trainee added to attendance successfully."], 201);  
         }
         catch (Exception $e)
         {

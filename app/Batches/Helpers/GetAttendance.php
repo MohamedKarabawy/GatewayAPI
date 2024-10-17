@@ -10,11 +10,11 @@ trait GetAttendance
 
         $meta_collection = [];
 
- 
+       
 
         foreach((object) $attendances as $key => $meta)
         {
-           
+
             foreach($meta?->trainees as $trainee)
             {   
                 foreach($trainee->trainee_meta as $t_meta)

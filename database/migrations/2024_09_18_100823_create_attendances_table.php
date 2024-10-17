@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreign('class_id')->references('id')->on('gt_classes')->onDelete('cascade');
             $table->bigInteger('trainee_id')->unsigned();
             $table->foreign('trainee_id')->references('id')->on('gt_trainees')->onDelete('cascade');
-            $table->string('admin_note');
-            $table->string('trainer_note');
+            $table->string('admin_note')->nullable();
+            $table->string('trainer_note')->nullable();
             $table->timestamps();
         });
     }

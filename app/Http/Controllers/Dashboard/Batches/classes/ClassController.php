@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Dashboard\Batches\Classes;
 
 use App\Models\Classes;
+use App\Models\Attendance;
 use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Classes\Class\View;
 use App\Http\Controllers\Controller;
+use App\Batches\Classes\Class\Add\AddAdminNote;
 use App\Batches\Classes\Class\ViewSelectClasses;
+use App\Batches\Classes\Class\Add\AddTrainerNote;
 
 class ClassController extends Controller
 {
@@ -16,7 +19,21 @@ class ClassController extends Controller
         $this->current_user = auth()->user();
     }
 
+    public function addAdminNote(?Classes $class, ?Attendance $attendance, Request $request, $class_id, $trainee_id)
+    {
+        $this->class['add-admin-note'] = new AddAdminNote($class);
 
+        return $this->class['add-admin-note']->addAdminNote($attendance, $request, $class_id, $trainee_id);
+    }
+
+    public function addTrainerNote(?Classes $class, ?Attendance $attendance, Request $request, $class_id, $trainee_id)
+    {
+        $this->class['add-admin-note'] = new AddTrainerNote($class);
+
+        return $this->class['add-admin-note']->addTrainerNote($attendance, $request, $class_id, $trainee_id);
+    }
+
+    
     public function viewClass(?Classes $class, ?TraineeClass $trainee, $batch_id, $class_id)
     {
         $this->class['view'] = new View($this->current_user);

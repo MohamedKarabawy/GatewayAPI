@@ -23,10 +23,22 @@ class ClassesPolicy
         'move-to-refund' => ['move_to_refund'],
         'move-to-wait' => ['move_to_wait'],
         'move-to-hold' => ['move_to_hold'],
-        'switch-class' => ['switch_class']
+        'switch-class' => ['switch_class'],
+        'add-admin-note' => ['add_admin_note'],
+        'add-trainer-note' => ['add_trainer_note']
     ];
 
         $this->permission_collection = 'classes';
+    }
+
+    public function addAdminNote(?User $current_user,?Classes $class)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['add-admin-note'], $this->permission_collection);
+    }
+
+    public function addTrainerNote(?User $current_user,?Classes $class)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['add-trainer-note'], $this->permission_collection);
     }
 
     public function switchClass(?User $current_user,?Classes $class)
