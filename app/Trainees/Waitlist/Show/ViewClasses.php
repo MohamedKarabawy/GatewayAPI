@@ -24,6 +24,8 @@ class ViewClasses
 
             $classes = [];
 
+            $classes = $class?->where('batch_id', $current_batch?->id)?->get();
+
             ($request->filled('class_type') && $request->filled('level_id') && $request->filled('time_id')) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('level', $request->level_id)->where('time_slot', $request->time_id)->get();
         
             ($request->filled('class_type') && $request->filled('time_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->where('time_slot', $request->time_id)->get();
@@ -37,16 +39,15 @@ class ViewClasses
             ($request->filled('level_id') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->get();
             
             ($request->filled('time_id') && count($request->all()) === 1) && $classes = $class->where('batch_id', $current_batch->id)->where('time_slot', $request->time_id)->get();
-            
-            count($classes) === 0 && $classes = $class?->where('batch_id', $current_batch?->id)?->get();
+    
 
             $classes_collection = [];
 
-            foreach($classes as $key => $t_class)
+            foreach((object) $classes as $key => $t_class)
             {
                 $classes_collection[$key] = [
-                    'id' => $t_class->id,
-                    'name' => $t_class->class_name
+                    'id' => $t_class?->id,
+                    'name' => $t_class?->class_name
                 ];
             }
             
