@@ -2,18 +2,19 @@
 
 namespace App\Trainees\Holdlist;
 
-use App\Models\Trainee;
-use App\Permissions\Permissions;
-use App\Traits\GetGeneralMeta;
-use App\Traits\CheckPermissionStatus;
-use App\Trainees\Helpers\GetHoldTraineesData;
-use App\Trainees\Helpers\ViewTraineesHelper;
-use App\Traits\GetList;
 use Exception;
+use App\Models\Trainee;
+use App\Traits\GetList;
+use App\Traits\GetUser;
+use App\Traits\GetGeneralMeta;
+use App\Permissions\Permissions;
+use App\Traits\CheckPermissionStatus;
+use App\Trainees\Helpers\ViewTraineesHelper;
+use App\Trainees\Helpers\GetHoldTraineesData;
 
 class View extends Permissions
 {
-    use CheckPermissionStatus, GetHoldTraineesData, ViewTraineesHelper, GetGeneralMeta, GetList;
+    use CheckPermissionStatus, GetHoldTraineesData, ViewTraineesHelper, GetGeneralMeta, GetList, GetUser;
 
     public function __construct($current_user)
     {
