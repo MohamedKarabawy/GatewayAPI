@@ -34,11 +34,11 @@ class ViewClasses
             
             ($request->filled('level_id') && $request->filled('time_id') && (count($request->all()) === 2)) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->where('time_slot', $request->time_id)->get();
             
-            ($request->filled('class_type') &&  !$request->filled('level_id') && !$request->filled('time_id')) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->get();
+            ($request->filled('class_type') &&  !$request->filled('level_id') || !$request->filled('time_id')) && $classes = $class->where('batch_id', $current_batch->id)->where('class_type', $request->class_type)->get();
 
-            ($request->filled('level_id') &&  !$request->filled('class_type') && !$request->filled('time_id')) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->get();
+            ($request->filled('level_id') &&  !$request->filled('class_type') || !$request->filled('time_id')) && $classes = $class->where('batch_id', $current_batch->id)->where('level', $request->level_id)->get();
             
-            ($request->filled('time_id') &&  !$request->filled('level_id') && !$request->filled('class_type')) && $classes = $class->where('batch_id', $current_batch->id)->where('time_slot', $request->time_id)->get();
+            ($request->filled('time_id') &&  !$request->filled('level_id') || !$request->filled('class_type')) && $classes = $class->where('batch_id', $current_batch->id)->where('time_slot', $request->time_id)->get();
     
             $classes_collection = [];
 
