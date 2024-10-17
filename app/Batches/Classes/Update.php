@@ -29,7 +29,9 @@ class Update extends Permissions
 
             $request->all() >= 1 && $level = $this->getData($class_meta, $request->level_id); 
 
-            $request->all() >= 1 && $current_class->class_name = $request->class_type.' - '.$gate.' - '.$time_slot.' - '.$trainer.' - '.$level;
+            $request->filled('class_type') ? $class_type = $request->class_type : $class_type = $current_class->class_type;
+
+            $request->all() >= 1 && $current_class->class_name = $class_type.' - '.$gate.' - '.$time_slot.' - '.$trainer.' - '.$level;
 
             $request->has('trainer_id') && $current_class->trainer_id = $request->trainer_id;
 
