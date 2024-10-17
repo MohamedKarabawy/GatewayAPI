@@ -5,7 +5,7 @@ use App\Models\User;
 
 class Permissions
 {
-    protected $permission = [
+    public $permission = [
         'general' => [
             'show_follow_up_list',
             'show_trainers_list'
