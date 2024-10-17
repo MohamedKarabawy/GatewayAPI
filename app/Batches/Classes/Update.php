@@ -5,11 +5,15 @@ namespace App\Batches\Classes;
 use Exception;
 use App\Models\Classes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
+use Illuminate\Support\Facades\Gate;
+use App\Models\ClassMeta;
+use App\Batches\Helpers\GetBatchesDataHelper;
 
 class Update extends Permissions
 {
+    use GetBatchesDataHelper;
+
     public function __construct(?Classes $class, $current_user, $class_id)
     {
         Gate::authorize('updateClasses', $class->find($class_id));
@@ -17,19 +21,19 @@ class Update extends Permissions
         $this->current_user = $current_user;
     }
 
-    public function update(?Classes $class, Request $request, $batch_id, $class_id)
+    public function update(?Classes $class, ?ClassMeta $class_meta, Request $request, $batch_id, $class_id)
     {
         try
         {            
             $current_class = $class->where('batch_id', $batch_id)->where('id', $class_id)->first();
 
-            $request->all() >= 1 && $gate = $this->getData($class_meta, $request->gate_id);
-            
-            $request->all() >= 1 && $time_slot = $this->getData($class_meta, $request->time_id);
-
-            $request->all() >= 1 && $level = $this->getData($class_meta, $request->level_id); 
-
             $request->filled('class_type') ? $class_type = $request->class_type : $class_type = $current_class->class_type;
+
+            $request->filled('gate_id') ? $gate = $this->getData($class_meta, $request->gate_id) : $gate = $this->getData($class_meta, $current_class->gate_id);
+
+            $request->filled('time_id') ? $time_slot = $this->getData($class_meta, $request->time_id) : $time_slot = $this->getData($class_meta, $current_class->time_id);
+
+            $request->filled('level') ? $level = $this->getData($class_meta, $request->level) : $level = $this->getData($class_meta, $current_class->level);
 
             $request->all() >= 1 && $current_class->class_name = $class_type.' - '.$gate.' - '.$time_slot.' - '.$trainer.' - '.$level;
 
