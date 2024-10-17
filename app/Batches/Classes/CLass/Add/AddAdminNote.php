@@ -23,12 +23,13 @@ class AddAdminNote
         {
             $is_exists = $attendance->where("class_id", $class_id)->where("trainee_id", $trainee_id)->exists();
             
-            if($is_exists){
+            if($is_exists)
+            {
                 $attendance->where("class_id", $class_id)->where("trainee_id", $trainee_id)->update([
                     "admin_note" => $request->admin_note,
                 ]);
                 
-            return response(['message' => "Admin note added successfully."], 200);
+                return response(['message' => "Admin note added successfully."], 200);
             }
 
             return response(['message' => "Cannot add admin note. This trainee is not exists in attendance."], 400);
@@ -36,7 +37,7 @@ class AddAdminNote
         }
         catch (Exception $e)
         {
-            return response(['message' => "Something went wrong. Trainee cannot be added to attendance. Please contact the administrator of the website."], 400);
+            return response(['message' => "Something went wrong. Admin note cannot be added to trainee. Please contact the administrator of the website."], 400);
         }
     }
 }

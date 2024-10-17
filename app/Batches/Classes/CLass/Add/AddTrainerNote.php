@@ -37,7 +37,7 @@ class AddTrainerNote
         }
         catch (Exception $e)
         {
-            return response(['message' => "Something went wrong. Trainee cannot be added to attendance. Please contact the administrator of the website."], 400);
+            return response(['message' => "Something went wrong. Trainer note cannot be added to trainee. Please contact the administrator of the website."], 400);
         }
     }
 }

@@ -8,6 +8,8 @@ use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Classes\Class\View;
 use App\Http\Controllers\Controller;
+use App\Batches\Classes\Class\ViewAdminNote;
+use App\Batches\Classes\Class\ViewTrainerNote;
 use App\Batches\Classes\Class\Add\AddAdminNote;
 use App\Batches\Classes\Class\ViewSelectClasses;
 use App\Batches\Classes\Class\Add\AddTrainerNote;
@@ -17,6 +19,20 @@ class ClassController extends Controller
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function viewAdminNote(?Classes $class, ?Attendance $attendance, $class_id, $trainee_id)
+    {
+        $this->class['view-admin-note'] = new ViewAdminNote($class);
+
+        return $this->class['view-admin-note']->view($attendance, $class_id, $trainee_id);
+    }
+
+    public function viewTrainerNote(?Classes $class, ?Attendance $attendance, $class_id, $trainee_id)
+    {
+        $this->class['view-trainer-note'] = new ViewTrainerNote($class);
+
+        return $this->class['view-trainer-note']->view($attendance, $class_id, $trainee_id);
     }
 
     public function addAdminNote(?Classes $class, ?Attendance $attendance, Request $request, $class_id, $trainee_id)

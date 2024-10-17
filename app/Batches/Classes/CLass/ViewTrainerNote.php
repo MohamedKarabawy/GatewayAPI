@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Batches\Classes\Class;
+
+use Exception;
+use App\Models\Classes;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\Gate;
+
+class ViewTrainerNote
+{
+    public function __construct(?Classes $class)
+    {
+        Gate::authorize('addTrainerNote', $class);
+    }
+
+    public function view(?Attendance $attendance, $class_id, $trainee_id)
+    {
+        try
+        {
+            $is_exists = $attendance->where("class_id", $class_id)->where("trainee_id", $trainee_id)->exists();
+
+            if($is_exists)
+            {
+                $trainer_note =  $attendance->where("class_id", $class_id)->where("trainee_id", $trainee_id)->first();
+                
+                
+                return response(['trainer_note' => $trainer_note?->trainer_note], 200);
+            }
+
+            return response(['message' => "Cannot view admin note. This trainee is not exists in attendance."], 400);
+
+        }
+        catch (Exception $e)
+        {
+            return response(['message' => "Something went wrong. Admin note cannot be viewed. Please contact the administrator of the website."], 400);
+        }
+    }
+}
