@@ -132,11 +132,11 @@ class ClassesController extends Controller
         return $this->class['create']->create($class, $user, $class_meta, $request, $batch_id);
     }
 
-    public function updateClass(?Classes $class, ?ClassMeta $class_meta, Request $request, $batch_id, $class_id)
+    public function updateClass(?Classes $class, ?User $user, ?ClassMeta $class_meta, Request $request, $batch_id, $class_id)
     {
         $this->class['update'] = new Update($class, $this->current_user, $class_id);
 
-        return $this->class['update']->update($class, $request, $batch_id, $class_id);
+        return $this->class['update']->update($class, $user, $class_meta, $request, $batch_id, $class_id);
     }
 
     public function deleteClass(?Classes $class, $batch_id, $class_id)
