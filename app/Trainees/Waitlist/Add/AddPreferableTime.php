@@ -37,6 +37,8 @@ class AddPreferableTime
                 return response(['message' => 'Preferable time already exists or attend type not set.'], 400);
             }
 
+            $attend_type = '';
+
             switch($request->attend_type)
             {
                 case 'online':

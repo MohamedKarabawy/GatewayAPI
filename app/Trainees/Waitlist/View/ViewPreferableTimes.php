@@ -30,6 +30,8 @@ class ViewPreferableTimes
                 return response(['message' => 'Attend type is required'], 400);   
             }
 
+            $attend_type = '';
+
             switch($request->attend_type)
             {
                 case 'online':
