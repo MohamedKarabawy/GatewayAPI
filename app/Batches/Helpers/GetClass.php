@@ -30,8 +30,8 @@ trait GetClass
                     ...$meta_collection,
                     'payment' => $this_class?->meta($trainee, 'paid_value')?->meta_value,
                     'confirmation' => $this_class?->meta($trainee, 'confirmation')?->meta_value,
-                    'trainer_note' => Attendance::where('class_id', $current_class?->id)?->where('trainee_id', $trainee?->id)?->first()?->trainer_note,
-                    'admin_note' => Attendance::where('class_id', $current_class?->id)?->where('trainee_id', $trainee?->id)?->first()?->admin_note,
+                    'trainer_note' => !null ?? Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()?->trainer_note,
+                    'admin_note' => !null ?? Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()?->admin_note,
                 ];
             }
         }
