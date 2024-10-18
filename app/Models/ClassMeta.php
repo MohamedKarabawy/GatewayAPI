@@ -19,6 +19,7 @@ class ClassMeta extends Model
     protected $fillable = [
         'class_id',
         'meta_key',
-        'meta_value'
+        'meta_value',
+        'position'
     ];
 }
