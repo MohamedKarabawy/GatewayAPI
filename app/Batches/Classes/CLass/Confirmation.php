@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Batches\Classes;
+namespace App\Batches\Classes\Class;
 
 use Exception;
 use App\Models\TraineeClass;
