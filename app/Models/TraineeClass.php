@@ -21,7 +21,8 @@ class TraineeClass extends Model
         protected $fillable = [
             'user_id',
             'class_id',
-            'trainee_id'
+            'trainee_id',
+            'confirmation'
         ];
     
         public function trainees()
