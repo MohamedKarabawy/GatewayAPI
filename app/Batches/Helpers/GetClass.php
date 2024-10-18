@@ -2,6 +2,8 @@
 
 namespace App\Batches\Helpers;
 
+use App\Models\Attendance;
+
 trait GetClass
 {
     protected function getCollection($current_class, $trainee_class, $this_class)
@@ -28,8 +30,8 @@ trait GetClass
                     ...$meta_collection,
                     'payment' => $this_class?->meta($trainee, 'paid_value')?->meta_value,
                     'confirmation' => $this_class?->meta($trainee, 'confirmation')?->meta_value,
-                    'trainer_note' => $this_class?->meta($trainee, 'trainer_note')?->meta_value,
-                    'admin_note' => $this_class?->meta($trainee, 'admin_note')?->meta_value,
+                    'trainer_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()->trainer_note,
+                    'admin_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()->admin_note,
                 ];
             }
         }
