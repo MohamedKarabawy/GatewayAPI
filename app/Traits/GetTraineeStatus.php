@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Model\TraineeClass;
+use App\Models\TraineeClass;
 
 
 trait GetTraineeStatus
