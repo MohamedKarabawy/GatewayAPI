@@ -25,19 +25,19 @@ class Confirmation
 
             if(!$current_trainee)
             {
-                return response(['message' => "Class is not found for this trainee."], 400);
+                return response(['message' => "Trainee is not found for this class."], 400);
             }
 
             $request->filled('confirmation') && $current_trainee->confirmation = boolval($current_trainee->confirmation);
 
             $request->all() >= 1 && $current_trainee->save();
             
-            return response(['message' => "Class updated successfully."], 201);
+            return response(['message' => "Trainee updated successfully."], 201);
 
         }
         catch (Exception $e)
         {
-            return response(['message' => "Something went wrong. Class cannot be created. Please contact the administrator of the website."], 400);
+            return response(['message' => "Something went wrong. Trainee cannot be updated. Please contact the administrator of the website."], 400);
         }
     }
 }
