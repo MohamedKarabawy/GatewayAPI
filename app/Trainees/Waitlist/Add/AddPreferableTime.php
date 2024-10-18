@@ -25,11 +25,11 @@ class AddPreferableTime
     {
         try
         {
-            $is_exists_online = $preferable_time->where('meta_key', $this->list_name['online'])->where('meta_value', $request->preferable_time)->exists();
+            $request->filled('attend_type') && $is_exists_online = $preferable_time->where('meta_key', $this->list_name['online'])->where('meta_value', $request->preferable_time)->exists();
 
-            $is_exists_offline = $preferable_time->where('meta_key', $this->list_name['offline'])->where('meta_value', $request->preferable_time)->exists();
+            $request->filled('attend_type') && $is_exists_offline = $preferable_time->where('meta_key', $this->list_name['offline'])->where('meta_value', $request->preferable_time)->exists();
 
-            $is_exists_hybird = $preferable_time->where('meta_key', $this->list_name['hybird'])->where('meta_value', $request->preferable_time)->exists();
+            $request->filled('attend_type') && $is_exists_hybird = $preferable_time->where('meta_key', $this->list_name['hybird'])->where('meta_value', $request->preferable_time)->exists();
 
             
             if ($is_exists_online || $is_exists_offline || $is_exists_hybird || !$request->filled('attend_type')) 
