@@ -28,7 +28,7 @@ class Confirmation
                 return response(['message' => "Trainee is not found for this class."], 400);
             }
 
-            $request->filled('confirmation') && $current_trainee->confirmation = boolval($current_trainee->confirmation);
+            $request->filled('confirmation') && $current_trainee->confirmation = boolval($request->confirmation);
 
             $request->all() >= 1 && $current_trainee->save();
             
