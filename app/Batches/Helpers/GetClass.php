@@ -25,7 +25,7 @@ trait GetClass
                 
                 $trainees_collection[$key] = [
                     'id' => $trainee?->id,
-                    'status' => $this_class?->meta($trainee, 'status')?->meta_value,
+                    'status' => $this_class->status($trainee->id) > 1 ? 'Current Test' : 'New Test',
                     'full_name' => $trainee?->full_name,
                     ...$meta_collection,
                     'payment' => $this_class?->meta($trainee, 'paid_value')?->meta_value,

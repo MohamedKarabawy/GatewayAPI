@@ -5,6 +5,7 @@ namespace App\Batches\Classes\Class;
 use App\Models\Classes;
 use App\Models\TraineeClass;
 use App\Traits\GetTraineeMeta;
+use App\Traits\GetTraineeStatus;
 use App\Batches\Helpers\GetClass;
 use App\Traits\CheckPermissionStatus;
 use App\Batches\Helpers\ViewClassHelper;
@@ -12,7 +13,7 @@ use App\Batches\Helpers\ViewClassHelper;
 
 class View
 {
-    use CheckPermissionStatus, ViewClassHelper, GetTraineeMeta, GetClass;
+    use CheckPermissionStatus, ViewClassHelper, GetTraineeMeta, GetTraineeStatus, GetClass;
     
     public function __construct($current_user)
     {
