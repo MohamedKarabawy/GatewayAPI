@@ -2,13 +2,13 @@
 
 namespace App\Traits;
 
-use App\Model\Classes;
+use App\Model\TraineeClass;
 
 
 trait GetTraineeStatus
 {
     protected function status($trainee_id)
     {
-        return Classes::where('trainee_id', $trainee_id)->count();
+        return TraineeClass::where('trainee_id', $trainee_id)->count();
     }
 }
