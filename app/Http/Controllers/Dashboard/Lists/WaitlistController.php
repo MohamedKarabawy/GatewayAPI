@@ -78,11 +78,11 @@ class WaitlistController extends Controller
         return $this->trainee['view-payment']->viewPaymentTypes($meta);
     }
 
-    public function viewTimes(?Trainee $trainee, ?GeneralMeta $meta)
+    public function viewTimes(?Trainee $trainee, ?GeneralMeta $meta, Request $request)
     {
         $this->trainee['view-time'] = new ViewPreferableTimes($trainee);
 
-        return $this->trainee['view-time']->viewPreferableTimes($meta);
+        return $this->trainee['view-time']->viewPreferableTimes($meta, $request);
     }
 
     public function addLevel(?Trainee $trainee, ?GeneralMeta $meta, Request $request)
