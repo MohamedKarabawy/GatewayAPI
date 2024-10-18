@@ -36,7 +36,8 @@ class AssignClass
             
             $trainee_class->create([
                 'class_id' => $request->class_id,
-                'trainee_id' => $trainee_id
+                'trainee_id' => $trainee_id,
+                'confirmation' => false
             ]);
 
             return response(['message' => "Class assigned successfully."], 200);

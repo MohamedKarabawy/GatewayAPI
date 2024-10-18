@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id')->from(2423);
             $table->string('meta_key');
             $table->text('meta_value');
+            $table->bigInteger('position')->nullable();
             $table->timestamps();
         });
     }

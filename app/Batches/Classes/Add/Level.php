@@ -22,7 +22,11 @@ class Level extends Permissions
     {
         try
         {
-            $level->create(['meta_key' => $this->collection_key, 'meta_value' => $request->level]);
+            $current_position = $level->select('id')->max('position');
+
+            $current_position === null && $current_position = 0;
+
+            $level->create(['meta_key' => $this->collection_key, 'meta_value' => $request->level, 'position' => $current_position + 1]);
             
             return response(['message' => "Level added successfully."], 201);
         }

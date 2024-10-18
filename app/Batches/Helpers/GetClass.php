@@ -3,6 +3,7 @@
 namespace App\Batches\Helpers;
 
 use App\Models\Attendance;
+use App\Models\TraineeClass;
 
 trait GetClass
 {
@@ -29,7 +30,7 @@ trait GetClass
                     'full_name' => $trainee?->full_name,
                     ...$meta_collection,
                     'payment' => $this_class?->meta($trainee, 'paid_value')?->meta_value,
-                    'confirmation' => $this_class?->meta($trainee, 'confirmation')?->meta_value,
+                    'confirmation' => boolval(TraineeClass::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()->confirmation),
                     'trainer_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()?->trainer_note,
                     'admin_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()?->admin_note,
                 ];

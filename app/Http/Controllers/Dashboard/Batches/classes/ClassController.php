@@ -8,17 +8,25 @@ use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Classes\Class\View;
 use App\Http\Controllers\Controller;
+use App\Batches\Classes\Confirmation;
 use App\Batches\Classes\Class\ViewAdminNote;
-use App\Batches\Classes\Class\Attendance\ViewTrainerNote;
 use App\Batches\Classes\Class\Add\AddAdminNote;
 use App\Batches\Classes\Class\ViewSelectClasses;
 use App\Batches\Classes\Class\Attendance\AddTrainerNote;
+use App\Batches\Classes\Class\Attendance\ViewTrainerNote;
 
 class ClassController extends Controller
 {
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function confirmation(?Classes $class, ?TraineeClass $trainee_class, Request $request, $class_id, $trainee_id)
+    {
+        $this->class['confirmation'] = new Confirmation($class, $class_id);
+
+        return $this->class['confirmation']->confirm($trainee_class, $request, $class_id, $trainee_id);
     }
 
     public function viewAdminNote(?Classes $class, ?Attendance $attendance, $class_id, $trainee_id)

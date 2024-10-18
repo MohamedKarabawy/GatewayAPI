@@ -220,6 +220,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/batches/{id}/delete', [BatchesController::class, 'delete']);
 
     //Classes
+    Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/confirm', [ClassController::class, 'confirmation']);
+
     Route::post('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/add-to-attendance', [AttendanceController::class, 'addToAttendance']);
 
     Route::get('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/view-admin-note', [ClassController::class, 'viewAdminNote']);

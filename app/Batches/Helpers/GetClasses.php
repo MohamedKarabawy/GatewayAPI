@@ -23,6 +23,7 @@ trait GetClasses
                 'time_slot' => $this_class->meta($class->time_slot)->first()->meta_value,
                 'level' => $this_class->meta($class->level)->first()->meta_value,
                 'num_of_trainees' => TraineeClass::where('class_id', $class->id)->count(),
+                'num_of_confirmation' => TraineeClass::where('class_id', $class->id)->where('confirmation', true)->count()
             ];
         }
         
