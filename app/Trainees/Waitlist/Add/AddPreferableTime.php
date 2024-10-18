@@ -17,6 +17,8 @@ class AddPreferableTime
         $this->list_name['online'] = 'preferable_times_online';
 
         $this->list_name['offline'] = 'preferable_times_offline';
+
+        $this->list_name['hybird'] = 'preferable_times_hybrid';
     }
 
     public function addPreferableTime(?GeneralMeta $preferable_time, Request $request)
@@ -27,18 +29,33 @@ class AddPreferableTime
 
             $is_exists_offline = $preferable_time->where('meta_key', $this->list_name['offline'])->where('meta_value', $request->preferable_time)->exists();
 
+            $is_exists_hybird = $preferable_time->where('meta_key', $this->list_name['hybird'])->where('meta_value', $request->preferable_time)->exists();
+
             
-            if ($is_exists_online || $is_exists_offline) 
+            if ($is_exists_online || $is_exists_offline || $is_exists_hybird || !$request->filled('attend_type')) 
             {
-                return response(['message' => 'Payment type already exists'], 400);
+                return response(['message' => 'Preferable time already exists or attend type not set.'], 400);
+            }
+
+            switch($request->attend_type)
+            {
+                case 'online':
+                    $attend_type = $this->list_name['online'];
+                    break;
+                case 'offline':
+                    $attend_type = $this->list_name['offline'];
+                    break;
+                case 'hybrid':
+                    $attend_type = $this->list_name['hybird'];
+                    break;
             }
             
             $preferable_time->create([
-                'meta_key' => $request->attend_type === 'Online' ?  $this->list_name['online'] :  $this->list_name['offline'],
+                'meta_key' => $attend_type, 
                 'meta_value' => $request->preferable_time,
             ]);
 
-            return response(['message' => 'Payment type added successfully'], 200);
+            return response(['message' => 'Preferable time added successfully'], 200);
         }
         catch (Exception $e)
         {

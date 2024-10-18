@@ -16,6 +16,9 @@ class ViewPreferableTimes
         $this->collection_key['online'] = 'preferable_times_online';
 
         $this->collection_key['offline'] = 'preferable_times_offline';
+
+        $this->collection_key['hybird'] = 'preferable_times_hybird';
+        
     }
 
     public function viewPreferableTimes(?GeneralMeta $preferable_time, Request $request)
@@ -27,7 +30,20 @@ class ViewPreferableTimes
                 return response(['message' => 'Attend type is required'], 400);   
             }
 
-            $preferable_times = $request->attend_type === 'Online' ?  $preferable_time->where('meta_key',   $this->collection_key['online'])->get() : $preferable_time->where('meta_key',   $this->collection_key['offline'])->get();
+            switch($request->attend_type)
+            {
+                case 'online':
+                    $attend_type = $this->collection_key['online'];
+                    break;
+                case 'offline':
+                    $attend_type = $this->collection_key['offline'];
+                    break;
+                case 'hybrid':
+                    $attend_type = $this->collection_key['hybird'];
+                    break;
+            }
+
+            $preferable_times = $preferable_time->where('meta_key', $attend_type)->get();
             
             $preferable_times_collection = [];
 
