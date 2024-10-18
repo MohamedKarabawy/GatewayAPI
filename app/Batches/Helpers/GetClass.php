@@ -6,7 +6,7 @@ trait GetClass
 {
     protected function getCollection($current_class, $trainee_class, $this_class)
     {
-        $trainees_meta = $trainee_class->where('class_id', $current_class->id)->get();
+        $trainees_meta = $trainee_class->where('class_id', $current_class?->id)?->get();
         
         $trainees_collection = [];
 
