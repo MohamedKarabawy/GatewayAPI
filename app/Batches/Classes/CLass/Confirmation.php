@@ -3,6 +3,7 @@
 namespace App\Batches\Classes\Class;
 
 use Exception;
+use App\Models\Classes;
 use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 
