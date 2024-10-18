@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard\Attendance;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Batches\Classes\Class\ViewAttendance;
+use App\Batches\Classes\Class\Attendance\ViewAttendance;
 use App\Batches\Classes\Class\Add\AddToAttendance;
 
 class AttendanceController extends Controller

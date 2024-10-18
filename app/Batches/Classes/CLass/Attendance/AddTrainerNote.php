@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Batches\Classes\Class\Add;
+namespace App\Batches\Classes\Class\Attendance;
 
 
 use Exception;

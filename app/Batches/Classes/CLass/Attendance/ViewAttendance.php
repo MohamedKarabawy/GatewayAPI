@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Batches\Classes\Class;
+namespace App\Batches\Classes\Class\Attendance;
 
 use Exception;
 use App\Models\Attendance;
