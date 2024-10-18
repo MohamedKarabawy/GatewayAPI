@@ -41,13 +41,13 @@ class AddPreferableTime
 
             switch($request->attend_type)
             {
-                case 'online':
+                case 'Online':
                     $attend_type = $this->list_name['online'];
                     break;
-                case 'offline':
+                case 'Offline':
                     $attend_type = $this->list_name['offline'];
                     break;
-                case 'hybrid':
+                case 'Hybrid':
                     $attend_type = $this->list_name['hybird'];
                     break;
             }

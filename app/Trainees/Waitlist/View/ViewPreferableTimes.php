@@ -34,13 +34,13 @@ class ViewPreferableTimes
 
             switch($request->attend_type)
             {
-                case 'online':
+                case 'Online':
                     $attend_type = $this->collection_key['online'];
                     break;
-                case 'offline':
+                case 'Offline':
                     $attend_type = $this->collection_key['offline'];
                     break;
-                case 'hybrid':
+                case 'Hybrid':
                     $attend_type = $this->collection_key['hybird'];
                     break;
             }
