@@ -50,7 +50,7 @@ class UserPolicy
         return $this->CheckPermission($current_user, $this->permissions['update'], $this->permission_collection['users'], $user->user_id);
     }
 
-    public function updateSelf(?User $current_user)
+    public function updateSelf(?User $current_user, ?User $user)
     {
         return $this->CheckPermission($current_user, $this->permissions['update-self'], $this->permission_collection['users']);
     }
@@ -60,7 +60,7 @@ class UserPolicy
         return $this->CheckPermission($current_user, $this->permissions['delete'], $this->permission_collection['users'], $user->user_id);
     }
 
-    public function deleteSelf(?User $current_user)
+    public function deleteSelf(?User $current_user, ?User $user)
     {
         return $this->CheckPermission($current_user, $this->permissions['delete-self'], $this->permission_collection['users']);
     }
