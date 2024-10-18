@@ -34,7 +34,7 @@ class AddPreferableTime
             
             if ($is_exists_online || $is_exists_offline || $is_exists_hybird || !$request->filled('attend_type')) 
             {
-                return response(['message' => 'Preferable time already exists or attend type not set.'], 500);
+                return response(['message' => 'Preferable time already exists or attend type not set.'], 400);
             }
 
             switch($request->attend_type)

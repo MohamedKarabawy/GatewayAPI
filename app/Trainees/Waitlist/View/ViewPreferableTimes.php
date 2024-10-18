@@ -27,7 +27,7 @@ class ViewPreferableTimes
         {
             if(!$request->filled('attend_type'))
             {
-                return response(['message' => 'Attend type is required'], 500);   
+                return response(['message' => 'Attend type is required'], 400);   
             }
 
             switch($request->attend_type)
