@@ -20,7 +20,7 @@ class UpdateSessionNote
     {
         try
         {
-            $current_session_note = $session_note->where('id', $request->id);
+            $current_session_note = $session_note->where('id', $session_id);
             
             if(!$current_session_note->exists())
             {
