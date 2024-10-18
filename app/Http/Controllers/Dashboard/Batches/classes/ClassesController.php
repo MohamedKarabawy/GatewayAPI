@@ -83,11 +83,11 @@ class ClassesController extends Controller
         return $this->class['level']->viewLevels($level);
     }
 
-    public function viewTimeSlots(?ClassMeta $time_slot, ?Classes $class)
+    public function viewTimeSlots(?ClassMeta $time_slot, ?Classes $class, Request $request)
     {
         $this->class['time_slot'] = new ViewTimeSlots($class);
 
-        return $this->class['time_slot']->viewTimeSlots($time_slot);
+        return $this->class['time_slot']->viewTimeSlots($time_slot, $request);
     }
 
     public function viewTrainers(?Classes $class, ?User $user, ?Permission $permission)

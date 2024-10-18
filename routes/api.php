@@ -258,7 +258,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/v1/dashboard/batches/classes/levels', [ClassesController::class, 'viewLevels']);
 
-    Route::get('/v1/dashboard/batches/classes/time-slots', [ClassesController::class, 'viewTimeSlots']);
+    Route::put('/v1/dashboard/batches/classes/time-slots', [ClassesController::class, 'viewTimeSlots']);
 
     Route::get('/v1/dashboard/batches/{batch_id}/classes', [ClassesController::class, 'viewClasses']);
 
