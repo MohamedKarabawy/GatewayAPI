@@ -26,11 +26,11 @@ class TimeSlot extends Permissions
     {
         try
         {
-            $request->filled('attend_type') && $is_exists_online = $preferable_time->where('meta_key', $this->collection_key['online'])->where('meta_value', $request->preferable_time)->exists();
+            $request->filled('attend_type') && $is_exists_online = $time_slot->where('meta_key', $this->collection_key['online'])->where('meta_value', $request->time_slot)->exists();
 
-            $request->filled('attend_type') && $is_exists_offline = $preferable_time->where('meta_key', $this->collection_key['offline'])->where('meta_value', $request->preferable_time)->exists();
+            $request->filled('attend_type') && $is_exists_offline = $time_slot->where('meta_key', $this->collection_key['offline'])->where('meta_value', $request->time_slot)->exists();
 
-            $request->filled('attend_type') &&  $is_exists_hybird = $preferable_time->where('meta_key', $this->collection_key['hybird'])->where('meta_value', $request->preferable_time)->exists();
+            $request->filled('attend_type') &&  $is_exists_hybird = $time_slot->where('meta_key', $this->collection_key['hybird'])->where('meta_value', $request->time_slot)->exists();
 
             if ($is_exists_online || $is_exists_offline || $is_exists_hybird || !$request->filled('attend_type')) 
             {
@@ -42,13 +42,13 @@ class TimeSlot extends Permissions
             switch($request->attend_type)
             {
                 case 'Online':
-                    $attend_type = $this->list_name['online'];
+                    $attend_type = $this->collection_key['online'];
                     break;
                 case 'Offline':
-                    $attend_type = $this->list_name['offline'];
+                    $attend_type = $this->collection_key['offline'];
                     break;
                 case 'Hybrid':
-                    $attend_type = $this->list_name['hybird'];
+                    $attend_type = $this->collection_key['hybird'];
                     break;
             }
 
