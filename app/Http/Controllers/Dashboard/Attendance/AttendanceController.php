@@ -33,7 +33,7 @@ class AttendanceController extends Controller
         return $this->attendance['add-session-notes']->addSessionNote($session_note, $attendance, $request, $class_id, $trainee_id);
     }
 
-    public function updateSessionNote(SessionNote $session_note, Request $request, $session_id)
+    public function updateSessionNote(Attendance $attendance, SessionNote $session_note, Request $request, $session_id)
     {
         $this->attendance['update-session-notes'] = new UpdateSessionNote($attendance);
 
