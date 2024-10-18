@@ -28,7 +28,7 @@ class ViewTrainerNote
                 return response(['trainer_note' => $trainer_note?->trainer_note], 200);
             }
 
-            return response(['message' => "Cannot view admin note. This trainee is not exists in attendance."], 400);
+            return response(['message' => "Cannot view admin note. This trainee is not exists in attendance."], 200);
 
         }
         catch (Exception $e)
