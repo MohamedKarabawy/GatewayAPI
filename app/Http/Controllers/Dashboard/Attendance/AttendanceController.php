@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Batches\Classes\Class\Add\AddToAttendance;
 use App\Batches\Classes\Class\Attendance\AddSessionNote;
 use App\Batches\Classes\Class\Attendance\ViewAttendance;
+use App\Batches\Classes\Class\Attendance\ViewSessionNotes;
 use App\Batches\Classes\Class\Attendance\UpdateSessionNote;
 
 class AttendanceController extends Controller
@@ -20,7 +21,7 @@ class AttendanceController extends Controller
 
     public function viewSessionNote(SessionNote $session_note, Attendance $attendance, $class_id, $trainee_id)
     {
-        $this->attendance['view-session-notes'] = new ViewSessionNote($attendance);
+        $this->attendance['view-session-notes'] = new ViewSessionNotes($attendance);
 
         return $this->attendance['view-session-notes']->viewSessionNote($session_note, $attendance, $class_id, $trainee_id);
     }

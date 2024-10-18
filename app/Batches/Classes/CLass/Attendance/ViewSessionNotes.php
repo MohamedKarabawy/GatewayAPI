@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 
-class ViewSessionNote
+class ViewSessionNotes
 {
     public function __construct(Attendance $attendance)
     {
