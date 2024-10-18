@@ -12,16 +12,16 @@ trait GetClasses
     {
         $classes_collection = [];
             
-        foreach($classes as $key => $class)
+        foreach((object) $classes as $key => $class)
         {
             $classes_collection[$key] = [
-                'id' => $class->id,
-                'trainer' => $this_class->User($class->user_id)->first()->full_name,
-                'class_name' => $class->class_name,
-                'class_type' => $class->class_type,
+                'id' => $class?->id,
+                'trainer' => $this_class->User($class->user_id)->first()?->full_name,
+                'class_name' => $class?->class_name,
+                'class_type' => $class?->class_type,
                 'gate' => $this_class?->meta($class->gate)?->first()?->meta_value,
-                'time_slot' => $this_class->meta($class->time_slot)->first()->meta_value,
-                'level' => $this_class->meta($class->level)->first()->meta_value,
+                'time_slot' => $this_class->meta($class->time_slot)->first()?->meta_value,
+                'level' => $this_class->meta($class->level)->first()?->meta_value,
                 'num_of_trainees' => TraineeClass::where('class_id', $class->id)->count(),
                 'num_of_confirmation' => TraineeClass::where('class_id', $class->id)->where('confirmation', true)->count()
             ];
