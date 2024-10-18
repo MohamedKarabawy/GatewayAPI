@@ -25,13 +25,13 @@ trait GetClass
                 
                 $trainees_collection[$key] = [
                     'id' => $trainee?->id,
-                    'status' => $this_class->status($trainee->id) > 1 ? 'Current Test' : 'New Test',
+                    'status' => $this_class->status($trainee->id) <= 1 ? 'New Test' : 'Current Test',
                     'full_name' => $trainee?->full_name,
                     ...$meta_collection,
                     'payment' => $this_class?->meta($trainee, 'paid_value')?->meta_value,
                     'confirmation' => $this_class?->meta($trainee, 'confirmation')?->meta_value,
-                    'trainer_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()->trainer_note,
-                    'admin_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()->admin_note,
+                    'trainer_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()?->trainer_note,
+                    'admin_note' => Attendance::where('class_id', $current_class?->id)->where('trainee_id', $trainee?->id)->first()?->admin_note,
                 ];
             }
         }
