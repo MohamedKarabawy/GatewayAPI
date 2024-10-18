@@ -14,12 +14,24 @@ class AttendancePolicy
     public function __construct()
     {
         $this->permissions = ['view' => ['view_attendance'],
-        'add-to-attendance' => ['add_to_attendance']];
+        'add-to-attendance' => ['add_to_attendance'],
+        'add-session-notes' => ['add_session_notes'],
+        'view-session-notes' => ['view_session_notes']];
         
         $this->permission_collection['attendance'] = 'attendance';
 
         $this->permission_collection['classes'] = 'classes';
 
+    }
+
+    public function addSessionNotes(?User $current_user, ?Attendance $attendance)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['add-session-notes'], $this->permission_collection['attendance']);
+    }
+
+    public function viewSessionNotes(?User $current_user, ?Attendance $attendance)
+    {
+        return $this->CheckPermission($current_user, $this->permissions['view-session-notes'], $this->permission_collection['attendance']);
     }
 
     public function viewAttendance(?User $current_user, ?Attendance $attendance)

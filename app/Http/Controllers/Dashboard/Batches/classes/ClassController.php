@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use App\Batches\Classes\Class\View;
 use App\Http\Controllers\Controller;
 use App\Batches\Classes\Class\ViewAdminNote;
-use App\Batches\Classes\Class\ViewTrainerNote;
+use App\Batches\Classes\Class\Attendance\ViewTrainerNote;
 use App\Batches\Classes\Class\Add\AddAdminNote;
 use App\Batches\Classes\Class\ViewSelectClasses;
-use App\Batches\Classes\Class\Add\AddTrainerNote;
+use App\Batches\Classes\Class\Attendance\AddTrainerNote;
 
 class ClassController extends Controller
 {
@@ -48,7 +48,6 @@ class ClassController extends Controller
 
         return $this->class['add-admin-note']->addTrainerNote($attendance, $request, $class_id, $trainee_id);
     }
-
     
     public function viewClass(?Classes $class, ?TraineeClass $trainee, $batch_id, $class_id)
     {

@@ -268,4 +268,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Attendance
     Route::get('/v1/dashboard/batches/classes/{class_id}/attendance', [AttendanceController::class, 'view']);
+
+    Route::get('/v1/dashboard/batches/classes/{class_id}/attendance/{trainee_id}', [AttendanceController::class, 'viewSessionNote']);
+
+    Route::post('/v1/dashboard/batches/classes/{class_id}/attendance/{trainee_id}', [AttendanceController::class, 'addSessionNote']);
+
+    Route::put('/v1/dashboard/batches/classes/attendance/{session_id}', [AttendanceController::class, 'updateSessionNote']);
+
 });
