@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Classes;
 use App\Models\TraineeClass;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 
 class Confirmation
