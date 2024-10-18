@@ -276,5 +276,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/v1/dashboard/batches/classes/{class_id}/attendance/{trainee_id}', [AttendanceController::class, 'addSessionNote']);
 
     Route::put('/v1/dashboard/batches/classes/attendance/{session_id}', [AttendanceController::class, 'updateSessionNote']);
-    
 });

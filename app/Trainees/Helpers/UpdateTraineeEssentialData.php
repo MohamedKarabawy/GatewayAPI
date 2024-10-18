@@ -2,6 +2,8 @@
 
 namespace App\Trainees\Helpers;
 
+use Carbon\Carbon;
+
 trait UpdateTraineeEssentialData
 {
     protected function UpdateTraineeEssentialData($trainee, $request, $class)

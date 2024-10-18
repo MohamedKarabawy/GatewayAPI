@@ -4,17 +4,22 @@ namespace App\Trainees\Pendinglist\Assign;
 
 use Exception;
 use App\Models\Trainee;
+use App\Traits\GetList;
 use App\Models\GeneralMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class AssignLevel
 {
+    use GetList;
+    
     public function __construct(?Trainee $trainee, $trainee_id)
     {
         Gate::authorize('assignLevel', $trainee->find($trainee_id));
 
         $this->list_name = 'pendinglist_levels';
+
+        $this->list = 'Wait List';
     }
 
     public function assign(?Trainee $trainee, ?GeneralMeta $level, Request $request, $trainee_id)
@@ -29,7 +34,8 @@ class AssignLevel
             }
 
             $trainee->where('id', $trainee_id)->update([
-                'level' => $request->level 
+                'level' => $request->level,
+                'current_list' => $this->List($this->list)->id,
             ]);
             
             return response(['message' => 'Level assigned successfully'], 200);
