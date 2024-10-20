@@ -4,15 +4,15 @@ namespace App\TraineesData;
 
 use Exception;
 use App\Models\Trainee;
-use App\Traits\GetList;
 use App\Traits\GetUser;
 use App\Traits\GetClass;
+use App\Traits\GetListById;
 use App\Traits\GetBranchByID;
 use Illuminate\Support\Facades\Gate;
 
 class ViewTraineeData
 {
-    use GetUser, GetBranchByID, GetList, GetClass;
+    use GetUser, GetBranchByID, GetListById, GetClass;
     
     public function __construct(?Trainee $trainee)
     {
@@ -31,8 +31,6 @@ class ViewTraineeData
 
             foreach ($trainees as $key => $g_trainee)
             {
-                var_dump($g_trainee->current_list);
-                
                 $g_trainee->current_list !== null ? $status = $this->List($g_trainee->current_list)?->meta_value : $status = $this->getClass($g_trainee->id)?->class_name;
 
                 foreach($g_trainee->trainee_meta as $meta)
