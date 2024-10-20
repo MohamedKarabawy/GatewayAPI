@@ -4,7 +4,7 @@ namespace App\Batches\Helpers;
 
 trait GetFilteredClasses
 {
-    protected function getCollection($batch, $class, $request, $batch_id, $current_user = null)
+    protected function getCollection($class, $batch, $request, $batch_id, $current_user = null)
     {
             $current_batch = $batch->where('id', $batch_id)->first();
 
