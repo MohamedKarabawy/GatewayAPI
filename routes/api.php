@@ -207,7 +207,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/v1/dashboard/blacklist/delete', [BlacklistController::class, 'bulkDelete']);
 
     //Batches
-    Route::put('/v1/dashboard/batches/filter-classes', [BatchesController::class, 'filterClasses']);
+    Route::put('/v1/dashboard/batches/{batch_id}/filter-classes', [BatchesController::class, 'filterClasses']);
 
     Route::post('/v1/dashboard/batches/duplicate', [BatchesController::class, 'duplicate']);
     
