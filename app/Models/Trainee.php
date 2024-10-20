@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Branch;
-use App\Models\Gtlist;
+use App\Models\GtList;
 use App\Models\TraineeMeta;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,7 +39,7 @@ class Trainee extends Model
 
     public function list()
     {
-        return $this->belongsTo(Gtlist::class, 'current_list', 'id');
+        return $this->belongsTo(GtList::class, 'current_list', 'id');
     }
 
     public function branch()
