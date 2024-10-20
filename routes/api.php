@@ -17,8 +17,8 @@ use App\Http\Controllers\Dashboard\Lists\PendinglistController;
 use App\Http\Controllers\Dashboard\Trainees\TraineesController;
 use App\Http\Controllers\Dashboard\Users\PendingUsersController;
 use App\Http\Controllers\Dashboard\Attendance\AttendanceController;
-use App\Http\Controllers\Dashboard\Batches\Classes\ClassController;
 use App\Http\Controllers\Dashboard\Batches\Classes\ClassesController;
+use App\Http\Controllers\Dashboard\Batches\Classes\ClassController;
 
 
 Route::get('/v1/branches', [BranchesController::class, 'viewBranches']);
