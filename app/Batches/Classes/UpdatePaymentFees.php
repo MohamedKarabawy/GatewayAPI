@@ -24,8 +24,8 @@ class UpdatePaymentFees extends Permissions
 
     public function update(?TraineeMeta $TraineeMeta, Request $request, $trainee_id)
     {
-        // try
-        // {   
+        try
+        {   
             if(!$request->filled('payment') || !Trainee::where('id', $trainee_id)->exists())
             {
                 return response(['message' => "Payment/Fees field is not set or trainee doesn't exists."], 400);
@@ -41,10 +41,10 @@ class UpdatePaymentFees extends Permissions
             
             return response(['message' => "Payment/Fees updated successfully."], 201);
 
-        // }
-        // catch (Exception $e)
-        // {
-        //     return response(['message' => "Something went wrong. Payment/Fees cannot be updated. Please contact the administrator of the website."], 400);
-        // }
+        }
+        catch (Exception $e)
+        {
+            return response(['message' => "Something went wrong. Payment/Fees cannot be updated. Please contact the administrator of the website."], 400);
+        }
     }
 }
