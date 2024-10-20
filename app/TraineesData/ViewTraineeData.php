@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Gate;
 
 class ViewTraineeData
 {
-    use GetUser, GetBranchByID, GetListById, GetClass;
+    use GetUser, GetBranchByID, GetListById, GetClass, GetGeneralMeta;
     
     public function __construct(?Trainee $trainee)
     {
@@ -46,6 +46,7 @@ class ViewTraineeData
                     'test_date' => $g_trainee?->test_date,
                     'branch' => $this->Branch($g_trainee?->branch_id)->district,
                     'trainer' => $g_trainee?->user?->full_name,
+                    'payment_type' => $this->GetGeneralMeta($g_trainee?->payment_type)?->meta_value,
                     ...$meta_collection
                 ];
 
