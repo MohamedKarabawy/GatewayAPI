@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/v1/dashboard/waitlist/class/view-classes-levels', [WaitlistController::class, 'viewClassesLevels']);
 
-    Route::get('/v1/dashboard/waitlist/class/view-classes-times', [WaitlistController::class, 'viewClassesTimes']);
+    Route::put('/v1/dashboard/waitlist/class/view-classes-times', [WaitlistController::class, 'viewClassesTimes']);
 
     Route::post('/v1/dashboard/waitlist/{trainee_id}/assign-class', [WaitlistController::class, 'assignClass']);
 
