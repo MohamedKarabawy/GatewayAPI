@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Batches\Classes;
 
 use App\Models\Classes;
+use App\Models\Trainee;
 use App\Models\Attendance;
 use App\Models\TraineeClass;
 use Illuminate\Http\Request;
