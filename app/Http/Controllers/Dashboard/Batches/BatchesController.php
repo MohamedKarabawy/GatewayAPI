@@ -6,6 +6,7 @@ use App\Batches\View;
 use App\Models\Batch;
 use App\Batches\Create;
 use App\Batches\Update;
+use App\Models\Classes;
 use App\Batches\Duplicate;
 use Illuminate\Http\Request;
 use App\Batches\Action\Delete;
