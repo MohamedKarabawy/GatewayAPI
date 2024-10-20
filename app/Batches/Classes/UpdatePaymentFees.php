@@ -4,6 +4,8 @@ namespace App\Batches\Classes;
 
 use Exception;
 use App\Models\Classes;
+use App\Traits\CreateMeta;
+use App\Traits\UpdateMeta;
 use App\Models\TraineeMeta;
 use Illuminate\Http\Request;
 use App\Permissions\Permissions;
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Gate;
 
 class UpdatePaymentFees extends Permissions
 {
+    use UpdateMeta, CreateMeta;
 
     public function __construct(?Classes $class)
     {
@@ -31,9 +34,9 @@ class UpdatePaymentFees extends Permissions
 
             $TraineeMeta->where('trainee_id', $trainee_id)->where('meta_key', $meta_key)->exists() ?
 
-            $class->UpdateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key)
+            $this->UpdateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key)
             :
-            $class->CreateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key);
+            $thus->CreateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key);
             
             return response(['message' => "Payment/Fees updated successfully."], 201);
 
