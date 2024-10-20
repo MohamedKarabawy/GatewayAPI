@@ -57,7 +57,7 @@ class WaitlistController extends Controller
         return $this->trainee['view-classes-levels']->viewClassesLevels($meta);
     }
 
-    public function viewClassesTimes(?Trainee $trainee, ?ClassMeta $meta)
+    public function viewClassesTimes(?Trainee $trainee, ?ClassMeta $meta, Request $request)
     {
         $this->trainee['view-classes-times'] = new ViewClassesTime($trainee);
 
