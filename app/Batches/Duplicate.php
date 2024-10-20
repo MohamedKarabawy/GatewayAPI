@@ -30,7 +30,7 @@ class Duplicate extends Permissions
 
             $duplicateBatch->save();
 
-            $originalBatch = $current_batch->where('id', $originalBatch->id);
+            $originalBatch = $batch->where('id', $originalBatch->id);
             
             foreach ($originalBatch->classes as $class)
             {
