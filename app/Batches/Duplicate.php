@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
 
-class Update extends Permissions
+class Duplicate extends Permissions
 {
-    public function __construct(?Batch $batch, $id)
+    public function __construct(?Batch $batch)
     {
-        Gate::authorize('updateBatches', $batch->find($id));
+        Gate::authorize('createBatches', $batch);
     }
 
-    public function update(?Batch $batch)
+    public function duplicate(?Batch $batch)
     {
         try
         {

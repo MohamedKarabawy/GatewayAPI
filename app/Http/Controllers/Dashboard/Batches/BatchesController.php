@@ -33,6 +33,13 @@ class BatchesController extends Controller
         return $this->batch['end']->endBatch($batch, $id);
     }
 
+    public function duplicate(?Batch $batch)
+    {
+        $this->batch['duplicate'] = new Duplicate($batch);
+
+        return $this->batch['duplicate']->duplicate($batch);
+    }
+
     public function view(?Batch $batch)
     {
         $this->batch['view'] = new View($this->current_user);
