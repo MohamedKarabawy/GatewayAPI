@@ -30,7 +30,7 @@ class Duplicate extends Permissions
 
             $duplicateBatch->save();
             
-            foreach ($originalBatch->classes as $class)
+            foreach ($current_batch->classes as $class)
             {
                 $duplicateClass = $class->replicate();
 
