@@ -30,7 +30,7 @@ use App\Trainees\Waitlist\Add\AddPaymentType;
 use App\Trainees\Waitlist\Assign\AssignClass;
 use App\Trainees\Waitlist\Deletes\BulkDelete;
 use App\Trainees\Waitlist\Move\MoveToBlacklist;
-use App\Trainees\WaitList\Show\ViewCLassesTIme;
+use App\Trainees\WaitList\Show\ViewCLassesTime;
 use App\Trainees\Waitlist\Add\AddPreferableTime;
 use App\Trainees\Waitlist\View\ViewPaymentTypes;
 use App\Trainees\WaitList\Show\ViewClassesLevels;
@@ -59,7 +59,7 @@ class WaitlistController extends Controller
 
     public function viewClassesTimes(?Trainee $trainee, ?ClassMeta $meta)
     {
-        $this->trainee['view-classes-times'] = new ViewCLassesTIme($trainee);
+        $this->trainee['view-classes-times'] = new ViewCLassesTime($trainee);
 
         return $this->trainee['view-classes-times']->viewClassesTime($meta);
     }

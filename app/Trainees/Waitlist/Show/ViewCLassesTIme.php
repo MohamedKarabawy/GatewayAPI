@@ -7,7 +7,7 @@ use App\Models\Trainee;
 use App\Models\ClassMeta;
 use Illuminate\Support\Facades\Gate;
 
-class ViewCLassesTIme
+class ViewCLassesTime
 {
     public function __construct(?Trainee $trainee)
     {
