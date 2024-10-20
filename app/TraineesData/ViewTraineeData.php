@@ -30,10 +30,14 @@ class ViewTraineeData
 
             $meta_collection = [];
 
+            $follow_up_collection = [];
+
             foreach ($trainees as $key => $g_trainee)
             {
                 $g_trainee->current_list !== null ? $status = $this->List($g_trainee->current_list)?->list_title : $status = $this->getClass($g_trainee->id)?->class_name;
-
+                
+                $status === 'Pending List' &&  $follow_up_collection = ['follow_up' => $this->User($g_trainee->follow_up)?->full_name];
+                
                 foreach($g_trainee->trainee_meta as $meta)
                 {
                     $meta_collection[$meta->meta_key] = $meta->meta_value;
@@ -48,6 +52,7 @@ class ViewTraineeData
                     'branch' => $this->Branch($g_trainee?->branch_id)->district,
                     'trainer' => $g_trainee?->user?->full_name,
                     'payment_type' => $this->GetGeneralMeta($g_trainee?->payment_type)?->meta_value,
+                    ...$follow_up_collection,
                     ...$meta_collection
                 ];
 
