@@ -30,10 +30,10 @@ use App\Trainees\Waitlist\Add\AddPaymentType;
 use App\Trainees\Waitlist\Assign\AssignClass;
 use App\Trainees\Waitlist\Deletes\BulkDelete;
 use App\Trainees\Waitlist\Move\MoveToBlacklist;
-use App\Trainees\WaitList\Show\ViewCLassesTime;
+use App\Trainees\Waitlist\Show\ViewCLassesTime;
 use App\Trainees\Waitlist\Add\AddPreferableTime;
 use App\Trainees\Waitlist\View\ViewPaymentTypes;
-use App\Trainees\WaitList\Show\ViewClassesLevels;
+use App\Trainees\Waitlist\Show\ViewClassesLevels;
 use App\Trainees\Waitlist\View\ViewPreferableTimes;
 
 class WaitlistController extends Controller
