@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Traits\CreateMeta;
 use App\Traits\UpdateMeta;
 use App\Models\TraineeMeta;
+use App\Models\Trainee;
 use Illuminate\Http\Request;
 use App\Permissions\Permissions;
 use Illuminate\Support\Facades\Gate;
@@ -25,7 +26,7 @@ class UpdatePaymentFees extends Permissions
     {
         // try
         // {   
-            if(!$request->filled('payment'))
+            if(!$request->filled('payment') || !Trainee::where('id', $trainee_id)->exists())
             {
                 return response(['message' => "Payment/Fees field is required."], 400);
             }
