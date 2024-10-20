@@ -15,26 +15,23 @@ class TimeSlot extends Permissions
     {
         Gate::authorize('authComponents', $class);
         
-        $this->collection_key['online'] = 'time_slots_online';
+        $this->collection_key['Online'] = 'time_slots_online';
 
-        $this->collection_key['offline'] = 'time_slots_offline';
+        $this->collection_key['Offline'] = 'time_slots_offline';
 
-        $this->collection_key['hybird'] = 'time_slots_hybrid';
+        $this->collection_key['Hybird'] = 'time_slots_hybrid';
     }
 
     public function add(?ClassMeta $time_slot, Request $request)
     {
         try
         {
-            $request->filled('attend_type') && $is_exists_online = $time_slot->where('meta_key', $this->collection_key['online'])->where('meta_value', $request->time_slot)->exists();
+            $request->filled('attend_type') && $is_exists_online = $time_slot->where('meta_key', $this->collection_key[$request->attend_type])->where('meta_value', $request->time_slot)->exists();
 
-            $request->filled('attend_type') && $is_exists_offline = $time_slot->where('meta_key', $this->collection_key['offline'])->where('meta_value', $request->time_slot)->exists();
-
-            $request->filled('attend_type') &&  $is_exists_hybird = $time_slot->where('meta_key', $this->collection_key['hybird'])->where('meta_value', $request->time_slot)->exists();
 
             if ($is_exists_online || $is_exists_offline || $is_exists_hybird || !$request->filled('attend_type')) 
             {
-                return response(['message' => 'Preferable time already exists or attend type not set.'], 400);
+                return response(['message' => 'Time Slot already exists or attend type not set.'], 400);
             }
 
             $attend_type = '';
@@ -42,13 +39,13 @@ class TimeSlot extends Permissions
             switch($request->attend_type)
             {
                 case 'Online':
-                    $attend_type = $this->collection_key['online'];
+                    $attend_type = $this->collection_key['Online'];
                     break;
                 case 'Offline':
-                    $attend_type = $this->collection_key['offline'];
+                    $attend_type = $this->collection_key['Offline'];
                     break;
                 case 'Hybrid':
-                    $attend_type = $this->collection_key['hybird'];
+                    $attend_type = $this->collection_key['Hybird'];
                     break;
             }
 
