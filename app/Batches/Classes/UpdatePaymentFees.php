@@ -28,7 +28,7 @@ class UpdatePaymentFees extends Permissions
         // {   
             if(!$request->filled('payment') || !Trainee::where('id', $trainee_id)->exists())
             {
-                return response(['message' => "Payment/Fees field is required."], 400);
+                return response(['message' => "Payment/Fees field is not set or trainee doesn't exists."], 400);
             }
 
             $meta_key = 'paid_value';
@@ -37,7 +37,7 @@ class UpdatePaymentFees extends Permissions
 
             $this->UpdateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->payment)
             :
-            $thus->CreateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->payment);
+            $this->CreateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->payment);
             
             return response(['message' => "Payment/Fees updated successfully."], 201);
 
