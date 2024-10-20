@@ -5,6 +5,7 @@ namespace App\Trainees\Waitlist\Show;
 use Exception;
 use App\Models\Trainee;
 use App\Models\ClassMeta;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class ViewClassesTime
