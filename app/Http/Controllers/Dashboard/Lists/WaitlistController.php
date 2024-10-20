@@ -24,7 +24,7 @@ use App\Trainees\Waitlist\Move\Bulk\Black;
 use App\Trainees\Waitlist\Move\MoveToHold;
 use App\Trainees\Waitlist\View\ViewLevels;
 use App\Trainees\Waitlist\Move\Bulk\Refund;
-use App\Trainees\WaitList\Show\ViewClasses;
+use App\Trainees\Waitlist\Show\ViewClasses;
 use App\Trainees\Waitlist\Move\MoveToRefund;
 use App\Trainees\Waitlist\Add\AddPaymentType;
 use App\Trainees\Waitlist\Assign\AssignClass;
