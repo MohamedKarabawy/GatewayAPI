@@ -3,6 +3,7 @@
 namespace App\Trainees\Waitlist;
 
 use Exception;
+use App\Models\Gtlist;
 use App\Models\Trainee;
 use App\Traits\GetList;
 use App\Traits\GetUser;
