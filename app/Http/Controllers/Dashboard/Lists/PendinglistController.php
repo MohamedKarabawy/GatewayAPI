@@ -21,7 +21,7 @@ use App\Trainees\Pendinglist\Add\AddPaymentType;
 use App\Trainees\Pendinglist\Assign\AssignLevel;
 use App\Trainees\Pendinglist\Deletes\BulkDelete;
 use App\Trainees\Pendinglist\Assign\AssignTrainer;
-use App\Trainees\Pendinglist\show\ViewPaymentTypes;
+use App\Trainees\Pendinglist\Show\ViewPaymentTypes;
 
 class PendinglistController extends Controller
 {
