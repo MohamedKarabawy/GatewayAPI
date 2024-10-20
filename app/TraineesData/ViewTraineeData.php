@@ -31,6 +31,8 @@ class ViewTraineeData
 
             foreach ($trainees as $key => $g_trainee)
             {
+                var_dump($this->List($g_trainee->current_list)?->meta_value);
+                
                 $g_trainee->current_list !== null ? $status = $this->List($g_trainee->current_list)?->meta_value : $status = $this->getClass($g_trainee->id)?->class_name;
 
                 foreach($g_trainee->trainee_meta as $meta)
