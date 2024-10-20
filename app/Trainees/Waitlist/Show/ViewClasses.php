@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Trainees\WaitList\Show;
+namespace App\Trainees\Waitlist\Show;
 
 use Exception;
 use App\Models\Batch;
