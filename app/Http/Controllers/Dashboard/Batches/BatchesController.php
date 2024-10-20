@@ -10,6 +10,7 @@ use App\Batches\Duplicate;
 use Illuminate\Http\Request;
 use App\Batches\Action\Delete;
 use App\Batches\Action\EndBatch;
+use App\Batches\View\FilterClasses;
 use App\Http\Controllers\Controller;
 use App\Batches\Action\ActivateBatch;
 
@@ -39,6 +40,13 @@ class BatchesController extends Controller
         $this->batch['duplicate'] = new Duplicate($batch);
 
         return $this->batch['duplicate']->duplicate($batch);
+    }
+
+    public function filterClasses(?Classes $class, ?Batch $batch, Request $request, $batch_id)
+    {
+        $this->batch['filter-classes'] = new FilterClasses($this->current_user);
+
+        return $this->batch['filter-classes']->getClasses($class, $batch, $request, $batch_id);
     }
 
     public function view(?Batch $batch)

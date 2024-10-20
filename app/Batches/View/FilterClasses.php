@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 use App\Batches\Helpers\GetFilteredClasses;
 use App\Batches\Helpers\ViewFilteredClassesHelper;
 
-class ViewClasses
+class FilterClasses
 {
     use ViewFilteredClassesHelper, GetFilteredClasses;
     
-    public function __construct($current_class)
+    public function __construct($current_user)
     {
         $this->current_user = $current_user;
         

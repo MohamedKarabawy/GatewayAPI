@@ -41,7 +41,6 @@ class Duplicate extends Permissions
                 $duplicateClass->save();
             }
 
-
             
             return response(['message' => "Batch duplicated successfully."], 201);
 
