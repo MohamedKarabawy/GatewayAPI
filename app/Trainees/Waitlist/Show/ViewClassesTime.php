@@ -14,11 +14,11 @@ class ViewClassesTime
     {
         Gate::authorize('assignClass', $trainee);
 
-        $this->collection_key['online'] = 'preferable_times_online';
+        $this->collection_key['Online'] = 'time_slots_online';
 
-        $this->collection_key['offline'] = 'preferable_times_offline';
+        $this->collection_key['Offline'] = 'time_slots_offline';
 
-        $this->collection_key['hybird'] = 'preferable_times_hybird';
+        $this->collection_key['Hybird'] = 'time_slots_hybrid';
     }
 
     public function viewClassesTime(?ClassMeta $time_slot, Request $request)
@@ -35,13 +35,13 @@ class ViewClassesTime
             switch($request->attend_type)
             {
                 case 'Online':
-                    $attend_type = $this->collection_key['online'];
+                    $attend_type = $this->collection_key['Online'];
                     break;
                 case 'Offline':
-                    $attend_type = $this->collection_key['offline'];
+                    $attend_type = $this->collection_key['Offline'];
                     break;
                 case 'Hybrid':
-                    $attend_type = $this->collection_key['hybird'];
+                    $attend_type = $this->collection_key['Hybird'];
                     break;
             }
 
