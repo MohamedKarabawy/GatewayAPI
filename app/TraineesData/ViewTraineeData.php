@@ -48,6 +48,8 @@ class ViewTraineeData
                     'trainer' => $g_trainee?->user?->full_name,
                     ...$meta_collection
                 ];
+
+                $meta_collection = [];
             }
 
             return response($trainees_collection, 200);
