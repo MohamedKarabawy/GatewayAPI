@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Trainees\Pendinglist\show;
+namespace App\Trainees\Pendinglist\Show;
 
 use App\Models\Trainee;
 use App\Models\GeneralMeta;
