@@ -29,8 +29,10 @@ class Duplicate extends Permissions
             $duplicateBatch->batch_title = "Copy of ". $originalBatch->batch_title;
 
             $duplicateBatch->save();
+
+            $originalBatch = $current_batch->where('id', $originalBatch->id);
             
-            foreach ($current_batch->classes as $class)
+            foreach ($originalBatch->classes as $class)
             {
                 $duplicateClass = $class->replicate();
 
