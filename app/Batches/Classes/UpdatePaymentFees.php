@@ -4,7 +4,7 @@ namespace App\Batches\Classes;
 
 use Exception;
 use App\Models\Classes;
-use App\Models\Trainee;
+use App\Models\TraineeMeta;
 use Illuminate\Http\Request;
 use App\Permissions\Permissions;
 use Illuminate\Support\Facades\Gate;
@@ -18,7 +18,7 @@ class UpdatePaymentFees extends Permissions
         Gate::authorize('updateClasses', $class);
     }
 
-    public function update(?Trainee $trainee, Request $request, $trainee_id)
+    public function update(?TraineeMeta $TraineeMeta, Request $request, $trainee_id)
     {
         // try
         // {   
@@ -27,9 +27,13 @@ class UpdatePaymentFees extends Permissions
                 return response(['message' => "Payment/Fees field is required."], 400);
             }
 
-            $trainee->where('id', $trainee_id)->update([
-                'paid_value' => $request->payment
-            ]);         
+            $meta_key = 'paid_value';
+
+            $TraineeMeta->where('trainee_id', $trainee_id)->where('meta_key', $meta_key)->exists() ?
+
+            $class->UpdateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key)
+            :
+            $class->CreateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key);
             
             return response(['message' => "Payment/Fees updated successfully."], 201);
 

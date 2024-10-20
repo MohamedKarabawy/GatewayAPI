@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Batches\Classes;
 use App\Models\Classes;
 use App\Models\Trainee;
 use App\Models\Attendance;
+use App\Models\TraineeMeta;
 use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Classes\Class\View;
@@ -24,11 +25,11 @@ class ClassController extends Controller
         $this->current_user = auth()->user();
     }
 
-    public function updateTraineePayment(?Classes $class, ?Trainee $trainee, Request $request, $trainee_id)
+    public function updateTraineePayment(?Classes $class, ?TraineeMeta $TraineeMeta, Request $request, $trainee_id)
     {
         $this->class['update-payment'] = new UpdatePaymentFees($class);
 
-        return $this->class['update-payment']->update($trainee, $request, $trainee_id);
+        return $this->class['update-payment']->update($TraineeMeta, $request, $trainee_id);
     }
 
     public function confirmation(?Classes $class, ?TraineeClass $trainee_class, Request $request, $class_id, $trainee_id)
