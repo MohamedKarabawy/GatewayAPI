@@ -8,6 +8,7 @@ use App\Traits\GetUser;
 use App\Traits\GetClass;
 use App\Traits\GetListById;
 use App\Traits\GetBranchByID;
+use App\Traits\GetGeneralMeta;
 use Illuminate\Support\Facades\Gate;
 
 class ViewTraineeData
