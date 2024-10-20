@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Batches\Classes\View;
+namespace App\Batches\View;
 
 use Exception;
 use App\Models\User;
@@ -16,7 +16,7 @@ class ViewTrainers extends Permissions
     
     public function __construct(?Classes $class)
     {
-        Gate::authorize('authComponents', $class);
+        Gate::authorize('viewClasses', $class);
 
         $this->collection = 'general';
 

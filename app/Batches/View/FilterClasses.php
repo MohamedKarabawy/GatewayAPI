@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Batches;
+namespace App\Batches\View;
 
 use Exception;
 use App\Models\Batch;
 use App\Models\Classes;
 use App\Models\Trainee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Batches\Helpers\GetFilteredClasses;
+use App\Batches\Helpers\ViewFilteredClassesHelper;
 
 class ViewClasses
 {
+    use ViewFilteredClassesHelper, GetFilteredClasses;
+    
     public function __construct($current_class)
     {
         $this->current_user = $current_user;
@@ -18,12 +21,11 @@ class ViewClasses
         $this->permission_collection = 'classes';
     }
 
-    public function viewClasses(?Classes $class, ?Batch $batch, Request $request, $batch_id)
+    public function getClasses(?Classes $class, ?Batch $batch, Request $request, $batch_id)
     {
         try
         {
-            
-            return response($classes_collection, 200);
+            return $this->viewClasses($class, $batch, $request, $batch_id, $this);
         }
         catch(Exception $e)
         {
