@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\Trainee;
 use Illuminate\Http\Request;
 use App\Permissions\Permissions;
+use Illuminate\Support\Facades\Gate;
 
 
 class UpdatePaymentFees extends Permissions
