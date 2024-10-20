@@ -26,16 +26,20 @@ class Duplicate extends Permissions
             
             $duplicateBatch = $originalBatch->replicate();
 
+            $duplicateBatch->batch_title = "Copy of ". $originalBatch->batch_title;
+
             $duplicateBatch->save();
+            
+            foreach ($originalBatch->classes as $class)
+            {
+                $duplicateClass = $class->replicate();
 
-            foreach ($originalBatch->relatedModels as $related) {
-
-                $relatedDuplicate = $related->replicate();
+                $duplicateClass->batch_id = $duplicateBatch->id;
                 
-                $relatedDuplicate->batch_id = $duplicateRecord->id;
-        
-                $relatedDuplicate->save();
+                $duplicateClass->save();
             }
+
+
             
             return response(['message' => "Batch duplicated successfully."], 201);
 
