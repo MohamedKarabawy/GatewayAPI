@@ -8,6 +8,7 @@ use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Classes\Class\View;
 use App\Http\Controllers\Controller;
+use App\Batches\Classes\UpdatePaymentFees;
 use App\Batches\Classes\Class\Confirmation;
 use App\Batches\Classes\Class\ViewAdminNote;
 use App\Batches\Classes\Class\Add\AddAdminNote;
@@ -20,6 +21,13 @@ class ClassController extends Controller
     public function __construct()
     {
         $this->current_user = auth()->user();
+    }
+
+    public function updateTraineePayment(?Classes $class, ?Trainee $trainee, Request $request, $trainee_id)
+    {
+        $this->class['update-payment'] = new UpdatePaymentFees($class);
+
+        return $this->class['update-payment']->update($trainee, $request, $trainee_id);
     }
 
     public function confirmation(?Classes $class, ?TraineeClass $trainee_class, Request $request, $class_id, $trainee_id)

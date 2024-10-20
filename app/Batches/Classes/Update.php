@@ -59,7 +59,7 @@ class Update extends Permissions
         }
         catch (Exception $e)
         {
-            return response(['message' => "Something went wrong. Class cannot be created. Please contact the administrator of the website."], 400);
+            return response(['message' => "Something went wrong. Class cannot be updated. Please contact the administrator of the website."], 400);
         }
     }
 }

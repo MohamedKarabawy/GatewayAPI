@@ -224,6 +224,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/v1/dashboard/batches/{id}/delete', [BatchesController::class, 'delete']);
 
     //Classes
+    Route::put('/v1/dashboard/batches/classes/{trainee_id}/payment-update', [ClassController::class, 'updateTraineePayment']);
+    
     Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/confirm', [ClassController::class, 'confirmation']);
 
     Route::post('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/add-to-attendance', [AttendanceController::class, 'addToAttendance']);
