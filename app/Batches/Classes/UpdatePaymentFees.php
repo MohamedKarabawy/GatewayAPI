@@ -34,9 +34,9 @@ class UpdatePaymentFees extends Permissions
 
             $TraineeMeta->where('trainee_id', $trainee_id)->where('meta_key', $meta_key)->exists() ?
 
-            $this->UpdateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key)
+            $this->UpdateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->payment)
             :
-            $thus->CreateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->$meta_key);
+            $thus->CreateMeta($TraineeMeta, 'trainee_id', $trainee_id, $meta_key, $request->payment);
             
             return response(['message' => "Payment/Fees updated successfully."], 201);
 
