@@ -12,7 +12,7 @@ trait GetFilteredClasses
 
             $filter_elements = ['class_name', 'class_type', 'level', 'time_slot', 'gate', 'trainer'];
 
-            $classes = $class->where('batch_id', $current_batch->id);
+            $classes = $class->where('batch_id', $current_batch?->id);
 
             $current_user !== null && $classes = $classes->where('user_id', $current_user->id);
 
