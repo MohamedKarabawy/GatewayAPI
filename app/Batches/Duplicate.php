@@ -25,6 +25,8 @@ class Duplicate extends Permissions
             $current_batch->update(['is_active' => false]);
             
             $duplicateBatch = $originalBatch->replicate();
+
+            $duplicateBatch->save();
             
             return response(['message' => "Batch duplicated successfully."], 201);
 
