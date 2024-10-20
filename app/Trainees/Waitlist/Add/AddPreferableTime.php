@@ -14,25 +14,20 @@ class AddPreferableTime
     {
         Gate::authorize('viewTrainers', $trainee);
 
-        $this->list_name['online'] = 'preferable_times_online';
+        $this->list_name['Online'] = 'preferable_times_online';
 
-        $this->list_name['offline'] = 'preferable_times_offline';
+        $this->list_name['Offline'] = 'preferable_times_offline';
 
-        $this->list_name['hybird'] = 'preferable_times_hybrid';
+        $this->list_name['Hybird'] = 'preferable_times_hybrid';
     }
 
     public function addPreferableTime(?GeneralMeta $preferable_time, Request $request)
     {
         try
         {
-            $request->filled('attend_type') && $is_exists_online = $preferable_time->where('meta_key', $this->list_name['online'])->where('meta_value', $request->preferable_time)->exists();
+            $request->filled('attend_type') && $is_exists = $preferable_time->where('meta_key', $this->list_name[$request->attend_type])->where('meta_value', $request->preferable_time)->exists();
 
-            $request->filled('attend_type') && $is_exists_offline = $preferable_time->where('meta_key', $this->list_name['offline'])->where('meta_value', $request->preferable_time)->exists();
-
-            $request->filled('attend_type') && $is_exists_hybird = $preferable_time->where('meta_key', $this->list_name['hybird'])->where('meta_value', $request->preferable_time)->exists();
-
-            
-            if ($is_exists_online || $is_exists_offline || $is_exists_hybird || !$request->filled('attend_type')) 
+            if ($is_exists || !$request->filled('attend_type')) 
             {
                 return response(['message' => 'Preferable time already exists or attend type not set.'], 400);
             }
@@ -42,13 +37,13 @@ class AddPreferableTime
             switch($request->attend_type)
             {
                 case 'Online':
-                    $attend_type = $this->list_name['online'];
+                    $attend_type = $this->list_name['Online'];
                     break;
                 case 'Offline':
-                    $attend_type = $this->list_name['offline'];
+                    $attend_type = $this->list_name['Offline'];
                     break;
                 case 'Hybrid':
-                    $attend_type = $this->list_name['hybird'];
+                    $attend_type = $this->list_name['Hybird'];
                     break;
             }
             
