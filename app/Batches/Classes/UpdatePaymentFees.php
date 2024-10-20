@@ -20,8 +20,8 @@ class UpdatePaymentFees extends Permissions
 
     public function update(?Trainee $trainee, Request $request, $trainee_id)
     {
-        try
-        {   
+        // try
+        // {   
             if(!$request->filled('payment'))
             {
                 return response(['message' => "Payment/Fees field is required."], 400);
@@ -33,10 +33,10 @@ class UpdatePaymentFees extends Permissions
             
             return response(['message' => "Payment/Fees updated successfully."], 201);
 
-        }
-        catch (Exception $e)
-        {
-            return response(['message' => "Something went wrong. Payment/Fees cannot be updated. Please contact the administrator of the website."], 400);
-        }
+        // }
+        // catch (Exception $e)
+        // {
+        //     return response(['message' => "Something went wrong. Payment/Fees cannot be updated. Please contact the administrator of the website."], 400);
+        // }
     }
 }
