@@ -26,10 +26,10 @@ class TimeSlot extends Permissions
     {
         try
         {
-            $request->filled('attend_type') && $is_exists_online = $time_slot->where('meta_key', $this->collection_key[$request->attend_type])->where('meta_value', $request->time_slot)->exists();
+            $request->filled('attend_type') && $is_exists = $time_slot->where('meta_key', $this->collection_key[$request->attend_type])->where('meta_value', $request->time_slot)->exists();
 
 
-            if ($is_exists_online || $is_exists_offline || $is_exists_hybird || !$request->filled('attend_type')) 
+            if ($is_exists || !$request->filled('attend_type')) 
             {
                 return response(['message' => 'Time Slot already exists or attend type not set.'], 400);
             }
