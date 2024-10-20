@@ -22,7 +22,7 @@ class Duplicate extends Permissions
 
             $originalBatch = $current_batch->first();
 
-            boolval($request->status) === true && $current_batch->update(['is_active' => false]);
+            $current_batch->update(['is_active' => false]);
             
             $duplicateBatch = $originalBatch->replicate();
             
