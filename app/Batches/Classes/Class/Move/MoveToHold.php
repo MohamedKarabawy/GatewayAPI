@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Classes;
 use App\Models\Trainee;
 use App\Traits\GetList;
+use App\Models\Attendance;
 use App\Models\TraineeClass;
 use Illuminate\Support\Facades\Gate;
 
@@ -35,6 +36,8 @@ class MoveToHold
             if(($trainee->current_list !== $this->List($this->list)->id) && $is_exists)
             {
                 $trainee_class->where("class_id", $class_id)->where("trainee_id", $trainee_id)->delete();
+
+                Attendance::where("class_id", $class_id)->where("trainee_id", $trainee_id)->delete();
 
                 $trainee->pervious_list = $trainee->current_list;
                 
