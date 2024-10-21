@@ -4,7 +4,6 @@ namespace App\Branches;
 
 use App\Models\Branch;
 use Exception;
-use Auth;
 
 class ViewBranches
 {
@@ -23,7 +22,7 @@ class ViewBranches
                 $branches[$index++] = ['branch' => $s_branch->district];
             }
 
-            Auth::check() && $branches[$index] = ['current_branch' => $this->Branch(auth()->user()?->branch_id)?->first()?->district];
+            auth()?->user() && $branches[$index] = ['current_branch' => $this->Branch(auth()->user()?->branch_id)?->first()?->district];
 
             return response($branches, 201);
         }
