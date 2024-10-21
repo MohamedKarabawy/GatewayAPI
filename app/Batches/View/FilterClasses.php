@@ -26,13 +26,13 @@ class FilterClasses
 
     public function getClasses(?Classes $class, ?Batch $batch, Request $request, $batch_id)
     {
-        try
-        {
+        // try
+        // {
             return $this->viewClasses($class, $batch, $request, $batch_id, $this);
-        }
-        catch(Exception $e)
-        {
-            return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
-        }   
+        // }
+        // catch(Exception $e)
+        // {
+        //     return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
+        // }   
     }
 }
