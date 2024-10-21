@@ -20,7 +20,6 @@ class ViewClassesLevels
     {
         try
         {
-
             $levels = $level->where('meta_key', $this->collection_key)->get();
 
             $levels_collection = [];
