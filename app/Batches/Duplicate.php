@@ -3,9 +3,10 @@
 namespace App\Batches;
 
 use App\Models\Batch;
+use App\Models\TraineeClass;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Permissions\Permissions;
+use Illuminate\Support\Facades\Gate;
 
 class Duplicate extends Permissions
 {
