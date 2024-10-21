@@ -230,8 +230,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     
     Route::put('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/confirm', [ClassController::class, 'confirmation']);
 
-    Route::post('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/add-to-attendance', [AttendanceController::class, 'addToAttendance']);
-
     Route::get('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/view-admin-note', [ClassController::class, 'viewAdminNote']);
 
     Route::get('/v1/dashboard/batches/{class_id}/classes/{trainee_id}/view-trainer-note', [ClassController::class, 'viewTrainerNote']);

@@ -5,6 +5,7 @@ namespace App\Trainees\Waitlist\Assign;
 use Exception;
 use App\Models\Trainee;
 use App\Models\TraineeClass;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -38,6 +39,11 @@ class AssignClass
                 'class_id' => $request->class_id,
                 'trainee_id' => $trainee_id,
                 'confirmation' => false
+            ]);
+
+            Attendance::create([
+                "class_id" => $request->class_id,
+                "trainee_id" => $trainee_id, 
             ]);
 
             return response(['message' => "Class assigned successfully."], 200);
