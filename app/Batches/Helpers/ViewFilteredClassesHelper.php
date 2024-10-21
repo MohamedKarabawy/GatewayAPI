@@ -14,7 +14,7 @@ trait ViewFilteredClassesHelper
 
         $classes_data = $class?->getCollection($classes, $batch, $request, $batch_id, $class, $class->current_user);
 
-        $num_classes = $batch->where('id', $batch_id)->first()?->classes?->count();
+        $num_classes = count($class?->getCollection($classes, $batch, $request, $batch_id, $class));
 
         $sub_message = $num_classes === 0 ?  response(['message' => "There's no classes available."], 200) : response(['message' => 'Unauthorized'], 401);
 
