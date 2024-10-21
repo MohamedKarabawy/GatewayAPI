@@ -2,8 +2,9 @@
 
 namespace App\Branches;
 
-use App\Models\Branch;
 use Exception;
+use App\Models\Branch;
+use App\Traits\GetBranchByID;
 
 class ViewBranches
 {
