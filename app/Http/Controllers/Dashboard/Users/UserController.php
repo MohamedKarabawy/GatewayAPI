@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Dashboard\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Users\self\Update;
-use App\Users\self\View;
-use App\Users\self\Delete;
+use App\Users\Self\Update;
+use App\Users\Self\View;
+use App\Users\Self\Delete;
 use App\Models\User;
 use App\Models\UserMeta;
 
