@@ -40,7 +40,7 @@ class Duplicate extends Permissions
                 
                 $duplicateClass->save();
 
-                $duplicateClass->trainees()->sync($class->trainees);
+                $duplicateClass->trainees->sync($class->trainees);
             }
 
             
