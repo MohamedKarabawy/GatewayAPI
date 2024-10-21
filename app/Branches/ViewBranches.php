@@ -4,19 +4,26 @@ namespace App\Branches;
 
 use App\Models\Branch;
 use Exception;
+use Auth;
 
 class ViewBranches
 {
+    use GetBranchByID;
+
     public function view(?Branch $branch)
     {
         try
         {
             $branches = [];
 
-            foreach($branch->get() as $key => $s_branch)
+            $index = 0;
+
+            foreach($branch->get() as $s_branch)
             {
-                $branches[$key] = ['branch' => $s_branch->district];
+                $branches[$index++] = ['branch' => $s_branch->district];
             }
+
+            Auth::check() && $branches[$index] = ['current_branch' => $this->Branch(auth()->user()->branch)->first()->district];
 
             return response($branches, 201);
         }

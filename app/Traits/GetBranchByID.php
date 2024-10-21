@@ -8,6 +8,6 @@ trait GetBranchByID
 {
     protected function Branch($id)
     {
-        return Branch::find($id);
+        return Branch::where('id', $id);
     }
 }
