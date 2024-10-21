@@ -10,7 +10,7 @@ trait ViewAttendanceHelper
         
         $current_attendance = $attendances->where("class_id", $class_id)->get();
 
-        $attendances_data = $class?->getCollection($current_attendance, $class);
+        $attendances_data = $class?->getCollection($current_attendance, $class_id, $class);
 
         $num_attendance = $current_attendance->count();
 

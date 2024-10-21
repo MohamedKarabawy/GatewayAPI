@@ -12,7 +12,7 @@ use App\Batches\Helpers\ViewAttendanceHelper;
 
 class ViewAttendance
 {
-    use CheckPermissionStatus, GetAttendance, ViewAttendanceHelper;
+    use CheckPermissionStatus, GetAttendance, ViewAttendanceHelper, GetSingleClass;
 
     public function __construct(?Attendance $attendance, $current_user)
     {

@@ -4,13 +4,17 @@ namespace App\Batches\Helpers;
 
 trait GetAttendance
 {
-    protected function getCollection($attendances, $class)
+    protected function getCollection($attendances, $class_id, $class)
     {        
         $trainees_collection = [];
 
         $meta_collection = [];
 
-       
+        $current_class = $class->getClass($class_id);
+
+        $class_collection = [];
+
+        $collection = [];
 
         foreach((object) $attendances as $key => $meta)
         {
@@ -32,6 +36,13 @@ trait GetAttendance
             }
         }
 
-        return $trainees_collection;
+        $current_class->class_type === 'Online' && $class_collection = [
+            'gate_url' => $current_class->gate_url,
+            'gate_password' => $current_class->gate_password
+        ];
+
+        $collection = [...$class_collection, ...$trainees_collection];
+
+        return $collection;
     }
 }
