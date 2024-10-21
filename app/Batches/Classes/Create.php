@@ -34,15 +34,29 @@ class Create extends Permissions
 
             $level = $this->getData($class_meta, $request->level_id); 
 
-            $class->create([
-                'user_id' => $this->current_user->id, 
-                'batch_id' => $batch_id, 
-                'trainer_id' => $request->trainer_id, 
-                'class_name' => $request->class_type.' - '.$gate.' - '.$time_slot.' - '.$trainer.' - '.$level, 
-                'class_type' => $request->class_type,
-                'gate' => $request->gate_id,
-                'time_slot' => $request->time_id,
-                'level' => $request->level_id]);
+            $current_class = $class;
+            
+            $current_class->user_id = $this->current_user->id;
+
+            $current_class->batch_id = $batch_id;
+            
+            $current_class->trainer_id = $request->trainer_id;
+            
+            $current_class->class_name = $request->class_type.' - '.$gate.' - '.$time_slot.' - '.$trainer.' - '.$level;
+            
+            $current_class->class_type = $request->class_type;
+
+            $current_class->gate = $request->gate_id;
+
+            $current_class->time_slot = $request->time_id;
+            
+            $current_class->level = $request->level_id;
+
+            $request->class_type === 'Online' &&  $current_class->gate_url = $request->gate_url;
+
+            $request->class_type === 'Online' && $current_class->gate_password = $request->gate_password;
+
+            $current_class->save();
             
             return response(['message' => "Class created successfully."], 201);
 

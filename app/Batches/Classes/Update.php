@@ -52,6 +52,10 @@ class Update extends Permissions
 
             $request->has('level_id') && $current_class->level = $request->level_id;
 
+            $request->class_type === 'Online' &&  $current_class->gate_url = $request->gate_url;
+
+            $request->class_type === 'Online' && $current_class->gate_password = $request->gate_password;
+
             $request->all() >= 1 && $current_class->save();
             
             return response(['message' => "Class updated successfully."], 201);

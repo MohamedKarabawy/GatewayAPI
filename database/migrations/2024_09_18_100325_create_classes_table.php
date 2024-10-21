@@ -27,6 +27,8 @@ return new class extends Migration
             $table->foreign('time_slot')->references('id')->on('gt_classmeta')->onUpdate('cascade')->onDelete('cascade');
             $table->bigInteger('level')->unsigned()->nullable();
             $table->foreign('level')->references('id')->on('gt_classmeta')->onUpdate('cascade')->onDelete('cascade'); 
+            $table->string('gate_url')->nullable();
+            $table->string('gate_password')->nullable();
             $table->timestamp('moved_date')->nullable();
             $table->timestamps();
         });
