@@ -22,6 +22,8 @@ trait UpdateTraineeEssentialData
 
         $request->has('preferable_time') && $trainee->preferable_time = $class->GetGeneralMeta($request->preferable_time)->id;
 
+        $request->has('sec_preferable_time') && $trainee->sec_preferable_time = $class->GetGeneralMeta($request->sec_preferable_time)->id;
+
         ($request->has('trainer') && $class->permission_collection === 'waitlist') && $trainee->trainer_id = $class->User($request->trainer)->id;
 
         ($request->has('follow_up') && $class->permission_collection === 'pendinglist') && $trainee->follow_up = $class->User($request->follow_up)->id;

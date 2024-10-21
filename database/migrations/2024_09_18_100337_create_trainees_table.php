@@ -30,6 +30,8 @@ return new class extends Migration
             $table->foreign('payment_type')->references('id')->on('gt_generalmeta')->onUpdate('cascade')->onDelete('cascade');
             $table->bigInteger('preferable_time')->unsigned()->nullable();
             $table->foreign('preferable_time')->references('id')->on('gt_generalmeta')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('sec_preferable_time')->unsigned()->nullable();
+            $table->foreign('sec_preferable_time')->references('id')->on('gt_generalmeta')->onUpdate('cascade')->onDelete('cascade');
             $table->bigInteger('current_list')->unsigned()->nullable();
             $table->foreign('current_list')->references('id')->on('gt_lists')->onUpdate('cascade')->onDelete('cascade');
             $table->bigInteger('pervious_list')->unsigned()->nullable();
