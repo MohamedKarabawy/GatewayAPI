@@ -31,7 +31,7 @@ Route::post('/v1/auth', [LoginController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Branches
-    Route::get('/v1/branches', [BranchesController::class, 'viewBranches']);
+    Route::get('/v1/dashboard/view-branches', [BranchesController::class, 'viewBranches']);
     
     Route::get('/v1/dashboard/branches', [BranchesController::class, 'view']);
     
