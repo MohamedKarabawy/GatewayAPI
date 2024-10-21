@@ -12,7 +12,7 @@ trait GetFilteredClasses
 
             $classes = [];
 
-            $filter_elements = ['class_type', 'level', 'time_slot', 'gate', 'trainer'];
+            $filter_elements = ['class_type', 'level', 'time_slot', 'gate', 'trainer_id'];
 
             $classes = $class->where('batch_id', $current_batch?->id);
 
