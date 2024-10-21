@@ -8,11 +8,11 @@ trait ViewFilteredClassesHelper
     {
         $classes_data = [];
 
-        $class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'view_classes') && $classes_data = $class?->getCollection($classes, $batch, $request, $batch_id);
+        $class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'view_classes') && $classes_data = $class?->getCollection($classes, $batch, $request, $batch_id, $class);
 
         ($class->CheckPermissionStatus($class->current_user, $class->permission_collection, 'view_own_classes') && count($classes_data) === 0) &&
 
-        $classes_data = $class?->getCollection($classes, $batch, $request, $batch_id, $class->current_user);
+        $classes_data = $class?->getCollection($classes, $batch, $request, $batch_id, $class, $class->current_user);
 
         $num_classes = $batch->where('id', $batch_id)->first()?->classes?->count();
 

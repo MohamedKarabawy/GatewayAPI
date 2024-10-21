@@ -6,6 +6,8 @@ use Exception;
 use App\Models\Batch;
 use App\Models\Classes;
 use App\Models\Trainee;
+use App\Traits\GetUser;
+use App\Traits\GetClassMeta;
 use Illuminate\Http\Request;
 use App\Traits\CheckPermissionStatus;
 use App\Batches\Helpers\GetFilteredClasses;
@@ -13,7 +15,7 @@ use App\Batches\Helpers\ViewFilteredClassesHelper;
 
 class FilterClasses
 {
-    use ViewFilteredClassesHelper, GetFilteredClasses, CheckPermissionStatus;
+    use ViewFilteredClassesHelper, GetFilteredClasses, CheckPermissionStatus, GetClassMeta, GetUser;
     
     public function __construct($current_user)
     {
