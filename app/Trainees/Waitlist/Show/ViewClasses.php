@@ -23,8 +23,8 @@ class ViewClasses
 
     public function viewClasses(?Classes $class, ?Batch $batch, Request $request)
     {
-        try
-        {
+        // try
+        // {
             $current_batch = $batch->where('is_active', true)->first();
 
             $classes = [];
@@ -61,10 +61,10 @@ class ViewClasses
 
             
             return response($classes_collection, 200);
-        }
-        catch(Exception $e)
-        {
-            return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
-        }   
+        // }
+        // catch(Exception $e)
+        // {
+        //     return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
+        // }   
     }
 }
