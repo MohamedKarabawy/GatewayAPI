@@ -39,8 +39,10 @@ class Duplicate extends Permissions
                 $duplicateClass->batch_id = $duplicateBatch->id;
                 
                 $duplicateClass->save();
+                
+                $trainee_class = TraineeClass::where('class_id', $class->id)->replicate();
 
-                $duplicateClass->trainees->sync($class->trainees);
+                $trainee_class->save();
             }
 
             
