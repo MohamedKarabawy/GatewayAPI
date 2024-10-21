@@ -22,8 +22,8 @@ class ViewTraineeData
 
     public function viewTraineeData(?Trainee $trainee)
     {
-        // try
-        // {
+        try
+        {
             $trainees = $trainee->get();
 
             $trainees_collection = [];
@@ -49,7 +49,7 @@ class ViewTraineeData
                     'full_name' => $g_trainee?->full_name,
                     'attend_type' => $g_trainee?->attend_type,
                     'test_date' => $g_trainee?->test_date,
-                    'branch' => $this->Branch($g_trainee?->branch_id)->first()->district,
+                    'branch' => $this->Branch($g_trainee?->branch_id)->first()?->district,
                     'trainer' => $g_trainee?->user?->full_name,
                     'payment_type' => $this->GetGeneralMeta($g_trainee?->payment_type)?->meta_value,
                     ...$follow_up_collection,
@@ -60,10 +60,10 @@ class ViewTraineeData
             }
 
             return response($trainees_collection, 200);
-        // }
-        // catch (Exception $e)
-        // {
-        //     return response(['message' => "Something went wrong. Trainees cannot be viewed. Please contact the administrator of the website."], 400);
-        // }
+        }
+        catch (Exception $e)
+        {
+            return response(['message' => "Something went wrong. Trainees cannot be viewed. Please contact the administrator of the website."], 400);
+        }
     }
 }
