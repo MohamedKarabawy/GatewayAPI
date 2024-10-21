@@ -26,7 +26,7 @@ trait GetAttendance
                     str_contains($t_meta->meta_key, 'phone_number') && $meta_collection[$t_meta->meta_key] = $t_meta->meta_value;
                 }
                 
-                $trainees_collection[$key] = [
+                $trainees_collection['trainees'][$key] = [
                     'id' => $trainee?->id,
                     'full_name' => $trainee?->full_name,
                     ...$meta_collection,
