@@ -24,6 +24,8 @@ class Classes extends Model
         'class_type',
         'gate',
         'time_slot',
-        'level'
+        'level',
+        'gate_url',
+        'gate_password'
     ];
 }

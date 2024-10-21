@@ -266,8 +266,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::put('/v1/dashboard/batches/classes/time-slots', [ClassesController::class, 'viewTimeSlots']);
 
-    Route::get('/v1/dashboard/batches/{batch_id}/classes', [ClassesController::class, 'viewClasses']);
-
     Route::post('/v1/dashboard/batches/{batch_id}/classes/create', [ClassesController::class, 'createClass']);
 
     Route::put('/v1/dashboard/batches/{batch_id}/classes/{id}/update', [ClassesController::class, 'updateClass']);
