@@ -48,7 +48,7 @@ class ViewClasses
             {
                 $classes_collection[$key] = [
                     'id' => $t_class?->id,
-                    'trainer' => $this_class->User($t_class->user_id)->first()?->full_name,
+                    'trainer' => $this->User($t_class->user_id)->first()?->full_name,
                     'class_name' => $t_class?->class_name,
                     'class_type' => $t_class?->class_type,
                     'gate' => $this?->meta($t_class->gate)?->first()?->meta_value,
