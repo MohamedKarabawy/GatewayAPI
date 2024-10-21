@@ -27,10 +27,12 @@ class AssignLevel
         try
         {
             $is_exists = $level->where('meta_key', $this->list_name)->where('id', $request->level)->exists();
+
+            $is_trainer_set = $trainee->where('id', $trainee_id)->first()->trainer_id;
             
-            if (!$is_exists)
+            if (!$is_exists || !$is_trainer_set)
             {
-                return response(['message' => 'Level is not exists in the pending list'], 400);
+                return response(['message' => 'Level is not exists in the pending list or trainer not set for this trainee.'], 400);
             }
 
             $trainee->where('id', $trainee_id)->update([
