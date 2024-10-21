@@ -29,7 +29,7 @@ class SwitchClass
                     "class_id" => $request->class_id
                 ]);
 
-                Attendance::where('class_id', $request->old_class)->where("trainee_id", $trainee_id)->update(['class_id', $request->class_id]);
+                Attendance::where("class_id", $request->old_class)->where("trainee_id", $trainee_id)->update(["class_id", $request->class_id]);
                 
                 return response(['message' => "Class switched successfully."], 200);
             }
