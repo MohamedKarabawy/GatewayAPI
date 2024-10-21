@@ -49,7 +49,7 @@ class Duplicate extends Permissions
 
                 foreach ($trainee_classes as $t_class)
                 {
-                    var_dump($t_class);
+                    var_dump($t_class->trainee_id);
                     $duplicate_trainee_class->class_id = $duplicateClass->id;
 
                     $duplicate_trainee_class->trainee_id = $t_class->trainee_id;
