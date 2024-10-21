@@ -41,9 +41,18 @@ class Duplicate extends Permissions
                 
                 $duplicateClass->save();
                 
-                $trainee_class = TraineeClass::where('class_id', $class->id)->replicate();
+                $trainee_classes = TraineeClass::where('class_id', $class->id)->get();
 
-                $trainee_class->save();
+                $duplicate_trainee_class = new TraineeClass();
+
+                foreach ($trainee_classes as $trainee_class)
+                {
+                    $duplicate_trainee_class->class_id = $duplicateClass->id;
+
+                    $duplicate_trainee_class->trainee_id = $trainee_class->trainee_id;
+
+                    $duplicate_trainee_class->save();
+                }
             }
 
             
