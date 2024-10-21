@@ -23,8 +23,8 @@ class ViewClasses
 
     public function viewClasses(?Classes $class, ?Batch $batch, Request $request)
     {
-        // try
-        // {
+        try
+        {
             $current_batch = $batch->where('is_active', true)->first();
 
             $classes = [];
@@ -55,16 +55,15 @@ class ViewClasses
                     'time_slot' => $this?->meta($t_class->time_slot)->first()?->meta_value,
                     'level' => $this?->meta($t_class->level)->first()?->meta_value,
                     'num_of_trainees' => TraineeClass::where('class_id', $t_class->id)->count(),
-                    'num_of_confirmation' => TraineeClass::where('class_id', $t_class->id)->where('confirmation', true)->count()
                 ];
             }
 
             
             return response($classes_collection, 200);
-        // }
-        // catch(Exception $e)
-        // {
-        //     return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
-        // }   
+        }
+        catch(Exception $e)
+        {
+            return response(['message' => "Something went wrong. Classes cannot be viewed. Please contact the administrator of the website."], 400);
+        }   
     }
 }
