@@ -49,7 +49,7 @@ class ViewTraineeData
                     'full_name' => $g_trainee?->full_name,
                     'attend_type' => $g_trainee?->attend_type,
                     'test_date' => $g_trainee?->test_date,
-                    'branch' => $this->Branch($g_trainee?->branch_id)->district,
+                    'branch' => $this->Branch($g_trainee?->branch_id)->first()->district,
                     'trainer' => $g_trainee?->user?->full_name,
                     'payment_type' => $this->GetGeneralMeta($g_trainee?->payment_type)?->meta_value,
                     ...$follow_up_collection,
