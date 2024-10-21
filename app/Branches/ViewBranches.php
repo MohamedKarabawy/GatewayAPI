@@ -17,16 +17,16 @@ class ViewBranches
         {
             $branches = [];
 
-            $index = 0;
+            $current_branch = [];
 
-            foreach($branch->get() as $s_branch)
+            foreach($branch->get() as $key => $s_branch)
             {
-                $branches[$index++] = ['branch' => $s_branch->district];
+                $branches[$key] = ['branch' => $s_branch->district];
             }
 
-            Auth::check() && $branches[$index] = ['current_branch' => $this->Branch(auth()->user()?->branch_id)->first()?->district];
+            Auth::check() && $current_branch = ['current_branch' => $this->Branch(auth()->user()?->branch_id)->first()?->district];
 
-            return response($branches, 201);
+            return response([...$current_branch, $branches], 201);
         }
         catch(Exception $e)
         {
