@@ -39,6 +39,8 @@ class Duplicate extends Permissions
                 $duplicateClass->batch_id = $duplicateBatch->id;
                 
                 $duplicateClass->save();
+
+                $duplicateClass->trainees()->sync($class->trainees);
             }
 
             
