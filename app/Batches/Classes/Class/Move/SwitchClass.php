@@ -19,11 +19,11 @@ class SwitchClass
 
     public function switchClass(?TraineeClass $trainee_class, Request $request, $trainee_id)
     {
-        try
-        {
+        // try
+        // {
             $is_exists = $trainee_class->where("class_id", $request->class_id)->where("trainee_id", $trainee_id)->exists();
             
-            if(!$is_exists && $request->filled('old_class'))
+            if(!$is_exists || $request->filled('old_class'))
             {
                 $trainee_class->where("trainee_id", $trainee_id)->update([
                     "class_id" => $request->class_id
@@ -35,10 +35,10 @@ class SwitchClass
             }
 
             return response(['message' => "Cannot switch class. Class not exists or class id is wrong."], 400);
-        }
-        catch (Exception $e)
-        {
-            return response(['message' => "Something went wrong. Class cannot be switched. Please contact the administrator of the website."], 400);
-        }
+        // }
+        // catch (Exception $e)
+        // {
+        //     return response(['message' => "Something went wrong. Class cannot be switched. Please contact the administrator of the website."], 400);
+        // }
     }
 }
