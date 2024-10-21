@@ -4,6 +4,7 @@ namespace App\Batches\Classes\Class\Attendance;
 
 use Exception;
 use App\Models\Attendance;
+use App\Traits\GetSingleClass;
 use Illuminate\Support\Facades\Gate;
 use App\Traits\CheckPermissionStatus;
 use App\Batches\Helpers\GetAttendance;
