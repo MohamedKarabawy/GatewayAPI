@@ -15,7 +15,7 @@ class Duplicate extends Permissions
         Gate::authorize('createBatches', $batch);
     }
 
-    public function duplicate(?Batch $batch)
+    public function duplicate(?Batch $batch, TraineeClass $trainee_class)
     {
         try
         {
@@ -41,17 +41,19 @@ class Duplicate extends Permissions
                 
                 $duplicateClass->save();
                 
-                $trainee_classes = TraineeClass::where('class_id', $class->id)->get();
+                $trainee_classes = $trainee_class->where('class_id', $class->id)->get();
 
-                $duplicate_trainee_class = new TraineeClass;
+                $duplicate_trainee_class = $trainee_class;
 
-                foreach ($trainee_classes as $trainee_class)
+                var_dump(count($trainee_classes));
+
+                foreach ($trainee_classes as $t_class)
                 {
                     $duplicate_trainee_class->class_id = $duplicateClass->id;
 
-                    $duplicate_trainee_class->trainee_id = $trainee_class->trainee_id;
+                    $duplicate_trainee_class->trainee_id = $t_class->trainee_id;
 
-                    $duplicate_trainee_class->confirmation = $trainee_class->confirmation;
+                    $duplicate_trainee_class->confirmation = $t_class->confirmation;
 
                     $duplicate_trainee_class->save();
                 }

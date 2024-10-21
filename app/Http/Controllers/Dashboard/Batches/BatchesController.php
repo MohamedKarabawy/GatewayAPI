@@ -8,6 +8,7 @@ use App\Batches\Create;
 use App\Batches\Update;
 use App\Models\Classes;
 use App\Batches\Duplicate;
+use App\Models\TraineeClass;
 use Illuminate\Http\Request;
 use App\Batches\Action\Delete;
 use App\Batches\Action\EndBatch;
@@ -36,11 +37,11 @@ class BatchesController extends Controller
         return $this->batch['end']->endBatch($batch, $id);
     }
 
-    public function duplicate(?Batch $batch)
+    public function duplicate(?Batch $batch, TraineeClass $trainee_class)
     {
         $this->batch['duplicate'] = new Duplicate($batch);
 
-        return $this->batch['duplicate']->duplicate($batch);
+        return $this->batch['duplicate']->duplicate($batch, $trainee_class);
     }
 
     public function filterClasses(?Classes $class, ?Batch $batch, Request $request, $batch_id)
