@@ -42,7 +42,7 @@ class Create extends Permissions
             
             $current_class->trainer_id = $request->trainer_id;
             
-            $current_class->class_name = $request->class_type.' - '.$gate.' - '.$time_slot.' - '.$trainer.' - '.$level;
+            $current_class->class_name = $request->class_type.' - '.$time_slot.' - '.$gate.' - '.$trainer.' - '.$level;
             
             $current_class->class_type = $request->class_type;
 
