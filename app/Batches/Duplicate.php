@@ -15,7 +15,7 @@ class Duplicate extends Permissions
         Gate::authorize('createBatches', $batch);
     }
 
-    public function duplicate(?Batch $batch, TraineeClass $trainee_class)
+    public function duplicate(?Batch $batch)
     {
         try
         {

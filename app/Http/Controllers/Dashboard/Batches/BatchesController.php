@@ -37,11 +37,11 @@ class BatchesController extends Controller
         return $this->batch['end']->endBatch($batch, $id);
     }
 
-    public function duplicate(?Batch $batch, TraineeClass $trainee_class)
+    public function duplicate(?Batch $batch)
     {
         $this->batch['duplicate'] = new Duplicate($batch);
 
-        return $this->batch['duplicate']->duplicate($batch, $trainee_class);
+        return $this->batch['duplicate']->duplicate($batch);
     }
 
     public function filterClasses(?Classes $class, ?Batch $batch, Request $request, $batch_id)
