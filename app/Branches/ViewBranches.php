@@ -26,7 +26,7 @@ class ViewBranches
 
             Auth::check() && $current_branch = ['current_branch' => $this->Branch(auth()->user()?->branch_id)->first()?->district];
 
-            return response([...$current_branch, $branches], 201);
+            return response([...$current_branch, 'branches' => $branches], 201);
         }
         catch(Exception $e)
         {
